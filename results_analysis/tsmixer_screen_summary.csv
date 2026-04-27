@@ -1,0 +1,13 @@
+Metric,Value
+settings,21.0
+tsmixer_avg_mse,0.9564105215526763
+tsmixer_avg_mae,0.6038372168938319
+pfb_v0_avg_mse,0.5388134487328076
+pfb_v2_avg_mse,0.4759737677872181
+beats_pfb_v0_mse,2.0
+beats_pfb_v2_mse,1.0
+beats_both_fusion_mse,1.0
+near_tie_or_better_bothfusion_1pct,1.0
+wins_all_models_mse,1.0
+key_regime_beats_both_fusion,1.0
+key_regime_near_tie_or_better_1pct,1.0

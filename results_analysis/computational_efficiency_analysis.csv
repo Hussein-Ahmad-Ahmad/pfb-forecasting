@@ -1,0 +1,12 @@
+Model,Parameters (M),Architecture,Time/Epoch (GPU-hr),Total Training (100ep),MSE,Efficiency Score,Description
+BERTOnly,2.1,Transformer-based (BERT),0.45,45.0,0.311931,0.6550551,BERT encoder with projection layers
+PatchFusionBERT_v0,3.5,Hybrid (Patch + BERT),0.52,52.0,0.438714,1.535499,PatchTST backbone + BERT layers
+PatchFusionBERT_v2,3.8,Hybrid (Patch + BERT),0.55,55.00000000000001,0.743645,2.8258509999999997,Enhanced PatchTST + BERT integration
+PatchTST,2.7,Transformer-based (Patching),0.42,42.0,0.375361,1.0134747000000002,Patching + Transformer
+iTransformer,3.2,Transformer-based (Inverted),0.48,48.0,0.809396,2.5900672,Inverted Transformer
+DLinear,0.05,Linear,0.08,8.0,0.708418,0.0354209,Simple linear layers
+TimeXer,4.1,Transformer-based (Cross-attn),0.58,57.99999999999999,0.648699,2.6596659,Cross-attention Transformer
+TiDE,1.8,MLP-based,0.35,35.0,0.621725,1.119105,Time-series Dense Encoder
+Autoformer,3.0,Transformer-based (Auto-corr),0.5,50.0,0.789212,2.367636,Auto-correlation Transformer
+Transformer,2.5,Transformer-based (Vanilla),0.4,40.0,1.623782,4.059455,Vanilla Transformer
+Informer,2.8,Transformer-based (Sparse),0.46,46.0,2.0937,5.86236,ProbSparse Attention

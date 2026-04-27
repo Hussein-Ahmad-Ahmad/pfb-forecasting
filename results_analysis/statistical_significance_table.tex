@@ -1,0 +1,26 @@
+\begin{table}[t]
+\centering
+\caption{Statistical Significance Analysis: Model Performance Comparison}
+\label{tab:statistical_significance}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Rank} & \textbf{MSE} & \textbf{95\% CI} & \textbf{p-value} & \textbf{Sig.} \\
+\midrule
+\textbf{BERTOnly} & \textbf{1} & \textbf{0.3119} & [0.2107, 0.4132] & --- & --- \\
+PatchTST & 2 & 0.3754 & [0.1772, 0.5735] & 0.0391 & ✓ \\
+PatchFusionBERT\_v0 & 3 & 0.4387 & [0.0272, 0.8502] & 0.0391 & ✓ \\
+TiDE & 4 & 0.6217 & [-0.1554, 1.3988] & 0.0781 & ✗ \\
+TimeXer & 5 & 0.6487 & [0.1420, 1.1554] & --- &  \\
+DLinear & 6 & 0.7084 & [0.2348, 1.1821] & 0.3594 & ✗ \\
+PatchFusionBERT\_v2 & 7 & 0.7436 & [0.2517, 1.2356] & --- &  \\
+Autoformer & 8 & 0.7892 & [-0.2594, 1.8378] & --- &  \\
+iTransformer & 9 & 0.8094 & [0.2633, 1.3555] & --- &  \\
+Transformer & 10 & 1.6238 & [-0.1257, 3.3732] & 0.0312 & ✓ \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item p-values from Wilcoxon signed-rank test vs. BERTOnly (reference model).
+\item ✓ indicates significant difference at $\alpha = 0.05$ level.
+\end{tablenotes}
+\end{table}
