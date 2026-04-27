@@ -166,3 +166,30 @@ result_anomaly_detection.txt
 scripts/augmentation/
 run_anylearn.py
 environment.txt
+
+# Training batch scripts (operational, not reproducible via bat)
+*.bat
+
+# Backup result files
+result_long_term_forecast_BACKUP_*.txt
+
+# Working-notes phase-progress markdowns
+PHASE0_COMPLETION_STATUS.md
+PHASE3B_PROGRESS.md
+PHASE3_STATUS.md
+PHASE4_COMPLETE_SUMMARY.md
+EXPERIMENT_CAMPAIGN_SUMMARY.md
+COMPREHENSIVE_MULTI_HORIZON_ANALYSIS.md
+ILLNESS_COVERAGE_SUMMARY.md
+QUICK_START_PHASE1.md
+QUICK_REFERENCE_FIGURES.md
+SUPPLEMENTARY_FIGURES_SUMMARY.md
+TRAINING_100EPOCH_README.md
+VISUALIZATION_GUIDE.md
+
+# Old figure directory
+img-result-23_01/
+notebooks/
+
+# Stray file
+35
