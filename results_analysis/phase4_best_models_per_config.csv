@@ -1,7 +1,0 @@
-Dataset,Horizon,Best_Model,MSE,MAE,MSE_std,Robustness
-ETTh1,96,DLinear,0.371716,0.395214,0,High
-ETTh2,96,TiDE,0.291427,0.351527,0,High
-ETTm1,96,PatchTST,0.298173,0.348971,0,High
-ETTm2,96,DLinear,0.168431,0.264431,0,High
-custom,24,PatchTST,2.226719,1.028002,0,High
-custom,96,TimeXer,0.148843,0.200793,0,High
