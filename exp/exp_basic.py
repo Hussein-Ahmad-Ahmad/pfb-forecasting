@@ -3,8 +3,9 @@ import torch
 from models import Autoformer, Transformer, TimesNet, Nonstationary_Transformer, DLinear, FEDformer, \
     Informer, LightTS, Reformer, ETSformer, Pyraformer, PatchTST, MICN, Crossformer, FiLM, iTransformer, \
     Koopa, TiDE, FreTS, TimeMixer, TSMixer, SegRNN, MambaSimple, TemporalFusionTransformer, SCINet, PAttn, TimeXer, \
-    WPMixer, MultiPatchFormer, KANAD, MSGNet, TimeFilter, Sundial, TimeMoE, Chronos, Moirai, TiRex,\
-    TimesFM, Toto, Chronos2
+    WPMixer, MultiPatchFormer, KANAD, MSGNet, TimeFilter, TimeMoE, PatchFusionBERT, PatchFusionBERT_v2, PatchFusionBERT_v0, \
+    PatchFusionBERT_PatchOnly, PatchFusionBERT_BERTOnly, PatchFusionBERT_RefineOnly
+    # Sundial, TiRex, TimesFM, Toto, Chronos, Chronos2, Moirai - commented out due to import issues
 
 
 class Exp_Basic(object):
@@ -22,6 +23,11 @@ class Exp_Basic(object):
             'Reformer': Reformer,
             'ETSformer': ETSformer,
             'PatchTST': PatchTST,
+            # Controls: plain PatchTST with different capacity configs
+            # (still uses the exact same PatchTST implementation)
+            'PatchTST_base': PatchTST,
+            'PatchTST_capacity': PatchTST,
+            'PatchTST_depth': PatchTST,
             'Pyraformer': Pyraformer,
             'MICN': MICN,
             'Crossformer': Crossformer,
@@ -43,14 +49,20 @@ class Exp_Basic(object):
             'KANAD': KANAD,
             'MSGNet': MSGNet,
             'TimeFilter': TimeFilter,
-            'Sundial': Sundial,
+            # 'Sundial': Sundial,
             'TimeMoE': TimeMoE,
-            'Chronos': Chronos,
-            'Moirai': Moirai,
-            'TiRex': TiRex,
-            'TimesFM': TimesFM,
-            'Toto': Toto,
-            'Chronos2': Chronos2
+            'PatchFusionBERT': PatchFusionBERT,
+            'PatchFusionBERT_v2': PatchFusionBERT_v2,
+            'PatchFusionBERT_v0': PatchFusionBERT_v0,
+            'PatchFusionBERT_PatchOnly': PatchFusionBERT_PatchOnly,
+            'PatchFusionBERT_BERTOnly': PatchFusionBERT_BERTOnly,
+            'PatchFusionBERT_RefineOnly': PatchFusionBERT_RefineOnly,
+            # 'Chronos': Chronos,
+            # 'Moirai': Moirai,
+            # 'TiRex': TiRex,
+            # 'TimesFM': TimesFM,
+            # 'Toto': Toto,
+            # 'Chronos2': Chronos2
         }
         if args.model == 'Mamba':
             print('Please make sure you have successfully installed mamba_ssm')
