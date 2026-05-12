@@ -4,7 +4,7 @@ from models import Autoformer, Transformer, TimesNet, Nonstationary_Transformer,
     Informer, LightTS, Reformer, ETSformer, Pyraformer, PatchTST, MICN, Crossformer, FiLM, iTransformer, \
     Koopa, TiDE, FreTS, TimeMixer, TSMixer, SegRNN, MambaSimple, TemporalFusionTransformer, SCINet, PAttn, TimeXer, \
     WPMixer, MultiPatchFormer, KANAD, MSGNet, TimeFilter, TimeMoE, PatchFusionBERT, PatchFusionBERT_v2, PatchFusionBERT_v0, \
-    PatchFusionBERT_PatchOnly, PatchFusionBERT_BERTOnly, PatchFusionBERT_RefineOnly
+    PatchFusionBERT_PatchOnly, PatchFusionBERT_BERTOnly, PatchFusionBERT_RefineOnly, PatchTST_LargeHead
     # Sundial, TiRex, TimesFM, Toto, Chronos, Chronos2, Moirai - commented out due to import issues
 
 
@@ -57,6 +57,7 @@ class Exp_Basic(object):
             'PatchFusionBERT_PatchOnly': PatchFusionBERT_PatchOnly,
             'PatchFusionBERT_BERTOnly': PatchFusionBERT_BERTOnly,
             'PatchFusionBERT_RefineOnly': PatchFusionBERT_RefineOnly,
+            'PatchTST_LargeHead': PatchTST_LargeHead,
             # 'Chronos': Chronos,
             # 'Moirai': Moirai,
             # 'TiRex': TiRex,

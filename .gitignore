@@ -117,6 +117,73 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
+## ── Project-specific exclusions ──────────────────────────────────────────────
+
+# Raw per-run model outputs (large, re-generatable)
+results/
+checkpoints/
+test_results/
+
+# Downloaded datasets (download separately per README)
+data/*.csv
+data/*.txt
+
+# Intermediate / historical experiment artefacts
+*.bat
+35
+
+# Old result text / CSV dumps
+result_long_term_forecast*.txt
+result_long_term_forecast*.csv
+result_archive_*.txt
+comparison_*100epoch.csv
+efficiency_analysis_100epoch.csv
+results_23-01.*
+multiseed_statistics.csv
+phase3a_issues_found.txt
+phase3b_missing_manual.txt
+
+# Smoke-screen / model-exploration logs (not in paper)
+results_analysis/smoke_screen_logs/
+results_analysis/tsmixer_screen_logs/
+results_analysis/wpmixer_pattn_full_logs/
+results_analysis/efficiency_weather192_training_logs/
+results_analysis/b2_smoke_*.csv
+results_analysis/b2_smoke_*.md
+results_analysis/b2_smoke_*.tex
+results_analysis/tsmixer_screen*.csv
+results_analysis/wpmixer_pattn_full*.csv
+results_analysis/smoke_screen_new_models*.csv
+
+# Intermediate internal status / planning docs (not for readers)
+results_analysis/COMPLETE_ANALYSIS_WITH_BERT.md
+results_analysis/COMPREHENSIVE_RESEARCH_DOCUMENTATION.md
+results_analysis/PROGRESS_UPDATE_JAN18.md
+results_analysis/QUICK_REFERENCE_NEXT_STEPS.md
+results_analysis/INDEX.md
+results_analysis/manuscript_integration_packet.md
+results_analysis/analysis_summary_stats.csv
+results_analysis/complete_model_rankings.csv
+results_analysis/complete_results_all_models.csv
+results_analysis/computational_efficiency_analysis.csv
+results_analysis/cost_performance_tradeoff.csv
+results_analysis/patchfusionbert_variants_analysis.csv
+results_analysis/publication_statistical_summary.csv
+results_analysis/statistical_confidence_intervals.csv
+results_analysis/statistical_wilcoxon_pairwise.csv
+results_analysis/result_long_term_forecast_phase3c*.csv
+results_analysis/phase4*.csv
+results_analysis/phase4*.json
+results_analysis/figures/
+results_analysis/figures_complete/
+results_analysis/publication_figures/
+results_analysis/wallclock_logs/
+
+# Old intermediate data CSVs at repo root
+phase4_best_models_per_config.csv
+phase4_model_ranking.csv
+multiseed_statistics.csv
+
 # mkdocs documentation
 /site
 

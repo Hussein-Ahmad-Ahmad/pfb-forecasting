@@ -37,3 +37,4 @@ from . import PatchFusionBERT_v0
 from . import PatchFusionBERT_PatchOnly
 from . import PatchFusionBERT_BERTOnly
 from . import PatchFusionBERT_RefineOnly
+from . import PatchTST_LargeHead
