@@ -95,6 +95,8 @@ Five-seed validation (seeds 2019–2023) across six datasets, tested with Wilcox
 
 ```
 .
+├── run.py                               # TSLib main entry point
+│
 ├── models/                              # Model definitions
 │   ├── PatchFusionBERT.py               #   Shared base class
 │   ├── PatchFusionBERT_v0.py            #   PFBv0 — additive gate fusion (main)
@@ -103,43 +105,65 @@ Five-seed validation (seeds 2019–2023) across six datasets, tested with Wilcox
 │   ├── PatchFusionBERT_PatchOnly.py     #   Ablation: backbone only
 │   ├── PatchFusionBERT_RefineOnly.py    #   Ablation: backbone + BERT, no gate
 │   ├── PatchTST_LargeHead.py            #   Capacity control (3.45 M params)
-│   ├── PatchTST.py                      #   Baseline
-│   ├── DLinear.py                       #   Baseline
-│   ├── iTransformer.py                  #   Baseline
-│   ├── TiDE.py                          #   Baseline
-│   └── TimeXer.py                       #   Baseline
+│   ├── PatchTST.py / DLinear.py         #   Baselines
+│   └── iTransformer.py / TiDE.py / TimeXer.py
 │
 ├── exp/ layers/ data_provider/ utils/   # TSLib framework (unchanged)
 │
-├── scripts/                             # Experiment runner scripts
-│   ├── bridging_lr_unified.ps1          #   Table 2 — 108 single-seed runs
+├── scripts/                             # Experiment runner scripts (PowerShell + Python)
+│   ├── bridging_lr_unified.ps1          #   Table 2  — 108 single-seed runs
 │   ├── multiseed_h96_h336_5seed.ps1     #   Tables 3/14 — H=96,336 × 5 seeds
-│   ├── run_multiseed_5seed_campaign.ps1 #   Table 3 — H=192 × 5 seeds
-│   ├── b1_component_ablation_chain.ps1  #   Table 8 — ablation chain
-│   ├── capmatch_controls.ps1            #   Table 6 — capacity-matched controls
-│   └── capmatch_controls_ett_weather_96_336.ps1
+│   ├── run_multiseed_5seed_campaign.ps1 #   Table 3  — H=192 × 5 seeds
+│   ├── b1_component_ablation_chain.ps1  #   Table 8  — ablation chain
+│   ├── capmatch_controls.ps1            #   Table 6  — capacity-matched controls
+│   ├── capmatch_controls_ett_weather_96_336.ps1
+│   ├── capmatch_controls_depth.ps1 / capmatch_controls_exchange.ps1
+│   ├── pfb_v0_kdepth_ablation.ps1 / pfb_v0_kdepth_ablation_full.ps1
+│   ├── pfb_v2_kdepth_ablation.ps1
+│   ├── b2_broader_robustness_matrix.ps1 / b2_robustness_exchange_illness.ps1
+│   ├── run_efficiency_weather192.ps1 / run_wallclock_weather192.ps1
+│   ├── rerun_patchtst_patch_sensitivity.ps1
+│   ├── c8_headscale_patchtst.ps1
+│   └── run_largehead_ablation.py        #   PatchTST_LargeHead runner
 │
 ├── analysis/                            # Result parsing and statistical tests
 │   ├── analyze_bridging_lr.py           #   Parse Table 2 results
 │   ├── analyze_h96_h336_multiseed.py    #   Parse H=96/336 multi-seed results
 │   ├── analyze_capmatch_controls.py     #   Parse capacity control results
 │   ├── analyze_b1_component_ablation.py #   Parse ablation results
+│   ├── analyze_b2_broader_robustness.py / analyze_c1_mechanistic_characteristics.py
+│   ├── analyze_c2_robustness.py / analyze_efficiency_weather192.py
+│   ├── analyze_error_by_step.py / analyze_illness_multiseed_stability.py
+│   ├── analyze_multiseed_results.py / analyze_patch_sensitivity.py
+│   ├── analyze_per_variable_weather.py / analyze_pfb_kdepth_ablation.py
 │   ├── statistical_significance_multiseed_5seed.py  # Wilcoxon tests (H=192)
-│   ├── add_fdr_correction.py            #   Holm + BH-FDR correction
-│   └── results_analysis/wilcoxon_h96_h336.py        # Wilcoxon tests (H=96/336)
+│   ├── statistical_significance_testing.py
+│   └── add_fdr_correction.py            #   Holm + BH-FDR correction
 │
 ├── profiling/                           # Efficiency and parameter analysis
 │   ├── count_params.py                  #   Parameter count (Table 13)
 │   ├── measure_flops_macs.py            #   FLOPs / MACs (Table 13)
+│   ├── measure_efficiency.py / measure_model_specs.py
 │   ├── benchmark_training_weather192.py #   Training throughput
 │   └── benchmark_inference_weather192.py#   Inference throughput
 │
 ├── robustness/                          # Robustness experiments
 │   ├── robustness_missing_data.py       #   Tables 15–16 (random/block missingness)
 │   ├── c2_gaussian_channel_robustness.py#   Gaussian noise + channel dropout
-│   └── c4_cka_representation_similarity.py  # CKA analysis (Table 11)
+│   ├── c4_cka_representation_similarity.py  # CKA analysis (Table 11)
+│   ├── b2_broader_robustness_matrix.py
+│   └── capacity_match_patchtst.py
 │
-├── results_analysis/                    # Parsed CSVs and LaTeX tables for paper
+├── results_analysis/                    # Parsed CSVs and LaTeX tables used in paper
+│   ├── wilcoxon_h96_h336.py             #   Wilcoxon tests (H=96/336)
+│   ├── compute_ci.py / compute_ci_h96_h336.py
+│   ├── bridging_lr_raw.csv / bridging_lr_summary.csv
+│   ├── multiseed_5seed_summary.csv / multiseed_h96_h336_summary.csv
+│   ├── b1_component_ablation.csv / capmatch_controls_results.csv
+│   ├── c2_gaussian_channel_robustness.csv / c4_cka_similarity.csv
+│   ├── robustness_missing_data_results.csv / patch_sensitivity_results.csv
+│   └── flops_macs.csv / efficiency_weather192_*.csv / ...
+│
 ├── paper/
 │   ├── txt.tex                          # Full manuscript (all corrections applied)
 │   └── figures/                         # All 15 paper figures (Fig 1–7, A1–A8)
@@ -175,25 +199,25 @@ pip install -r requirements.txt
 The diagram below shows the full experiment pipeline from data to paper tables:
 
 ```
-Data Prep          Training (Step 2–5)            Analysis (Step 6–8)
-──────────   ──────────────────────────────   ──────────────────────────────
-data/*.csv → Main benchmark (Table 2)      → analyze_bridging_lr.py
-             ├─ bridging_lr_unified.ps1        → LaTeX Table 2
+Data Prep          Training (Step 2–5)                       Analysis (Step 6–8)
+──────────   ─────────────────────────────────────────   ──────────────────────────────────────
+data/*.csv → Main benchmark (Table 2)                 → analysis/analyze_bridging_lr.py
+             ├─ scripts/bridging_lr_unified.ps1            → LaTeX Table 2
              │
-             ├─ Multi-seed H=192 (Table 3)  → analyze_h96_h336_multiseed.py
-             │   run_multiseed_5seed_campaign.ps1
+             ├─ Multi-seed H=192 (Table 3)             → analysis/analyze_h96_h336_multiseed.py
+             │   scripts/run_multiseed_5seed_campaign.ps1
              │
-             ├─ Multi-seed H=96/336 (T.14)  → statistical tests (Step 6)
-             │   multiseed_h96_h336_5seed.ps1   → Wilcoxon + Holm FDR
+             ├─ Multi-seed H=96/336 (Table 14)         → statistical tests (Step 6)
+             │   scripts/multiseed_h96_h336_5seed.ps1      → Wilcoxon + Holm FDR
              │
-             ├─ Ablation (Table 8)          → analyze_b1_component_ablation.py
-             │   b1_component_ablation_chain.ps1
+             ├─ Ablation (Table 8)                     → analysis/analyze_b1_component_ablation.py
+             │   scripts/b1_component_ablation_chain.ps1
              │
-             ├─ Capacity control (Table 6)  → analyze_capmatch_controls.py
-             │   capmatch_controls.ps1
+             ├─ Capacity control (Table 6)             → analysis/analyze_capmatch_controls.py
+             │   scripts/capmatch_controls.ps1
              │
-             └─ Robustness / Efficiency     → Tables 11, 13, 15–16
-                (Steps 7–8)
+             └─ Robustness / Efficiency                → Tables 11, 13, 15–16
+                (Steps 7–8)                               profiling/ · robustness/
 ```
 
 ### Step 1 — Data Preparation
@@ -213,10 +237,10 @@ Runs all 108 single-seed experiments under the BridgeLR protocol.
 
 ```powershell
 # Train all models (PFBv0, PFBv2, PatchTST, iTransformer, TiDE, TimeXer, DLinear)
-.\bridging_lr_unified.ps1
+.\scripts\bridging_lr_unified.ps1
 
 # Parse results → Table 2 LaTeX
-python analyze_bridging_lr.py
+python analysis/analyze_bridging_lr.py
 ```
 
 ---
@@ -225,13 +249,13 @@ python analyze_bridging_lr.py
 
 ```powershell
 # H=192, 5 seeds (seeds 2019–2023)
-.\run_multiseed_5seed_campaign.ps1
+.\scripts\run_multiseed_5seed_campaign.ps1
 
 # H=96 and H=336, 5 seeds
-.\multiseed_h96_h336_5seed.ps1
+.\scripts\multiseed_h96_h336_5seed.ps1
 
 # Parse results
-python analyze_h96_h336_multiseed.py
+python analysis/analyze_h96_h336_multiseed.py
 ```
 
 ---
@@ -241,8 +265,8 @@ python analyze_h96_h336_multiseed.py
 Component ablation chain: Backbone → +BERT → +Gate (PFBv0) → +Projection (PFBv2).
 
 ```powershell
-.\b1_component_ablation_chain.ps1
-python analyze_b1_component_ablation.py
+.\scripts\b1_component_ablation_chain.ps1
+python analysis/analyze_b1_component_ablation.py
 ```
 
 ---
@@ -252,9 +276,9 @@ python analyze_b1_component_ablation.py
 Ensures PFBv0 gains are not simply due to having more parameters than PatchTST.
 
 ```powershell
-.\capmatch_controls.ps1
-.\capmatch_controls_ett_weather_96_336.ps1
-python analyze_capmatch_controls.py
+.\scripts\capmatch_controls.ps1
+.\scripts\capmatch_controls_ett_weather_96_336.ps1
+python analysis/analyze_capmatch_controls.py
 ```
 
 ---
@@ -265,8 +289,8 @@ Wilcoxon signed-rank tests with Holm and BH-FDR corrections over the multi-seed 
 
 ```powershell
 # Pooled H=192 tests
-python statistical_significance_multiseed_5seed.py
-python add_fdr_correction.py
+python analysis/statistical_significance_multiseed_5seed.py
+python analysis/add_fdr_correction.py
 
 # H=96 / H=336 tests
 python results_analysis/wilcoxon_h96_h336.py
@@ -277,10 +301,10 @@ python results_analysis/wilcoxon_h96_h336.py
 ### Step 7 — Efficiency Profiling (Table 13)
 
 ```powershell
-python count_params.py
-python measure_flops_macs.py
-python benchmark_training_weather192.py
-python benchmark_inference_weather192.py
+python profiling/count_params.py
+python profiling/measure_flops_macs.py
+python profiling/benchmark_training_weather192.py
+python profiling/benchmark_inference_weather192.py
 ```
 
 ---
@@ -289,13 +313,13 @@ python benchmark_inference_weather192.py
 
 ```powershell
 # Missing data (random and block patterns)
-python robustness_missing_data.py
+python robustness/robustness_missing_data.py
 
 # Gaussian noise + channel dropout
-python c2_gaussian_channel_robustness.py
+python robustness/c2_gaussian_channel_robustness.py
 
 # CKA representation similarity (Table 11)
-python c4_cka_representation_similarity.py
+python robustness/c4_cka_representation_similarity.py
 ```
 
 ---
