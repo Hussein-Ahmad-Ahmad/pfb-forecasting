@@ -27,9 +27,8 @@
    - [Step 6 — Statistical Tests](#step-6--statistical-tests)
    - [Step 7 — Efficiency Profiling (Table 13)](#step-7--efficiency-profiling-table-13)
    - [Step 8 — Robustness Experiments (Tables 15–16)](#step-8--robustness-experiments-tables-1516)
-8. [Figures](#figures)
-9. [Citation](#citation)
-10. [Acknowledgements](#acknowledgements)
+8. [Citation](#citation)
+9. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -49,17 +48,11 @@ All experiments follow the **BridgeLR unified protocol**: single seed 2021, DLin
 
 ---
 
-## Architecture
-
-![PatchFusionBERT Architecture](paper/figures/Fig1_architecture.png)
-
-*Fig. 1 — PatchFusionBERT architecture. A PatchTST-style encoder feeds both a BERT refinement stage and a direct linear path. An adaptive gate fuses the two streams before the projection head.*
-
 ---
 
 ## Main Results (MSE / MAE — single seed, `seq_len = 336`)
 
-**Bold** = best; second-best is underlined in the paper. Results cover the three primary horizons across seven public benchmarks under the unified BridgeLR protocol. Full results (ETTm1, Exchange, Illness) are in `paper/txt.tex`.
+**Bold** = best; second-best is underlined in the paper. Results cover the three primary horizons across seven public benchmarks under the unified BridgeLR protocol. Full results (ETTm1, Exchange, Illness) are in the paper.
 
 | Dataset | H | PFBv0 | PFBv2 | PatchTST | iTransformer | TiDE | TimeXer | DLinear |
 |:--------|:-:|:-----:|:-----:|:--------:|:------------:|:----:|:-------:|:-------:|
@@ -108,7 +101,17 @@ Five-seed validation (seeds 2019–2023) across six datasets, tested with Wilcox
 │   ├── PatchTST.py / DLinear.py         #   Baselines
 │   └── iTransformer.py / TiDE.py / TimeXer.py
 │
-├── exp/ layers/ data_provider/ utils/   # TSLib framework (unchanged)
+├── exp/
+│   ├── exp_basic.py
+│   └── exp_long_term_forecasting.py
+├── layers/
+│   ├── Autoformer_EncDec.py  Embed.py  SelfAttention_Family.py
+│   ├── Transformer_EncDec.py  StandardNorm.py
+│   └── __init__.py
+├── data_provider/
+│   ├── data_factory.py  data_loader.py
+│   └── __init__.py
+├── utils/                               # Metrics, tools, masking, etc.
 │
 ├── scripts/                             # Experiment runner scripts (PowerShell + Python)
 │   ├── bridging_lr_unified.ps1          #   Table 2  — 108 single-seed runs
@@ -154,19 +157,14 @@ Five-seed validation (seeds 2019–2023) across six datasets, tested with Wilcox
 │   ├── b2_broader_robustness_matrix.py
 │   └── capacity_match_patchtst.py
 │
-├── results_analysis/                    # Parsed CSVs and LaTeX tables used in paper
-│   ├── wilcoxon_h96_h336.py             #   Wilcoxon tests (H=96/336)
-│   ├── compute_ci.py / compute_ci_h96_h336.py
+├── results_analysis/                    # Parsed result CSVs used to generate paper tables
+│   ├── wilcoxon_h96_h336.py / compute_ci.py / compute_ci_h96_h336.py
 │   ├── bridging_lr_raw.csv / bridging_lr_summary.csv
 │   ├── multiseed_5seed_summary.csv / multiseed_h96_h336_summary.csv
 │   ├── b1_component_ablation.csv / capmatch_controls_results.csv
 │   ├── c2_gaussian_channel_robustness.csv / c4_cka_similarity.csv
 │   ├── robustness_missing_data_results.csv / patch_sensitivity_results.csv
 │   └── flops_macs.csv / efficiency_weather192_*.csv / ...
-│
-├── paper/
-│   ├── txt.tex                          # Full manuscript (all corrections applied)
-│   └── figures/                         # All 15 paper figures (Fig 1–7, A1–A8)
 │
 └── data/                                # Benchmark datasets (not tracked in git)
     ├── ETTh1.csv  ETTh2.csv
@@ -321,40 +319,6 @@ python robustness/c2_gaussian_channel_robustness.py
 # CKA representation similarity (Table 11)
 python robustness/c4_cka_representation_similarity.py
 ```
-
----
-
-## Figures
-
-### Fig. 1 — Architecture
-![Architecture](paper/figures/Fig1_architecture.png)
-
-### Fig. 2 — MSE Heatmap across datasets and horizons
-![MSE Heatmap](paper/figures/Fig2_mse_heatmap.png)
-
-### Fig. 3 — Capacity-Matched Control Results
-![Capacity Control](paper/figures/Fig3_capacity_control.png)
-
-### Fig. 4 — Efficiency Pareto (Accuracy vs. Inference Cost)
-![Efficiency Pareto](paper/figures/Fig4_efficiency_pareto.png)
-
-### Fig. 5 — Component Ablation Chain
-![Ablation](paper/figures/Fig5_ablation_chain.png)
-
-### Fig. 6 — Robustness Under Missing Data
-![Robustness](paper/figures/Fig6_robustness_curves.png)
-
-### Fig. 7 — CKA Representation Similarity
-![CKA](paper/figures/Fig7_cka_similarity.png)
-
-### Appendix Figures (A1–A8)
-
-| | |
-|:---:|:---:|
-| ![A1](paper/figures/A1_full_errorbars.png)<br>**A1** — 5-seed error bars across all horizons | ![A2](paper/figures/A2_significance.png)<br>**A2** — Wilcoxon significance summary |
-| ![A3](paper/figures/A3_per_variable_weather.png)<br>**A3** — Per-variable Weather error | ![A4](paper/figures/A4_error_by_step.png)<br>**A4** — Error by forecast step |
-| ![A5](paper/figures/A5_kdepth_sensitivity.png)<br>**A5** — BERT refinement depth (K) sensitivity | ![A6](paper/figures/A6_bridging_lr.png)<br>**A6** — Bridging LR protocol results |
-| ![A7](paper/figures/A7_robustness_matrix.png)<br>**A7** — Robustness matrix | ![A8](paper/figures/A8_gaussian_channel_robustness.png)<br>**A8** — Gaussian noise & channel dropout |
 
 ---
 

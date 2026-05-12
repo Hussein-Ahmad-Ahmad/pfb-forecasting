@@ -1,0 +1,82 @@
+{
+  "PatchTST": {
+    "baseline": {
+      "d_model": 128,
+      "d_ff": 512,
+      "e_layers": 3,
+      "n_heads": 8,
+      "patch_len": 16,
+      "stride": 8
+    },
+    "ablations": [
+      {
+        "name": "Small_Model",
+        "d_model": 64,
+        "d_ff": 256
+      },
+      {
+        "name": "Large_Model",
+        "d_model": 256,
+        "d_ff": 1024
+      },
+      {
+        "name": "Deep_Network",
+        "e_layers": 6
+      },
+      {
+        "name": "Shallow_Network",
+        "e_layers": 1
+      },
+      {
+        "name": "More_Heads",
+        "n_heads": 16
+      },
+      {
+        "name": "Fewer_Heads",
+        "n_heads": 4
+      },
+      {
+        "name": "Large_Patch",
+        "patch_len": 32,
+        "stride": 16
+      },
+      {
+        "name": "Small_Patch",
+        "patch_len": 8,
+        "stride": 4
+      }
+    ]
+  },
+  "iTransformer": {
+    "baseline": {
+      "d_model": 128,
+      "d_ff": 512,
+      "e_layers": 2,
+      "n_heads": 8
+    },
+    "ablations": [
+      {
+        "name": "Small_Model",
+        "d_model": 64,
+        "d_ff": 256
+      },
+      {
+        "name": "Large_Model",
+        "d_model": 256,
+        "d_ff": 1024
+      },
+      {
+        "name": "Deep_Network",
+        "e_layers": 4
+      },
+      {
+        "name": "More_Heads",
+        "n_heads": 16
+      },
+      {
+        "name": "Fewer_Heads",
+        "n_heads": 4
+      }
+    ]
+  }
+}
