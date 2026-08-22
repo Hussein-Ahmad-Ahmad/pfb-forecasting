@@ -1,13 +1,10 @@
 """
-PatchFusionBERT v0: Conference Paper Implementation
-Based on "Enhanced Time Series Forecasting: Integrating PatchTST with BERT Layers"
+PatchFusionBERT v0: direct parallel patch-encoder fusion.
 
 Key Characteristics (vs v2):
 1. Simple Fusion: Concat -> Flatten -> Linear (NO non-linearity between streams)
-2. Symmetric Encoder Depth: BERT uses same e_layers as PatchTranEnc
+2. Symmetric Encoder Depth: the secondary encoder uses the same e_layers as the primary encoder
 3. Direct combination without fusion projection block
-
-This represents the original conference paper architecture before v2 enhancements.
 """
 
 import torch
@@ -17,10 +14,10 @@ from layers.SelfAttention_Family import FullAttention, AttentionLayer
 from layers.Embed import PatchEmbedding
 
 
-class BERTEncoder(nn.Module):
-    """BERT-style encoder for capturing long-range dependencies"""
+class SecondaryPatchEncoder(nn.Module):
+    """Secondary Transformer encoder operating on the shared patch tokens."""
     def __init__(self, d_model, n_heads, d_ff, num_layers, dropout):
-        super(BERTEncoder, self).__init__()
+        super().__init__()
         
         self.layers = nn.ModuleList([
             EncoderLayer(
@@ -63,11 +60,11 @@ class FlattenHead(nn.Module):
 
 class Model(nn.Module):
     """
-    PatchFusionBERT v0: Conference Paper Implementation
+    PatchFusionBERT v0: direct parallel patch-encoder fusion.
     
     Architecture (Simple Fusion):
     - Stream 1 (PatchTranEnc): Local temporal patterns
-    - Stream 2 (BERT): Global context with same depth as Stream 1
+    - Stream 2 (secondary patch encoder): same-depth parallel transformation
     - Fusion: Direct concatenation -> Flatten -> Linear output
     
     Key Difference from v2:
@@ -109,21 +106,22 @@ class Model(nn.Module):
         )
 
         # Stream 2: refinement path.
-        # Default v0 behavior (pfb_k=0): symmetric BERT branch from patch embeddings.
+        # Default v0 behavior (pfb_k=0): symmetric secondary branch from patch embeddings.
         # K-depth ablation behavior (pfb_k>0): apply K additional Transformer blocks
         # on top of the backbone output before fusion.
-        bert_layers = configs.e_layers
-        self.bert_encoder = BERTEncoder(
+        secondary_layers = configs.e_layers
+        # Attribute name retained for compatibility with existing checkpoints and hooks.
+        self.bert_encoder = SecondaryPatchEncoder(
             configs.d_model, 
             configs.n_heads, 
             configs.d_ff, 
-            bert_layers, 
+            secondary_layers,
             configs.dropout
         )
 
         self.refinement_encoder = None
         if self.pfb_k > 0:
-            self.refinement_encoder = BERTEncoder(
+            self.refinement_encoder = SecondaryPatchEncoder(
                 configs.d_model,
                 configs.n_heads,
                 configs.d_ff,
@@ -159,17 +157,17 @@ class Model(nn.Module):
         
         # Stream 2: refinement path
         # pfb_k=0 preserves original v0 behavior.
-        # pfb_k>0 implements the K-depth ablation requested by the user:
-        # refine the backbone output with K additional Transformer blocks.
+        # pfb_k>0 implements a serial-depth diagnostic by applying K additional
+        # Transformer blocks to the primary stream before fusion.
         if self.refinement_encoder is not None:
-            bert_enc_out = self.refinement_encoder(patch_enc_out)
+            secondary_enc_out = self.refinement_encoder(patch_enc_out)
         else:
-            bert_enc_out = self.bert_encoder(enc_patches)
-        # bert_enc_out: [B*C, N, d_model]
+            secondary_enc_out = self.bert_encoder(enc_patches)
+        # secondary_enc_out: [B*C, N, d_model]
         
         # v0 Fusion: Simple concatenation (NO projection layer)
-        # Direct concat as described in conference paper
-        fused = torch.cat([patch_enc_out, bert_enc_out], dim=-1)
+        # Direct concatenation of the two parallel streams
+        fused = torch.cat([patch_enc_out, secondary_enc_out], dim=-1)
         # fused: [B*C, N, 2*d_model]
 
         # Reshape for prediction head

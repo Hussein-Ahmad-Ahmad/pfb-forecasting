@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Compile project Python files
+        run: |
+          python -m py_compile \
+            run.py \
+            models/PatchFusionBERT_v0.py \
+            models/PatchFusionBERT_v2.py \
+            models/DLinear_Norm.py \
+            models/PatchTST_SerialMatched.py \
+            scripts/paper/run_core_dataset_benchmark.py

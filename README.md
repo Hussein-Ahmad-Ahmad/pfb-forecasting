@@ -1,342 +1,138 @@
-# PatchFusionBERT: Post-Encoder Fusion for Patch-Based Long-Horizon Time Series Forecasting
+# Parallel Patch-Encoder Fusion for Long-Horizon Forecasting
 
-> **Hussein Ahmad · Seyyed Kasra Mortazavi · Taha Benarbia · Fadi Al Machot · Kyandoghere Kyamakya**  
-> Institute for Smart Systems Technologies, Universität Klagenfurt  
-> *IEEE Access, 2026*
+This repository contains the code and experiment utilities for evaluating
+PatchFusionBERT, a PatchTST-family forecasting architecture that processes shared
+patch tokens through two parallel Transformer encoder streams before prediction.
 
-[![Python 3.10](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Built on TSLib](https://img.shields.io/badge/Built%20on-TSLib-orange.svg)](https://github.com/thuml/Time-Series-Library)
+The project is based on
+[Time-Series-Library](https://github.com/thuml/Time-Series-Library) and keeps the
+standard long-horizon forecasting workflow used by that codebase.
 
----
+## Scope
 
-## Table of Contents
+The central question is architectural:
 
-1. [Overview](#overview)
-2. [Architecture](#architecture)
-3. [Main Results](#main-results)
-4. [Statistical Validation](#statistical-validation)
-5. [Repository Structure](#repository-structure)
-6. [Installation](#installation)
-7. [Reproduction Pipeline](#reproduction-pipeline)
-   - [Step 1 — Data Preparation](#step-1--data-preparation)
-   - [Step 2 — Main Benchmark (Table 2)](#step-2--main-benchmark-table-2)
-   - [Step 3 — Multi-Seed Experiments (Tables 3 / 14)](#step-3--multi-seed-experiments-tables-3--14)
-   - [Step 4 — Ablation Study (Table 8)](#step-4--ablation-study-table-8)
-   - [Step 5 — Capacity-Matched Controls (Table 6)](#step-5--capacity-matched-controls-table-6)
-   - [Step 6 — Statistical Tests](#step-6--statistical-tests)
-   - [Step 7 — Efficiency Profiling (Table 13)](#step-7--efficiency-profiling-table-13)
-   - [Step 8 — Robustness Experiments (Tables 15–16)](#step-8--robustness-experiments-tables-1516)
-8. [Citation](#citation)
-9. [Acknowledgements](#acknowledgements)
+> Does adding a parallel patch-encoder fusion path to a PatchTST-style backbone
+> provide useful accuracy and capacity tradeoffs, and under which forecasting
+> regimes?
 
----
+The broader baselines provide external context. The main controlled comparison is
+against PatchTST and PatchTST-family capacity controls. The work does not claim a
+universally superior forecasting backbone.
 
-## Overview
+Despite the historical model name, PatchFusionBERT does not use language-model
+pretraining, masked-language modeling, or pretrained BERT weights. In this code,
+the retained attribute name `bert_encoder` is kept only for checkpoint
+compatibility; it refers to a secondary Transformer encoder over time-series
+patch tokens.
 
-**PatchFusionBERT (PFB)** is a lightweight augmentation of the PatchTST backbone for long-horizon time series forecasting.  
-Rather than redesigning the encoder, PFB adds a **post-encoder BERT-style refinement stage** and an **adaptive fusion gate** that blends the refined patch representations with a direct linear shortcut — achieving consistent gains with minimal parameter overhead.
+## Models
 
-Two fusion variants are evaluated:
+The main models are:
 
-| Variant | Fusion mechanism | Extra params |
-|---------|-----------------|--------------|
-| **PFBv0** | Additive gated fusion | ≈ 0.4 M |
-| **PFBv2** | Attention-weighted projection | ≈ 1.2 M |
+- `PatchTST`: PatchTST baseline.
+- `PatchFusionBERT_v0`: direct parallel fusion. The two encoder streams are
+  concatenated before the prediction head.
+- `PatchFusionBERT_v2`: projected parallel fusion. The concatenated streams pass
+  through a Linear-GELU-Dropout-LayerNorm projection before prediction.
+- `PatchTST_LargeHead`: PatchTST capacity-control variant.
+- `PatchTST_SerialMatched`: single-path serial control for isolating parallel
+  versus serial processing.
+- `DLinear_Norm`: DLinear with the same reversible window standardization used by
+  the patch models.
 
-All experiments follow the **BridgeLR unified protocol**: single seed 2021, DLinear LR = 1e-2, all patch models LR = 1e-4, `seq_len = 336`.
+## Repository layout
 
----
-
----
-
-## Main Results (MSE / MAE — single seed, `seq_len = 336`)
-
-**Bold** = best; second-best is underlined in the paper. Results cover the three primary horizons across seven public benchmarks under the unified BridgeLR protocol. Full results (ETTm1, Exchange, Illness) are in the paper.
-
-| Dataset | H | PFBv0 | PFBv2 | PatchTST | iTransformer | TiDE | TimeXer | DLinear |
-|:--------|:-:|:-----:|:-----:|:--------:|:------------:|:----:|:-------:|:-------:|
-| ETTh1 | 96 | **0.3675**/0.3952 | 0.3863/0.4053 | 0.3814/0.4063 | 0.3997/0.4174 | 0.3958/0.4141 | 0.3909/0.4076 | 0.3711/**0.3927** |
-| ETTh1 | 192 | **0.4043**/0.4242 | 0.4198/0.4266 | 0.4312/0.4325 | 0.4495/0.4506 | 0.4283/0.4327 | 0.4239/0.4269 | **0.4043**/**0.4128** |
-| ETTh1 | 336 | 0.4378/0.4476 | 0.4411/0.4404 | 0.4934/0.4901 | 0.4636/0.4645 | 0.4502/0.4466 | 0.4575/0.4532 | **0.4345**/**0.4352** |
-| ETTh2 | 96 | 0.3054/0.3524 | 0.2893/0.3474 | 0.3145/0.3647 | 0.3062/0.3606 | 0.2914/0.3515 | 0.2969/0.3604 | **0.2836**/**0.3473** |
-| ETTh2 | 192 | 0.3720/0.4004 | **0.3673**/**0.3952** | 0.3887/0.4118 | 0.3667/0.4009 | **0.3517**/**0.3903** | 0.3614/0.3972 | 0.3797/0.4151 |
-| ETTh2 | 336 | **0.3814**/**0.4139** | 0.3955/0.4225 | 0.4059/0.4293 | 0.3988/0.4229 | **0.3736**/**0.4109** | 0.3945/0.4265 | 0.4257/0.4555 |
-| ETTm2 | 96 | **0.1679**/0.2571 | 0.1695/0.2567 | 0.1728/0.2640 | 0.1749/0.2660 | 0.1690/0.2595 | 0.1716/**0.2562** | **0.1653**/0.2574 |
-| ETTm2 | 192 | 0.2347/**0.2997** | 0.2347/0.3001 | 0.2282/0.3018 | 0.2475/0.3139 | **0.2241**/**0.2965** | 0.2311/0.2986 | **0.2273**/0.3077 |
-| ETTm2 | 336 | **0.2739**/**0.3291** | 0.3014/0.3496 | 0.2935/0.3457 | 0.3020/0.3484 | 0.2780/0.3314 | 0.2870/0.3351 | 0.2930/0.3524 |
-| Weather | 96 | **0.1496**/0.2007 | 0.1522/**0.2000** | 0.1526/0.2019 | 0.1603/0.2096 | 0.1764/0.2267 | 0.1508/0.2024 | 0.1782/0.2432 |
-| Weather | 192 | **0.1936**/**0.2387** | 0.1938/0.2394 | 0.1962/0.2429 | 0.2031/0.2487 | 0.2185/0.2612 | **0.1942**/**0.2409** | 0.2179/0.2775 |
-| Weather | 336 | 0.2517/0.2839 | **0.2446**/**0.2802** | 0.2479/0.2814 | 0.2527/0.2867 | 0.2659/0.2957 | **0.2453**/0.2811 | 0.2612/0.3116 |
-
----
-
-## Statistical Validation
-
-Five-seed validation (seeds 2019–2023) across six datasets, tested with Wilcoxon signed-rank and Holm-corrected p-values.
-
-| Horizon pool | Comparison | MSE p (Holm) | MAE p (Holm) | Significant? |
-|:------------|:-----------|:------------:|:------------:|:------------:|
-| H=192 (9 configs) | PFBv0 vs DLinear | 0.027 | 0.00039 | ✅ Both |
-| H=96 (6 datasets) | PFBv0 vs PatchTST | 0.056 | 0.00028 | ✅ MAE |
-| H=336 (6 datasets) | PFBv0 vs PatchTST | 0.015 | 0.0044 | ✅ Both |
-| H=336 (6 datasets) | PFBv0 vs DLinear | 0.070 | 0.028 | ✅ MAE |
-
----
-
-## Repository Structure
-
-```
+```text
 .
-├── run.py                               # TSLib main entry point
-│
-├── models/                              # Model definitions
-│   ├── PatchFusionBERT.py               #   Shared base class
-│   ├── PatchFusionBERT_v0.py            #   PFBv0 — additive gate fusion (main)
-│   ├── PatchFusionBERT_v2.py            #   PFBv2 — attention-weighted projection
-│   ├── PatchFusionBERT_BERTOnly.py      #   Ablation: refinement only
-│   ├── PatchFusionBERT_PatchOnly.py     #   Ablation: backbone only
-│   ├── PatchFusionBERT_RefineOnly.py    #   Ablation: backbone + BERT, no gate
-│   ├── PatchTST_LargeHead.py            #   Capacity control (3.45 M params)
-│   ├── PatchTST.py / DLinear.py         #   Baselines
-│   └── iTransformer.py / TiDE.py / TimeXer.py
-│
-├── exp/
-│   ├── exp_basic.py
-│   └── exp_long_term_forecasting.py
-├── layers/
-│   ├── Autoformer_EncDec.py  Embed.py  SelfAttention_Family.py
-│   ├── Transformer_EncDec.py  StandardNorm.py
-│   └── __init__.py
-├── data_provider/
-│   ├── data_factory.py  data_loader.py
-│   └── __init__.py
-├── utils/                               # Metrics, tools, masking, etc.
-│
-├── scripts/                             # Experiment runner scripts (PowerShell + Python)
-│   ├── bridging_lr_unified.ps1          #   Table 2  — 108 single-seed runs
-│   ├── multiseed_h96_h336_5seed.ps1     #   Tables 3/14 — H=96,336 × 5 seeds
-│   ├── run_multiseed_5seed_campaign.ps1 #   Table 3  — H=192 × 5 seeds
-│   ├── b1_component_ablation_chain.ps1  #   Table 8  — ablation chain
-│   ├── capmatch_controls.ps1            #   Table 6  — capacity-matched controls
-│   ├── capmatch_controls_ett_weather_96_336.ps1
-│   ├── capmatch_controls_depth.ps1 / capmatch_controls_exchange.ps1
-│   ├── pfb_v0_kdepth_ablation.ps1 / pfb_v0_kdepth_ablation_full.ps1
-│   ├── pfb_v2_kdepth_ablation.ps1
-│   ├── b2_broader_robustness_matrix.ps1 / b2_robustness_exchange_illness.ps1
-│   ├── run_efficiency_weather192.ps1 / run_wallclock_weather192.ps1
-│   ├── rerun_patchtst_patch_sensitivity.ps1
-│   ├── c8_headscale_patchtst.ps1
-│   └── run_largehead_ablation.py        #   PatchTST_LargeHead runner
-│
-├── analysis/                            # Result parsing and statistical tests
-│   ├── analyze_bridging_lr.py           #   Parse Table 2 results
-│   ├── analyze_h96_h336_multiseed.py    #   Parse H=96/336 multi-seed results
-│   ├── analyze_capmatch_controls.py     #   Parse capacity control results
-│   ├── analyze_b1_component_ablation.py #   Parse ablation results
-│   ├── analyze_b2_broader_robustness.py / analyze_c1_mechanistic_characteristics.py
-│   ├── analyze_c2_robustness.py / analyze_efficiency_weather192.py
-│   ├── analyze_error_by_step.py / analyze_illness_multiseed_stability.py
-│   ├── analyze_multiseed_results.py / analyze_patch_sensitivity.py
-│   ├── analyze_per_variable_weather.py / analyze_pfb_kdepth_ablation.py
-│   ├── statistical_significance_multiseed_5seed.py  # Wilcoxon tests (H=192)
-│   ├── statistical_significance_testing.py
-│   └── add_fdr_correction.py            #   Holm + BH-FDR correction
-│
-├── profiling/                           # Efficiency and parameter analysis
-│   ├── count_params.py                  #   Parameter count (Table 13)
-│   ├── measure_flops_macs.py            #   FLOPs / MACs (Table 13)
-│   ├── measure_efficiency.py / measure_model_specs.py
-│   ├── benchmark_training_weather192.py #   Training throughput
-│   └── benchmark_inference_weather192.py#   Inference throughput
-│
-├── robustness/                          # Robustness experiments
-│   ├── robustness_missing_data.py       #   Tables 15–16 (random/block missingness)
-│   ├── c2_gaussian_channel_robustness.py#   Gaussian noise + channel dropout
-│   ├── c4_cka_representation_similarity.py  # CKA analysis (Table 11)
-│   ├── b2_broader_robustness_matrix.py
-│   └── capacity_match_patchtst.py
-│
-├── results_analysis/                    # Parsed result CSVs used to generate paper tables
-│   ├── wilcoxon_h96_h336.py / compute_ci.py / compute_ci_h96_h336.py
-│   ├── bridging_lr_raw.csv / bridging_lr_summary.csv
-│   ├── multiseed_5seed_summary.csv / multiseed_h96_h336_summary.csv
-│   ├── b1_component_ablation.csv / capmatch_controls_results.csv
-│   ├── c2_gaussian_channel_robustness.csv / c4_cka_similarity.csv
-│   ├── robustness_missing_data_results.csv / patch_sensitivity_results.csv
-│   └── flops_macs.csv / efficiency_weather192_*.csv / ...
-│
-└── data/                                # Benchmark datasets (not tracked in git)
-    ├── ETTh1.csv  ETTh2.csv
-    ├── ETTm1.csv  ETTm2.csv
-    ├── weather.csv  exchange_rate.csv
-    └── national_illness.csv
+├── run.py                         # main Time-Series-Library entry point
+├── models/                        # forecasting models and controls
+├── exp/                           # experiment dispatch
+├── data_provider/                 # dataset loaders
+├── layers/                        # shared layers
+├── utils/                         # metrics, training utilities, masking
+├── scripts/                       # reproducible experiment runners
+│   └── paper/                     # manuscript-oriented benchmark runners
+├── analysis/                      # result parsing and statistical summaries
+├── profiling/                     # parameter, FLOP, and runtime utilities
+├── robustness/                    # missingness and perturbation analyses
+└── results_analysis/              # small tabular summaries used for reporting
 ```
 
----
+Large generated outputs are intentionally not tracked:
 
-## Installation
+- `data/`
+- `results/`
+- `checkpoints/`
+- `test_results/`
 
-```bash
-# Clone the repository
-git clone https://github.com/Hussein-Ahmad-Ahmad/patchfusionbert-forecasting.git
-cd patchfusionbert-forecasting
+## Environment
 
-# Install dependencies
+Use Python 3.10 with PyTorch and the scientific Python stack:
+
+```powershell
 pip install -r requirements.txt
 ```
 
-> **Python version:** 3.10+  
-> **Dependencies:** PyTorch ≥ 2.0, einops, reformer-pytorch, and standard scientific stack.  
-> See [`requirements.txt`](requirements.txt) for the full pinned list.
+The local experiments used CUDA-enabled PyTorch. If several Python environments
+exist on the same machine, pass the intended interpreter explicitly with
+`--python`.
 
----
+## Dataset placement
 
-## Reproduction Pipeline
+Place benchmark CSV files under:
 
-The diagram below shows the full experiment pipeline from data to paper tables:
-
-```
-Data Prep          Training (Step 2–5)                       Analysis (Step 6–8)
-──────────   ─────────────────────────────────────────   ──────────────────────────────────────
-data/*.csv → Main benchmark (Table 2)                 → analysis/analyze_bridging_lr.py
-             ├─ scripts/bridging_lr_unified.ps1            → LaTeX Table 2
-             │
-             ├─ Multi-seed H=192 (Table 3)             → analysis/analyze_h96_h336_multiseed.py
-             │   scripts/run_multiseed_5seed_campaign.ps1
-             │
-             ├─ Multi-seed H=96/336 (Table 14)         → statistical tests (Step 6)
-             │   scripts/multiseed_h96_h336_5seed.ps1      → Wilcoxon + Holm FDR
-             │
-             ├─ Ablation (Table 8)                     → analysis/analyze_b1_component_ablation.py
-             │   scripts/b1_component_ablation_chain.ps1
-             │
-             ├─ Capacity control (Table 6)             → analysis/analyze_capmatch_controls.py
-             │   scripts/capmatch_controls.ps1
-             │
-             └─ Robustness / Efficiency                → Tables 11, 13, 15–16
-                (Steps 7–8)                               profiling/ · robustness/
+```text
+Time-Series-Library/data/
 ```
 
-### Step 1 — Data Preparation
+For the Electricity and Traffic benchmark extension, the expected files are:
 
-Download the seven benchmark datasets from the [TSLib data guide](https://github.com/thuml/Time-Series-Library#data-preparation) and place the CSV files under `data/`:
-
-```
-data/ETTh1.csv   data/ETTh2.csv   data/ETTm1.csv   data/ETTm2.csv
-data/weather.csv data/exchange_rate.csv data/national_illness.csv
+```text
+data/electricity.csv
+data/traffic.csv
 ```
 
----
+## Running the core benchmark extension
 
-### Step 2 — Main Benchmark (Table 2)
-
-Runs all 108 single-seed experiments under the BridgeLR protocol.
+Electricity:
 
 ```powershell
-# Train all models (PFBv0, PFBv2, PatchTST, iTransformer, TiDE, TimeXer, DLinear)
-.\scripts\bridging_lr_unified.ps1
-
-# Parse results → Table 2 LaTeX
-python analysis/analyze_bridging_lr.py
+python .\scripts\paper\run_core_dataset_benchmark.py --dataset electricity --skip-completed
 ```
 
----
-
-### Step 3 — Multi-Seed Experiments (Tables 3 / 14)
+Traffic:
 
 ```powershell
-# H=192, 5 seeds (seeds 2019–2023)
-.\scripts\run_multiseed_5seed_campaign.ps1
-
-# H=96 and H=336, 5 seeds
-.\scripts\multiseed_h96_h336_5seed.ps1
-
-# Parse results
-python analysis/analyze_h96_h336_multiseed.py
+python .\scripts\paper\run_core_dataset_benchmark.py --dataset traffic --skip-completed
 ```
 
----
+These commands run:
 
-### Step 4 — Ablation Study (Table 8)
+- models: `PatchTST`, `PatchFusionBERT_v0`, `PatchFusionBERT_v2`
+- horizons: `96, 192, 336, 720`
+- seeds: `2021, 2022, 2023, 2024, 2025`
 
-Component ablation chain: Backbone → +BERT → +Gate (PFBv0) → +Projection (PFBv2).
+Use `--max-runs N` to execute the campaign in batches. Use `--dry-run` to inspect
+the generated commands without training.
 
-```powershell
-.\scripts\b1_component_ablation_chain.ps1
-python analysis/analyze_b1_component_ablation.py
-```
+## Result handling
 
----
+Training writes raw outputs to `results/` and checkpoints to `checkpoints/`.
+The benchmark runner also writes a plan, manifest, logs, and status CSV under
+`results_analysis/paper_runs/<dataset>/`.
 
-### Step 5 — Capacity-Matched Controls (Table 6)
+Before reporting a result, use the status CSV and the corresponding
+`metrics.npy` files to verify:
 
-Ensures PFBv0 gains are not simply due to having more parameters than PatchTST.
-
-```powershell
-.\scripts\capmatch_controls.ps1
-.\scripts\capmatch_controls_ett_weather_96_336.ps1
-python analysis/analyze_capmatch_controls.py
-```
-
----
-
-### Step 6 — Statistical Tests
-
-Wilcoxon signed-rank tests with Holm and BH-FDR corrections over the multi-seed results.
-
-```powershell
-# Pooled H=192 tests
-python analysis/statistical_significance_multiseed_5seed.py
-python analysis/add_fdr_correction.py
-
-# H=96 / H=336 tests
-python results_analysis/wilcoxon_h96_h336.py
-```
-
----
-
-### Step 7 — Efficiency Profiling (Table 13)
-
-```powershell
-python profiling/count_params.py
-python profiling/measure_flops_macs.py
-python profiling/benchmark_training_weather192.py
-python profiling/benchmark_inference_weather192.py
-```
-
----
-
-### Step 8 — Robustness Experiments (Tables 15–16)
-
-```powershell
-# Missing data (random and block patterns)
-python robustness/robustness_missing_data.py
-
-# Gaussian noise + channel dropout
-python robustness/c2_gaussian_channel_robustness.py
-
-# CKA representation similarity (Table 11)
-python robustness/c4_cka_representation_similarity.py
-```
-
----
+- dataset name and file path;
+- horizon;
+- model name;
+- seed;
+- MSE and MAE extraction order;
+- completed status for all planned seeds.
 
 ## Citation
 
-If you find this work useful, please cite:
-
-```bibtex
-@article{ahmad2026patchfusionbert,
-  title   = {PatchFusionBERT: Post-Encoder Fusion for Patch-Based Long-Horizon Time Series Forecasting},
-  author  = {Ahmad, Hussein and Mortazavi, Seyyed Kasra and Benarbia, Taha and Al Machot, Fadi and Kyamakya, Kyandoghere},
-  journal = {IEEE Access},
-  year    = {2026}
-}
-```
-
----
-
-## Acknowledgements
-
-This codebase is built on top of [**Time-Series-Library (TSLib)**](https://github.com/thuml/Time-Series-Library) by THUML @ Tsinghua University. We thank the TSLib authors for their open and well-maintained framework.
+If you use this project, cite the manuscript associated with this repository and
+the original Time-Series-Library project.

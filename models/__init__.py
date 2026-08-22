@@ -10,6 +10,8 @@ from . import PatchTST_LargeHead   # capacity-matched control
 # Baselines used in experiments
 from . import PatchTST
 from . import DLinear
+from . import DLinear_Norm
+from . import PatchTST_SerialMatched
 from . import iTransformer
 from . import TiDE
 from . import TimeXer

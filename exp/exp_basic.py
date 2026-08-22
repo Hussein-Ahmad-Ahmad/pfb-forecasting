@@ -4,7 +4,8 @@ from models import Autoformer, Transformer, TimesNet, Nonstationary_Transformer,
     Informer, LightTS, Reformer, ETSformer, Pyraformer, PatchTST, MICN, Crossformer, FiLM, iTransformer, \
     Koopa, TiDE, FreTS, TimeMixer, TSMixer, SegRNN, MambaSimple, TemporalFusionTransformer, SCINet, PAttn, TimeXer, \
     WPMixer, MultiPatchFormer, KANAD, MSGNet, TimeFilter, TimeMoE, PatchFusionBERT, PatchFusionBERT_v2, PatchFusionBERT_v0, \
-    PatchFusionBERT_PatchOnly, PatchFusionBERT_BERTOnly, PatchFusionBERT_RefineOnly, PatchTST_LargeHead
+    PatchFusionBERT_PatchOnly, PatchFusionBERT_BERTOnly, PatchFusionBERT_RefineOnly, PatchTST_LargeHead, \
+    DLinear_Norm, PatchTST_SerialMatched
     # Sundial, TiRex, TimesFM, Toto, Chronos, Chronos2, Moirai - commented out due to import issues
 
 
@@ -17,17 +18,18 @@ class Exp_Basic(object):
             'Transformer': Transformer,
             'Nonstationary_Transformer': Nonstationary_Transformer,
             'DLinear': DLinear,
+            'DLinear_Norm': DLinear_Norm,
             'FEDformer': FEDformer,
             'Informer': Informer,
             'LightTS': LightTS,
             'Reformer': Reformer,
             'ETSformer': ETSformer,
             'PatchTST': PatchTST,
-            # Controls: plain PatchTST with different capacity configs
-            # (still uses the exact same PatchTST implementation)
             'PatchTST_base': PatchTST,
             'PatchTST_capacity': PatchTST,
             'PatchTST_depth': PatchTST,
+            'PatchTST_LargeHead': PatchTST_LargeHead,
+            'PatchTST_SerialMatched': PatchTST_SerialMatched,
             'Pyraformer': Pyraformer,
             'MICN': MICN,
             'Crossformer': Crossformer,
@@ -49,7 +51,6 @@ class Exp_Basic(object):
             'KANAD': KANAD,
             'MSGNet': MSGNet,
             'TimeFilter': TimeFilter,
-            # 'Sundial': Sundial,
             'TimeMoE': TimeMoE,
             'PatchFusionBERT': PatchFusionBERT,
             'PatchFusionBERT_v2': PatchFusionBERT_v2,
@@ -57,13 +58,6 @@ class Exp_Basic(object):
             'PatchFusionBERT_PatchOnly': PatchFusionBERT_PatchOnly,
             'PatchFusionBERT_BERTOnly': PatchFusionBERT_BERTOnly,
             'PatchFusionBERT_RefineOnly': PatchFusionBERT_RefineOnly,
-            'PatchTST_LargeHead': PatchTST_LargeHead,
-            # 'Chronos': Chronos,
-            # 'Moirai': Moirai,
-            # 'TiRex': TiRex,
-            # 'TimesFM': TimesFM,
-            # 'Toto': Toto,
-            # 'Chronos2': Chronos2
         }
         if args.model == 'Mamba':
             print('Please make sure you have successfully installed mamba_ssm')

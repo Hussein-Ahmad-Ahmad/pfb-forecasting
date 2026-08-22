@@ -124,6 +124,10 @@ results/
 checkpoints/
 test_results/
 
+# Generated paper-run logs and local status files
+results_analysis/paper_runs/*/logs/
+results_analysis/paper_runs/*/core_5seed_status.csv
+
 # Downloaded datasets (download separately per README)
 data/*.csv
 data/*.txt

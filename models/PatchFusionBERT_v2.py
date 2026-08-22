@@ -1,9 +1,9 @@
 """
-PatchFusionBERT v2: Dual-Stream Architecture for Time Series Forecasting
+PatchFusionBERT v2: projected parallel patch-encoder fusion.
 
 Dual-Stream Architecture:
 1. PatchTranEnc Path: Standard Transformer Encoder for local temporal patterns
-2. BERT Path: Bidirectional BERT encoder for long-range dependencies
+2. Secondary Path: independently parameterized Transformer encoder over the same patches
 3. Fusion Strategy: Concatenate representations and predict via linear head
 """
 
@@ -14,10 +14,10 @@ from layers.SelfAttention_Family import FullAttention, AttentionLayer
 from layers.Embed import PatchEmbedding
 
 
-class BERTEncoder(nn.Module):
-    """Bidirectional BERT-style encoder for capturing long-range dependencies"""
+class SecondaryPatchEncoder(nn.Module):
+    """Secondary Transformer encoder operating on the shared patch tokens."""
     def __init__(self, d_model, n_heads, d_ff, num_layers, dropout):
-        super(BERTEncoder, self).__init__()
+        super().__init__()
         
         self.layers = nn.ModuleList([
             EncoderLayer(
@@ -60,11 +60,11 @@ class FlattenHead(nn.Module):
 
 class Model(nn.Module):
     """
-    PatchFusionBERT v2: Dual-Stream Architecture
+    PatchFusionBERT v2: projected parallel patch-encoder fusion.
     
     Architecture:
     - Stream 1 (PatchTranEnc): Captures local patterns with standard attention
-    - Stream 2 (BERT): Captures global context with bidirectional encoding
+    - Stream 2 (secondary patch encoder): parallel transformation of shared patch tokens
     - Fusion: Concatenate both streams and project to forecast
     """
 
@@ -73,7 +73,7 @@ class Model(nn.Module):
         self.task_name = configs.task_name
         self.seq_len = configs.seq_len
         self.pred_len = configs.pred_len
-        # pfb_k controls the depth of the BERT stream.
+        # pfb_k controls the depth of the secondary stream.
         # 0 means use default (max(e_layers+1, 3)); >0 means use pfb_k layers directly.
         self.pfb_k = int(getattr(configs, 'pfb_k', 0))
         # Use values from configs if available, otherwise use defaults
@@ -103,17 +103,18 @@ class Model(nn.Module):
             norm_layer=nn.LayerNorm(configs.d_model)
         )
 
-        # Stream 2: BERT Path (Bidirectional Encoder)
-        # Use pfb_k as bert_layers if explicitly set; otherwise use default heuristic.
+        # Stream 2: secondary parallel patch encoder.
+        # Use pfb_k as secondary depth if explicitly set; otherwise use the default heuristic.
         if self.pfb_k > 0:
-            bert_layers = self.pfb_k
+            secondary_layers = self.pfb_k
         else:
-            bert_layers = max(configs.e_layers + 1, 3)
-        self.bert_encoder = BERTEncoder(
+            secondary_layers = max(configs.e_layers + 1, 3)
+        # Attribute name retained for compatibility with existing checkpoints and hooks.
+        self.bert_encoder = SecondaryPatchEncoder(
             configs.d_model, 
             configs.n_heads, 
             configs.d_ff, 
-            bert_layers, 
+            secondary_layers,
             configs.dropout
         )
 
@@ -148,14 +149,12 @@ class Model(nn.Module):
         patch_enc_out, _ = self.patch_encoder(enc_patches)
         # patch_enc_out: [B*C, N, d_model]
         
-        # Stream 2: BERT Path
-        # Captures long-range dependencies and global context
-        bert_enc_out = self.bert_encoder(enc_patches)
-        # bert_enc_out: [B*C, N, d_model]
+        # Stream 2: independently parameterized secondary patch encoder
+        secondary_enc_out = self.bert_encoder(enc_patches)
+        # secondary_enc_out: [B*C, N, d_model]
         
         # Fusion: Concatenate both streams
-        # [X_patchTST; X_BERT] along feature dimension
-        fused = torch.cat([patch_enc_out, bert_enc_out], dim=-1)
+        fused = torch.cat([patch_enc_out, secondary_enc_out], dim=-1)
         # fused: [B*C, N, 2*d_model]
         
         # Project fused features
