@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it using the metadata below."
+title: "PFB Forecasting: Parallel Patch-Encoder Fusion for Time-Series Forecasting"
+type: software
+authors:
+  - family-names: Ahmad
+    given-names: Hussein
+  - family-names: Mortazavi
+    given-names: Seyyed Kasra
+  - family-names: Benarbia
+    given-names: Taha
+  - family-names: Al Machot
+    given-names: Fadi
+  - family-names: Kyamakya
+    given-names: Kyandoghere
+repository-code: "https://github.com/Hussein-Ahmad-Ahmad/pfb-forecasting"
+license: MIT
+date-released: "2026-08-22"

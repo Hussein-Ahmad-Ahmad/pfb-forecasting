@@ -1,0 +1,16 @@
+model,seed,gpu_name,training_seconds,peak_gpu_memory_mb,epochs_ran,return_code,status,log_file
+DLinear,2021,NVIDIA GeForce RTX 2080 Ti,321.3698,1834.0,20,0,ok,results_analysis\efficiency_weather192_training_logs\DLinear_MS2021_Weather_192.log
+DLinear,2022,NVIDIA GeForce RTX 2080 Ti,383.0283,2462.0,23,0,ok,results_analysis\efficiency_weather192_training_logs\DLinear_MS2022_Weather_192.log
+DLinear,2023,NVIDIA GeForce RTX 2080 Ti,303.8942,1966.0,19,0,ok,results_analysis\efficiency_weather192_training_logs\DLinear_MS2023_Weather_192.log
+PatchTST,2021,NVIDIA GeForce RTX 2080 Ti,975.396,2812.0,14,0,ok,results_analysis\efficiency_weather192_training_logs\PatchTST_MS2021_Weather_192.log
+PatchTST,2022,NVIDIA GeForce RTX 2080 Ti,1018.0863,3017.0,15,0,ok,results_analysis\efficiency_weather192_training_logs\PatchTST_MS2022_Weather_192.log
+PatchTST,2023,NVIDIA GeForce RTX 2080 Ti,1197.5918,2707.0,18,0,ok,results_analysis\efficiency_weather192_training_logs\PatchTST_MS2023_Weather_192.log
+PatchTST_capacity,2021,NVIDIA GeForce RTX 2080 Ti,1377.8672,2747.0,11,0,ok,results_analysis\efficiency_weather192_training_logs\PatchTST_capacity_MS2021_Weather_192.log
+PatchTST_capacity,2022,NVIDIA GeForce RTX 2080 Ti,1506.5678,3195.0,12,0,ok,results_analysis\efficiency_weather192_training_logs\PatchTST_capacity_MS2022_Weather_192.log
+PatchTST_capacity,2023,NVIDIA GeForce RTX 2080 Ti,1376.8061,3107.0,11,0,ok,results_analysis\efficiency_weather192_training_logs\PatchTST_capacity_MS2023_Weather_192.log
+PFB-Direct,2021,NVIDIA GeForce RTX 2080 Ti,1374.7285,3122.0,12,0,ok,results_analysis\efficiency_weather192_training_logs\PFB-Direct_MS2021_Weather_192.log
+PFB-Direct,2022,NVIDIA GeForce RTX 2080 Ti,1366.555,3205.0,12,0,ok,results_analysis\efficiency_weather192_training_logs\PFB-Direct_MS2022_Weather_192.log
+PFB-Direct,2023,NVIDIA GeForce RTX 2080 Ti,1522.4268,3552.0,13,0,ok,results_analysis\efficiency_weather192_training_logs\PFB-Direct_MS2023_Weather_192.log
+PFB-Projected,2021,NVIDIA GeForce RTX 2080 Ti,1458.3487,2046.0,11,0,ok,results_analysis\efficiency_weather192_training_logs\PFB-Projected_MS2021_Weather_192.log
+PFB-Projected,2022,NVIDIA GeForce RTX 2080 Ti,1460.7602,1994.0,11,0,ok,results_analysis\efficiency_weather192_training_logs\PFB-Projected_MS2022_Weather_192.log
+PFB-Projected,2023,NVIDIA GeForce RTX 2080 Ti,1465.8308,1994.0,11,0,ok,results_analysis\efficiency_weather192_training_logs\PFB-Projected_MS2023_Weather_192.log

@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Compile project Python files
+        run: |
+          python -m py_compile \
+            run.py \
+            models/PFB_Direct.py \
+            models/PFB_Projected.py \
+            models/controls/PFB.py \
+            models/controls/PFB_PatchOnly.py \
+            models/controls/PFB_SecondaryOnly.py \
+            models/controls/PFB_SerialRefinement.py \
+            models/controls/DLinear_Norm.py \
+            models/controls/PatchTST_SerialMatched.py \
+            scripts/paper/run_core_dataset_benchmark.py

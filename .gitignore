@@ -1,0 +1,266 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+## ── Project-specific exclusions ──────────────────────────────────────────────
+
+# Raw per-run model outputs (large, re-generatable)
+results/
+checkpoints/
+test_results/
+
+# Generated paper-run logs and local status files
+results_analysis/paper_runs/*/logs/
+results_analysis/paper_runs/*/core_5seed_status.csv
+
+# Downloaded datasets (download separately per README)
+data/*.csv
+data/*.txt
+
+# Intermediate / historical experiment artefacts
+*.bat
+35
+
+# Old result text / CSV dumps
+result_long_term_forecast*.txt
+result_long_term_forecast*.csv
+result_archive_*.txt
+comparison_*100epoch.csv
+efficiency_analysis_100epoch.csv
+results_23-01.*
+multiseed_statistics.csv
+phase3a_issues_found.txt
+phase3b_missing_manual.txt
+
+# Smoke-screen / model-exploration logs (not in paper)
+results_analysis/smoke_screen_logs/
+results_analysis/tsmixer_screen_logs/
+results_analysis/wpmixer_pattn_full_logs/
+results_analysis/efficiency_weather192_training_logs/
+results_analysis/b2_smoke_*.csv
+results_analysis/b2_smoke_*.md
+results_analysis/b2_smoke_*.tex
+results_analysis/tsmixer_screen*.csv
+results_analysis/wpmixer_pattn_full*.csv
+results_analysis/smoke_screen_new_models*.csv
+
+# Intermediate internal status / planning docs (not for readers)
+results_analysis/COMPLETE_ANALYSIS_WITH_BERT.md
+results_analysis/COMPREHENSIVE_RESEARCH_DOCUMENTATION.md
+results_analysis/PROGRESS_UPDATE_JAN18.md
+results_analysis/QUICK_REFERENCE_NEXT_STEPS.md
+results_analysis/INDEX.md
+results_analysis/manuscript_integration_packet.md
+results_analysis/analysis_summary_stats.csv
+results_analysis/complete_model_rankings.csv
+results_analysis/complete_results_all_models.csv
+results_analysis/computational_efficiency_analysis.csv
+results_analysis/cost_performance_tradeoff.csv
+results_analysis/patchfusionbert_variants_analysis.csv
+results_analysis/publication_statistical_summary.csv
+results_analysis/statistical_confidence_intervals.csv
+results_analysis/statistical_wilcoxon_pairwise.csv
+results_analysis/result_long_term_forecast_phase3c*.csv
+results_analysis/phase4*.csv
+results_analysis/phase4*.json
+results_analysis/figures/
+results_analysis/figures_complete/
+results_analysis/publication_figures/
+results_analysis/wallclock_logs/
+
+# Old intermediate data CSVs at repo root
+phase4_best_models_per_config.csv
+phase4_model_ranking.csv
+multiseed_statistics.csv
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+/scripts/long_term_forecast/Traffic_script/PatchTST1.sh
+/backups/
+/result.xlsx
+/~$result.xlsx
+/Time-Series-Library.zip
+/temp.sh
+
+.idea
+/tv_result.xlsx
+/test.py
+/m4_results/
+/test_results/
+/PatchTST_results.xlsx
+/seq_len_long_term_forecast/
+/progress.xlsx
+/scripts/short_term_forecast/PatchTST_M4.sh
+/run_tv.py
+
+/scripts/long_term_forecast/ETT_tv_script/
+/dataset/
+/data/
+data_factory_all.py
+data_loader_all.py
+/scripts/short_term_forecast/tv_script/
+/exp/exp_short_term_forecasting_tv.py
+/exp/exp_long_term_forecasting_tv.py
+/timesnetv2.xlsx
+/scripts/anomaly_detection/tmp/
+/scripts/imputation/tmp/
+/utils/self_tools.py
+/scripts/exp_scripts/
+
+checkpoints/
+results/
+result_long_term_forecast.txt
+result_anomaly_detection.txt
+scripts/augmentation/
+run_anylearn.py
+environment.txt
+
+# Training batch scripts (operational, not reproducible via bat)
+*.bat
+
+# Backup result files
+result_long_term_forecast_BACKUP_*.txt
+
+# Working-notes phase-progress markdowns
+PHASE0_COMPLETION_STATUS.md
+PHASE3B_PROGRESS.md
+PHASE3_STATUS.md
+PHASE4_COMPLETE_SUMMARY.md
+EXPERIMENT_CAMPAIGN_SUMMARY.md
+COMPREHENSIVE_MULTI_HORIZON_ANALYSIS.md
+ILLNESS_COVERAGE_SUMMARY.md
+QUICK_START_PHASE1.md
+QUICK_REFERENCE_FIGURES.md
+SUPPLEMENTARY_FIGURES_SUMMARY.md
+TRAINING_100EPOCH_README.md
+VISUALIZATION_GUIDE.md
+
+# Old figure directory
+img-result-23_01/
+notebooks/
+
+# Stray file
+35
