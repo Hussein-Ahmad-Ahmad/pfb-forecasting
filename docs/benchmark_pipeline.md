@@ -1,77 +1,61 @@
 # Benchmark pipeline
 
-## Core command format
-
-Experiments use `run.py` from Time-Series-Library:
+Experiments use `run.py` as the common training and evaluation entry point:
 
 ```powershell
 python .\run.py --task_name long_term_forecast --is_training 1 ...
 ```
 
-For manuscript-oriented high-dimensional benchmark extension runs, use:
+Date-free runners are stored under `experiments/`.
+
+## Core commands
+
+High-dimensional core datasets:
 
 ```powershell
-python .\scripts\paper\run_core_dataset_benchmark.py --dataset electricity --skip-completed
-python .\scripts\paper\run_core_dataset_benchmark.py --dataset traffic --skip-completed
+python .\experiments\core_benchmarks\run_expensive_core_5seed.py --skip-completed
 ```
 
-The runner writes:
+Candidate datasets:
 
-- a plan CSV;
-- a manifest JSON;
-- per-run stdout and stderr logs;
-- a status CSV.
-
-These files are written under:
-
-```text
-results_analysis/paper_runs/<dataset>/
+```powershell
+python .\experiments\core_benchmarks\run_candidate_core_5seed.py --skip-completed
 ```
 
-## Default high-dimensional dataset grid
+Recent baseline context:
 
-| Dataset | File | Channels | Batch size | Horizons | Seeds |
-|---|---:|---:|---:|---:|---:|
-| Electricity | `electricity.csv` | 321 | 8 | 96, 192, 336, 720 | 2021-2025 |
-| Traffic | `traffic.csv` | 862 | 4 | 96, 192, 336, 720 | 2021-2025 |
+```powershell
+python .\experiments\recent_baselines\run_recent_baselines_5seed.py --execute --skip-completed
+```
 
-Default models:
+Targeted PatchTST-family sensitivity:
 
-- `PatchTST`
-- `PFB-Direct`
-- `PFB-Projected`
+```powershell
+python .\experiments\targeted_hpo\run_targeted_hpo.py --stage final --skip-completed
+python .\experiments\secondary_sensitivity\run_secondary_sensitivity.py --stage final --skip-completed
+```
+
+Diagnostic analyses:
+
+```powershell
+python .\experiments\diagnostics\run_branch_corruption.py
+python .\experiments\diagnostics\run_representation_diagnostics.py
+python .\experiments\diagnostics\run_missingness_mechanisms.py
+```
 
 ## Resuming interrupted campaigns
 
-Use:
-
-```powershell
-python .\scripts\paper\run_core_dataset_benchmark.py --dataset electricity --skip-completed
-```
-
-The runner checks for existing `metrics.npy` files under `results/` and skips
-completed runs.
-
-For smaller batches:
-
-```powershell
-python .\scripts\paper\run_core_dataset_benchmark.py --dataset electricity --skip-completed --max-runs 5
-```
-
-For command inspection only:
-
-```powershell
-python .\scripts\paper\run_core_dataset_benchmark.py --dataset electricity --dry-run --max-runs 1
-```
+Use `--skip-completed` to reuse existing scalar metrics when the corresponding
+`metrics.npy` file exists under `results/`. Use `--max-runs N` where supported
+to run resumable batches.
 
 ## Result checks
 
-Before using a benchmark row, verify:
+Before using a row in an aggregate table, verify:
 
-1. `status` is `completed` for each planned seed.
-2. `metrics_path` points to an existing `metrics.npy`.
-3. The dataset, horizon, model, seed, and command arguments match the intended
-   protocol.
-4. MSE and MAE are extracted in the same order used by Time-Series-Library
-   metrics files.
-5. Partial rows are labelled as partial if not all planned seeds are complete.
+1. the planned model, dataset, horizon, and seed;
+2. the command arguments in the manifest/status file;
+3. the existence of the corresponding `metrics.npy`;
+4. the metric order used by the loader;
+5. the `source_gpu` field in `results_summary/` when mixing outputs from
+   multiple machines.

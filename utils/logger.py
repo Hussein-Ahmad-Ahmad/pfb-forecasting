@@ -67,7 +67,7 @@ class ExperimentLogger:
         Log single experiment results.
         
         Args:
-            model: Model name (e.g., 'PFB_v0', 'PatchTST')
+            model: Model name (e.g., 'PFB-Direct', 'PatchTST')
             dataset: Dataset name (e.g., 'ETTm1', 'Weather')
             horizon: Prediction horizon (96, 192, 336, 720)
             seed: Random seed used
@@ -133,7 +133,7 @@ logger = ExperimentLogger('results_multiseed.csv')
 
 # After experiment completes:
 logger.log_experiment(
-    model='PFB_v0',
+    model='PFB-Direct',
     dataset='ETTm2', 
     horizon=192,
     seed=2021,

@@ -22,6 +22,10 @@ class Exp_Long_Term_Forecast(Exp_Basic):
     def _build_model(self):
         model = self.model_dict[self.args.model].Model(self.args).float()
 
+        if getattr(self.args, 'uniform_outer_normalization', False):
+            from models.UniformPreprocessing import Wrapper
+            model = Wrapper(model)
+
         if self.args.use_multi_gpu and self.args.use_gpu:
             model = nn.DataParallel(model, device_ids=self.args.device_ids)
         return model
@@ -31,7 +35,20 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         return data_set, data_loader
 
     def _select_optimizer(self):
-        model_optim = optim.Adam(self.model.parameters(), lr=self.args.learning_rate)
+        optimizer_name = getattr(self.args, 'optimizer', 'Adam')
+        weight_decay = float(getattr(self.args, 'weight_decay', 0.0))
+        if optimizer_name == 'AdamW':
+            model_optim = optim.AdamW(
+                self.model.parameters(),
+                lr=self.args.learning_rate,
+                weight_decay=weight_decay,
+            )
+        else:
+            model_optim = optim.Adam(
+                self.model.parameters(),
+                lr=self.args.learning_rate,
+                weight_decay=weight_decay,
+            )
         return model_optim
 
     def _select_criterion(self):
@@ -76,7 +93,13 @@ class Exp_Long_Term_Forecast(Exp_Basic):
     def train(self, setting):
         train_data, train_loader = self._get_data(flag='train')
         vali_data, vali_loader = self._get_data(flag='val')
-        test_data, test_loader = self._get_data(flag='test')
+        test_data = test_loader = None
+        evaluate_test_during_training = not (
+            getattr(self.args, 'validation_only', False)
+            or getattr(self.args, 'defer_test_until_after_training', False)
+        )
+        if evaluate_test_during_training:
+            test_data, test_loader = self._get_data(flag='test')
 
         path = os.path.join(self.args.checkpoints, setting)
         if not os.path.exists(path):
@@ -89,6 +112,8 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
         model_optim = self._select_optimizer()
         criterion = self._select_criterion()
+        self.best_validation_loss = float('inf')
+        self.best_validation_epoch = 0
 
         if self.args.use_amp:
             scaler = torch.cuda.amp.GradScaler()
@@ -149,10 +174,17 @@ class Exp_Long_Term_Forecast(Exp_Basic):
             print("Epoch: {} cost time: {}".format(epoch + 1, time.time() - epoch_time))
             train_loss = np.average(train_loss)
             vali_loss = self.vali(vali_data, vali_loader, criterion)
-            test_loss = self.vali(test_data, test_loader, criterion)
+            if vali_loss < self.best_validation_loss:
+                self.best_validation_loss = float(vali_loss)
+                self.best_validation_epoch = epoch + 1
 
-            print("Epoch: {0}, Steps: {1} | Train Loss: {2:.7f} Vali Loss: {3:.7f} Test Loss: {4:.7f}".format(
-                epoch + 1, train_steps, train_loss, vali_loss, test_loss))
+            if not evaluate_test_during_training:
+                print("Epoch: {0}, Steps: {1} | Train Loss: {2:.7f} Vali Loss: {3:.7f}".format(
+                    epoch + 1, train_steps, train_loss, vali_loss))
+            else:
+                test_loss = self.vali(test_data, test_loader, criterion)
+                print("Epoch: {0}, Steps: {1} | Train Loss: {2:.7f} Vali Loss: {3:.7f} Test Loss: {4:.7f}".format(
+                    epoch + 1, train_steps, train_loss, vali_loss, test_loss))
             early_stopping(vali_loss, self.model, path)
             if early_stopping.early_stop:
                 print("Early stopping")
@@ -169,11 +201,11 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         test_data, test_loader = self._get_data(flag='test')
         if test:
             print('loading model')
-            self.model.load_state_dict(torch.load(os.path.join('./checkpoints/' + setting, 'checkpoint.pth')))
+            self.model.load_state_dict(torch.load(os.path.join(self.args.checkpoints, setting, 'checkpoint.pth')))
 
         preds = []
         trues = []
-        folder_path = './test_results/' + setting + '/'
+        folder_path = os.path.join(self.args.artifacts_root, 'test_results', setting) + os.sep
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -233,7 +265,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         print('test shape:', preds.shape, trues.shape)
 
         # result save
-        folder_path = './results/' + setting + '/'
+        folder_path = os.path.join(self.args.artifacts_root, 'results', setting) + os.sep
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -262,7 +294,8 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         f.close()
 
         np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
-        np.save(folder_path + 'pred.npy', preds)
-        np.save(folder_path + 'true.npy', trues)
+        if not getattr(self.args, 'skip_prediction_arrays', False):
+            np.save(folder_path + 'pred.npy', preds)
+            np.save(folder_path + 'true.npy', trues)
 
         return

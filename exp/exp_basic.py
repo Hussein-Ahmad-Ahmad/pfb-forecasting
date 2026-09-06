@@ -2,7 +2,7 @@ import os
 import torch
 import importlib
 
-from models import DLinear, PatchTST, iTransformer, TiDE, TimeXer, PFB, PFB_Projected, PFB_Direct, \
+from models import DLinear, PatchTST, iTransformer, TiDE, TimeXer, TimeSqueeze_Reproduction, CT_PatchTST_Reproduction, PFB, PFB_Projected, PFB_Direct, PFB_CrossVariate, \
     PFB_PatchOnly, PFB_SecondaryOnly, PFB_SerialRefinement, PatchTST_LargeHead, \
     DLinear_Norm, PatchTST_SerialMatched
 
@@ -81,6 +81,8 @@ class Exp_Basic(object):
             "SCINet": SCINet,
             'PAttn': PAttn,
             'TimeXer': TimeXer,
+            'TimeSqueeze-Reproduction': TimeSqueeze_Reproduction,
+            'CT-PatchTST-Reproduction': CT_PatchTST_Reproduction,
             'WPMixer': WPMixer,
             'MultiPatchFormer': MultiPatchFormer,
             'KANAD': KANAD,
@@ -90,6 +92,7 @@ class Exp_Basic(object):
             'PFB': PFB,
             'PFB-Projected': PFB_Projected,
             'PFB-Direct': PFB_Direct,
+            'PFB-CrossVariate': PFB_CrossVariate,
             'PFB_Projected': PFB_Projected,
             'PFB_Direct': PFB_Direct,
             'PFB_PatchOnly': PFB_PatchOnly,

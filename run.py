@@ -1,5 +1,7 @@
 import argparse
+import json
 import os
+from pathlib import Path
 import torch
 import torch.backends
 from exp.exp_long_term_forecasting import Exp_Long_Term_Forecast
@@ -43,6 +45,8 @@ if __name__ == '__main__':
     parser.add_argument('--freq', type=str, default='h',
                         help='freq for time features encoding, options:[s:secondly, t:minutely, h:hourly, d:daily, b:business days, w:weekly, m:monthly], you can also use more detailed freq like 15min or 3h')
     parser.add_argument('--checkpoints', type=str, default='./checkpoints/', help='location of model checkpoints')
+    parser.add_argument('--artifacts_root', type=str, default='.',
+                        help='root directory for test_results and results artifacts')
 
     # forecasting task
     parser.add_argument('--seq_len', type=int, default=96, help='input sequence length')
@@ -98,6 +102,10 @@ if __name__ == '__main__':
     parser.add_argument('--batch_size', type=int, default=32, help='batch size of train input data')
     parser.add_argument('--patience', type=int, default=3, help='early stopping patience')
     parser.add_argument('--learning_rate', type=float, default=0.0001, help='optimizer learning rate')
+    parser.add_argument('--optimizer', type=str, choices=['Adam', 'AdamW'], default='Adam',
+                        help='optimizer used for training')
+    parser.add_argument('--weight_decay', type=float, default=0.0,
+                        help='optimizer weight decay')
     parser.add_argument('--des', type=str, default='test', help='exp description')
     parser.add_argument('--loss', type=str, default='MSE', help='loss function')
     parser.add_argument('--lradj', type=str, default='type1', help='adjust learning rate')
@@ -146,9 +154,17 @@ if __name__ == '__main__':
     # TimeXer
     parser.add_argument('--patch_len', type=int, default=16, help='patch length')
     parser.add_argument('--stride', type=int, default=8, help='stride for patching')
+    parser.add_argument('--timesqueeze_tau', type=float, default=0.3,
+                        help='TimeSqueeze reproduction: relative-deviation threshold')
+    parser.add_argument('--timesqueeze_power_window', type=int, default=8,
+                        help='TimeSqueeze reproduction: local power lookback')
+    parser.add_argument('--timesqueeze_max_patch', type=int, default=8,
+                        help='TimeSqueeze reproduction: maximum dynamic patch length')
+    parser.add_argument('--ct_channel_heads', type=int, default=1,
+                        help='CT-PatchTST reproduction: channel-attention heads')
 
     # GCN
-    parser.add_argument('--node_dim', type=int, default=10, help='each node embbed to dim dimentions')
+    parser.add_argument('--node_dim', type=int, default=10, help='node embedding dimension')
     parser.add_argument('--gcn_depth', type=int, default=2, help='')
     parser.add_argument('--gcn_dropout', type=float, default=0.3, help='')
     parser.add_argument('--propalpha', type=float, default=0.3, help='')
@@ -166,6 +182,22 @@ if __name__ == '__main__':
     # PFB-specific ablations
     parser.add_argument('--pfb_k', type=int, default=0,
                         help='PFB-Direct/PFB-Projected: number of optional refinement blocks. 0 uses the default parallel-fusion configuration.')
+
+    # Validation-only training is used by targeted hyperparameter selection.
+    # It suppresses test-set evaluation and can persist the best validation MSE
+    # as a machine-readable JSON record.
+    parser.add_argument('--validation_only', action='store_true', default=False,
+                        help='train and select by validation loss without evaluating the test split')
+    parser.add_argument('--validation_output', type=str, default='',
+                        help='optional JSON path for the best validation loss')
+    parser.add_argument('--defer_test_until_after_training', action='store_true', default=False,
+                        help='omit per-epoch test loss and evaluate the test split once after training')
+    parser.add_argument('--skip_prediction_arrays', action='store_true', default=False,
+                        help='save scalar metrics without the potentially large pred.npy and true.npy arrays')
+    parser.add_argument('--uniform_outer_normalization', action='store_true', default=False,
+                        help='apply common reversible per-window standardization around the selected model')
+    parser.add_argument('--disable_native_window_normalization', action='store_true', default=False,
+                        help='disable architecture-native input window standardization when a common outer transform is used')
 
     args = parser.parse_args()
     
@@ -233,8 +265,42 @@ if __name__ == '__main__':
             print('>>>>>>>start training : {}>>>>>>>>>>>>>>>>>>>>>>>>>>'.format(setting))
             exp.train(setting)
 
-            print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-            exp.test(setting)
+            if args.validation_output:
+                validation_path = Path(args.validation_output)
+                validation_path.parent.mkdir(parents=True, exist_ok=True)
+                validation_path.write_text(
+                    json.dumps(
+                        {
+                            'setting': setting,
+                            'model_id': args.model_id,
+                            'model': args.model,
+                            'data': args.data,
+                            'pred_len': args.pred_len,
+                            'seq_len': args.seq_len,
+                            'label_len': args.label_len,
+                            'seed': args.seed,
+                            'patch_len': args.patch_len,
+                            'stride': args.stride,
+                            'learning_rate': args.learning_rate,
+                            'optimizer': args.optimizer,
+                            'weight_decay': args.weight_decay,
+                            'd_model': args.d_model,
+                            'd_ff': args.d_ff,
+                            'n_heads': args.n_heads,
+                            'dropout': args.dropout,
+                            'batch_size': args.batch_size,
+                            'best_validation_mse': float(exp.best_validation_loss),
+                            'best_validation_epoch': int(exp.best_validation_epoch),
+                        },
+                        indent=2,
+                    ),
+                    encoding='utf-8',
+                )
+                print('Validation summary written to: {}'.format(validation_path))
+
+            if not args.validation_only:
+                print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
+                exp.test(setting)
             if args.gpu_type == 'mps':
                 torch.backends.mps.empty_cache()
             elif args.gpu_type == 'cuda':

@@ -1,6 +1,7 @@
 # Main PFB variants
 from . import PFB_Direct
 from . import PFB_Projected
+from . import PFB_CrossVariate
 
 # Diagnostic and control models
 from .controls import PFB
@@ -17,6 +18,8 @@ from . import DLinear
 from . import iTransformer
 from . import TiDE
 from . import TimeXer
+from . import TimeSqueeze_Reproduction
+from . import CT_PatchTST_Reproduction
 
 _legacy_base = "PatchFusion" + "".join(chr(c) for c in (66, 69, 82, 84))
 globals()[_legacy_base] = PFB

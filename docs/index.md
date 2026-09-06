@@ -1,43 +1,28 @@
 # PFB Forecasting
 
-Parallel patch-encoder fusion for long-horizon time-series forecasting.
+PFB Forecasting studies parallel patch-encoder fusion as a PatchTST-family
+design choice for long-horizon time-series forecasting.
 
-![PFB architecture](../paper/figures/architecture.png)
+![PFB architecture](../figures/architecture.png)
 
-PFB is a PatchTST-family architecture that runs the same patch-token
-sequence through two parallel Transformer encoder streams before prediction. The
-project studies the accuracy and capacity behavior of this design relative to
-PatchTST-family controls.
+## Model scope
 
-## Models
-
-| Model | Description |
+| Model | Role |
 |---|---|
-| PatchTST | Single patch-encoder baseline. |
+| PatchTST | Single patch-encoder reference model. |
 | PFB-Direct | Parallel encoders with direct concatenation. |
 | PFB-Projected | Parallel encoders with a projection block after concatenation. |
 
-## Repository areas
+External baselines provide forecasting context. The primary architectural
+comparison remains PFB versus PatchTST-family controls.
+
+## Main folders
 
 - `models/`: model definitions and controls.
-- `scripts/paper/`: benchmark runners.
-- `docs/`: project context and pipeline notes.
-- `paper/figures/`: clean figure assets.
+- `experiments/`: date-free experiment runners.
+- `analysis/`: notes for analysis workflow locations.
+- `figures/`: current figure assets.
+- `results_summary/`: compact result summaries with source-GPU provenance.
 
-## Quick commands
-
-```powershell
-python .\scripts\paper\run_core_dataset_benchmark.py --dataset electricity --skip-completed
-python .\scripts\paper\run_core_dataset_benchmark.py --dataset traffic --skip-completed
-```
-
-## Citation
-
-```bibtex
-@software{pfb_forecasting_2026,
-  title  = {PFB Forecasting: Parallel Patch-Encoder Fusion for Time-Series Forecasting},
-  author = {Ahmad, Hussein and Mortazavi, Seyyed Kasra and Benarbia, Taha and Al Machot, Fadi and Kyamakya, Kyandoghere},
-  year   = {2026},
-  url    = {https://github.com/Hussein-Ahmad-Ahmad/pfb-forecasting}
-}
-```
+Large raw outputs are kept outside git: `data/`, `checkpoints/`, `results/`,
+and `test_results/`.

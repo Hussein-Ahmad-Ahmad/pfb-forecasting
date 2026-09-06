@@ -1,8 +1,0 @@
-Dataset,N_vars,Train_rows,Mean_lag1_AC,Spectral_entropy,Dominant_period_samples
-ETTh1,7,12194,0.937,0.325,24
-ETTh2,7,12194,0.969,0.157,24
-ETTm1,7,48776,0.978,0.224,96
-ETTm2,7,48776,0.988,0.099,96
-Exchange,8,5311,0.999,0.028,1770
-Weather,21,36887,0.892,0.246,144
-Illness,7,676,0.968,0.398,52

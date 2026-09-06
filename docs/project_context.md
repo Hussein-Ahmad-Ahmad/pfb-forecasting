@@ -10,25 +10,25 @@ The main architectural comparison is:
 - `PFB-Projected`: two parallel patch encoders with a projection block after
   concatenation.
 
-The broader model set, including DLinear, iTransformer, TiDE, and TimeXer, is used
-as forecasting context. The primary architectural focus is the behavior of
-parallel patch-encoder fusion relative to PatchTST-family controls.
+The broader model set, including DLinear, iTransformer, TiDE, TimeXer, and
+recent patch/fusion baselines, provides context for how the PatchTST-family
+comparison sits among other forecasting pipelines.
 
-## Model naming
+## Public naming
 
-The public names used in the paper-facing material are `PFB-Direct` and
-`PFB-Projected`. Both models use Transformer encoders over time-series patch
-tokens.
+The public names are `PFB-Direct` and `PFB-Projected`. Both models use
+Transformer encoders over time-series patch tokens and are trained directly on
+forecasting data.
 
-## Current reproducibility boundary
+## Reproducibility boundary
 
-The repository tracks code, experiment runners, small tabular summaries, and
-paper figures. Large generated artifacts are not tracked in git:
+The repository tracks code, experiment runners, compact tabular summaries, and
+current figure assets. Large generated artifacts are not tracked in git:
 
 - datasets;
 - checkpoints;
 - raw per-run result folders;
 - training logs.
 
-These artifacts should be distributed through a separate archive or data-release
-record when needed.
+For machine-to-machine continuation, copy `data/`, `checkpoints/`, `results/`,
+and `test_results/` directly.

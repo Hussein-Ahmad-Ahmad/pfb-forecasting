@@ -1,6 +1,0 @@
-model,runs,gpu_name,params,latency_median_ms,latency_std_between_runs_ms,throughput_median_samples_per_sec,peak_gpu_memory_median_mb,peak_gpu_memory_std_mb
-DLinear,3,NVIDIA GeForce RTX 2080 Ti,129408,0.3348,0.0024,23820.8671,9.99,0.0
-PFB-Direct,3,NVIDIA GeForce RTX 2080 Ti,3256768,5.8723,0.0105,1361.5649,71.71,0.0
-PFB-Projected,3,NVIDIA GeForce RTX 2080 Ti,2456000,6.748,0.0082,1183.3962,68.65,0.0
-PatchTST,3,NVIDIA GeForce RTX 2080 Ti,1629504,3.252,0.248,2382.1236,62.05,0.0
-PatchTST_capacity,3,NVIDIA GeForce RTX 2080 Ti,3283456,6.6401,0.0341,1197.9531,192.64,0.0

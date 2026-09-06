@@ -12,6 +12,7 @@ import torch.nn as nn
 from layers.Transformer_EncDec import Encoder, EncoderLayer
 from layers.SelfAttention_Family import FullAttention, AttentionLayer
 from layers.Embed import PatchEmbedding
+from utils.window_preprocessing import normalize_window
 
 
 class SecondaryPatchEncoder(nn.Module):
@@ -77,6 +78,7 @@ class Model(nn.Module):
         self.task_name = configs.task_name
         self.seq_len = configs.seq_len
         self.pred_len = configs.pred_len
+        self.native_window_normalization = not getattr(configs, 'disable_native_window_normalization', False)
         self.pfb_k = int(getattr(configs, 'pfb_k', 0))
         # Use values from configs if available, otherwise use defaults
         patch_len = getattr(configs, 'patch_len', patch_len)
@@ -139,10 +141,7 @@ class Model(nn.Module):
 
     def forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec):
         # Normalization
-        means = x_enc.mean(1, keepdim=True).detach()
-        x_enc = x_enc - means
-        stdev = torch.sqrt(torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
-        x_enc /= stdev
+        x_enc, means, stdev = normalize_window(x_enc, self.native_window_normalization)
 
         # Shared patch embedding
         # Input: [B, L, C] -> Permute to [B, C, L]

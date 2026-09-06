@@ -7,70 +7,56 @@ Parallel patch-encoder fusion for long-horizon time-series forecasting.
 [![Built on Time-Series-Library](https://img.shields.io/badge/built%20on-Time--Series--Library-orange.svg)](https://github.com/thuml/Time-Series-Library)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-PFB Forecasting provides the code, model definitions, experiment runners, and
-figure assets for studying parallel patch-encoder fusion in long-horizon
-forecasting. The architecture extends a PatchTST-style workflow by sending the
-same patch-token sequence through two Transformer encoder streams and combining
-their representations before prediction.
+This repository provides code, model definitions, experiment runners, compact
+result summaries, and figure assets for evaluating parallel patch-encoder fusion
+within a PatchTST-style forecasting workflow.
 
-The repository is designed for controlled architectural comparison: PatchTST is
-the primary reference model, while PFB-Direct and PFB-Projected test two parallel
-fusion strategies under the same data and training workflow.
+The central comparison is controlled and within-family:
+
+- `PatchTST`: single patch-encoder reference model.
+- `PFB-Direct`: two parallel patch encoders with direct concatenation.
+- `PFB-Projected`: two parallel patch encoders with a projection block after concatenation.
+
+External models such as DLinear, iTransformer, TiDE, TimeXer, and recent
+patch/fusion baselines are included as forecasting context.
 
 ## Architecture
 
-![PFB architecture](paper/figures/architecture.png)
+![PFB architecture](figures/architecture.png)
 
-The design has three main stages:
-
-1. Convert each input window into patch tokens.
-2. Process the shared patch-token sequence through parallel encoder streams.
-3. Fuse the stream outputs and map them to the forecasting horizon.
-
-## Models
-
-| Model | Description |
-|---|---|
-| `PatchTST` | Single patch-encoder baseline. |
-| `PFB-Direct` | Parallel encoder streams with direct concatenation before the prediction head. |
-| `PFB-Projected` | Parallel encoder streams with a projection block after concatenation. |
-| `PatchTST_LargeHead` | PatchTST capacity-control variant. |
-| `PatchTST_SerialMatched` | Single-path serial control for parallel-versus-serial comparison. |
-| `DLinear_Norm` | DLinear with reversible window standardization. |
-
-PFB is trained directly on time-series data. The model uses Transformer encoders
-over time-series patch tokens.
+The design keeps the same patch-token sequence for both encoder streams, applies
+independent Transformer encoders, fuses the stream outputs, and maps the fused
+representation to the forecasting horizon.
 
 ## Repository layout
 
 ```text
 .
-|-- run.py                         # main training and evaluation entry point
-|-- models/                        # forecasting models and architectural controls
-|-- exp/                           # experiment dispatch
-|-- data_provider/                 # dataset loaders
-|-- layers/                        # shared neural-network layers
-|-- utils/                         # metrics and training utilities
-|-- scripts/
-|   `-- paper/                     # benchmark runners
-|-- analysis/                      # result parsing and statistical summaries
-|-- profiling/                     # parameter, FLOP, and runtime utilities
-|-- robustness/                    # robustness utilities
-|-- paper/figures/                 # figure assets
-`-- results_analysis/              # compact tabular summaries
+|-- run.py                    # main training and evaluation entry point
+|-- models/                   # forecasting models and architectural controls
+|-- exp/                      # experiment dispatch
+|-- data_provider/            # dataset loaders
+|-- layers/                   # shared neural-network layers
+|-- utils/                    # metrics and training utilities
+|-- experiments/              # date-free experiment runners
+|-- analysis/                 # notes for analysis workflow locations
+|-- figures/                  # figure assets used by the current study
+`-- results_summary/          # compact CSV summaries with source-GPU provenance
 ```
 
-Generated datasets, checkpoints, raw result folders, and test outputs are kept
-outside git:
+Large generated artifacts are intentionally not tracked in git:
 
 - `data/`
 - `results/`
 - `checkpoints/`
 - `test_results/`
 
+Copy those folders directly when continuing interrupted experiments on another
+machine.
+
 ## Installation
 
-Use Python 3.10 and install the required packages:
+Use Python 3.10:
 
 ```powershell
 pip install -r requirements.txt
@@ -84,70 +70,97 @@ the experiment runner with `--python`.
 Place benchmark CSV files under:
 
 ```text
-Time-Series-Library/data/
+data/
 ```
 
-For the high-dimensional benchmark extension:
+The high-dimensional benchmark extension expects:
 
 ```text
 data/electricity.csv
 data/traffic.csv
 ```
 
-## Running benchmark extensions
+Candidate benchmark extensions use the same `data/` folder.
 
-Electricity:
+## Main experiment runners
 
-```powershell
-python .\scripts\paper\run_core_dataset_benchmark.py --dataset electricity --skip-completed
-```
-
-Traffic:
+High-dimensional core datasets:
 
 ```powershell
-python .\scripts\paper\run_core_dataset_benchmark.py --dataset traffic --skip-completed
+python .\experiments\core_benchmarks\run_expensive_core_5seed.py --skip-completed
 ```
 
-Default grid:
-
-| Setting | Values |
-|---|---|
-| Models | `PatchTST`, `PFB-Direct`, `PFB-Projected` |
-| Horizons | `96`, `192`, `336`, `720` |
-| Seeds | `2021`, `2022`, `2023`, `2024`, `2025` |
-
-Useful options:
+Candidate datasets:
 
 ```powershell
---max-runs 5     # run a smaller batch
---dry-run        # print commands without training
---python PATH    # select a specific Python environment
+python .\experiments\core_benchmarks\run_candidate_core_5seed.py --skip-completed
 ```
 
-## Outputs
+Targeted patch/stride/learning-rate sensitivity:
 
-Training writes raw outputs to:
+```powershell
+python .\experiments\targeted_hpo\run_targeted_hpo.py --stage final --skip-completed
+```
+
+Secondary sensitivity around the selected configuration:
+
+```powershell
+python .\experiments\secondary_sensitivity\run_secondary_sensitivity.py --stage final --skip-completed
+```
+
+Long-horizon and topology-control campaigns:
+
+```powershell
+python .\experiments\long_horizon\run_h720_and_topology_campaign.py --campaign h720_external --skip-completed
+```
+
+Recent baseline context:
+
+```powershell
+python .\experiments\recent_baselines\run_recent_baselines_5seed.py --execute --skip-completed
+```
+
+Gateformer and EntroPE adapters expect their official source checkouts under
+`experiments/recent_baselines/official_sources/`. That folder is treated as a
+local dependency and is not tracked in git.
+
+Cross-variate diagnostic:
+
+```powershell
+python .\experiments\cross_variate\run_cross_variate_5seed.py --skip-completed
+```
+
+Checkpoint-based diagnostics:
+
+```powershell
+python .\experiments\diagnostics\run_branch_corruption.py
+python .\experiments\diagnostics\run_representation_diagnostics.py
+python .\experiments\diagnostics\run_missingness_mechanisms.py
+```
+
+Use `--max-runs N` on runners that support batching.
+
+## Results and provenance
+
+Compact summaries are stored in:
 
 ```text
-results/
-checkpoints/
+results_summary/
 ```
 
-The benchmark runner writes compact run metadata to:
+CSV summaries include:
+
+- `source_gpu`: GPU used for the recorded local result.
+- `source_note`: short provenance label.
+
+The current compact summaries marked as local results were produced on:
 
 ```text
-results_analysis/paper_runs/<dataset>/
+NVIDIA GeForce RTX 2080 Ti
 ```
 
-Each dataset run directory contains:
-
-- `core_5seed_plan.csv`
-- `core_5seed_manifest.json`
-- `core_5seed_status.csv`
-- per-run logs
-
-Before using a result table, check the status CSV and the matching `metrics.npy`
-files for the dataset, horizon, model, seed, and metric order.
+When continuing experiments on another GPU, keep the new outputs separate until
+their metrics are verified and aggregated.
 
 ## Citation
 
@@ -162,5 +175,5 @@ If you use this repository, cite it as:
 }
 ```
 
-Please also cite the associated manuscript and the original
+Please also cite the associated article and the original
 [Time-Series-Library](https://github.com/thuml/Time-Series-Library) project.

@@ -1,22 +1,26 @@
 # Figure inventory
 
-Clean copies of manuscript figure assets are stored under `paper/figures/`.
+Current figure assets are stored under `figures/`.
 
 | File | Purpose |
 |---|---|
 | `architecture.png` | Parallel patch-encoder fusion architecture. |
-| `mse_heatmap.png` | Model comparison heatmap. |
+| `benchmark_heatmap.png` | Standard benchmark heatmap. |
+| `dataset_mean_mse.png` | Dataset-level mean-MSE comparison. |
+| `horizon_scaling.png` | Horizon-level behavior. |
+| `confidence_intervals.png` | Cluster-level uncertainty summary. |
+| `cluster_effects.png` | Dataset-cluster effect visualization. |
 | `capacity_control.png` | PatchTST-family capacity-control comparison. |
-| `component_ablation.png` | Component-chain ablation summary. |
+| `serial_parallel_comparison.png` | Serial versus parallel topology comparison. |
+| `common_preprocessing.png` | Common-preprocessing control. |
+| `targeted_hpo.png` | Patch/stride/learning-rate sensitivity. |
+| `additional_dataset_gains.png` | Additional-dataset PatchTST-family comparison. |
+| `representation_similarity.png` | Representation-similarity diagnostics. |
+| `branch_corruption.png` | Branch-specific input-corruption sensitivity. |
 | `efficiency_pareto.png` | Accuracy-efficiency tradeoff view. |
-| `dataset_performance.png` | Dataset-level performance summary. |
-| `horizon_scaling.png` | Horizon-level performance summary. |
-| `benchmark_errorbars.png` | Multi-seed benchmark uncertainty summary. |
-| `statistical_significance.png` | Statistical comparison summary. |
-| `confidence_intervals.png` | Confidence-interval visualization. |
-| `weather_variable_analysis.png` | Weather per-variable diagnostic. |
-| `forecast_step_error.png` | Forecast-step error diagnostic. |
-| `forecast_uncertainty.png` | Forecast uncertainty visualization. |
+| `benchmark_errorbars.png` | Multi-seed benchmark variability. |
+| `seed_dispersion.png` | Seed-to-seed forecast dispersion example. |
+| `forecast_step_error.png` | Forecast-step error profile. |
+| `weather_variable_error.png` | Weather per-variable diagnostic. |
 
-These are figure assets only. Source tables and raw training outputs should be
-verified separately before updating manuscript tables.
+Only these figure assets are part of the current public package.

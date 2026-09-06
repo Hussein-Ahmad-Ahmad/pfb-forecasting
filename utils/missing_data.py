@@ -127,7 +127,7 @@ allowing models to explicitly learn missing-aware representations.
 Random missingness:  10%, 20%, 30% of timesteps uniformly masked
 Block missingness:   Contiguous 5-timestep blocks totaling 10%, 20%, 30%
 
-Models evaluated: PFB_v0, PatchTST, DLinear
+Models evaluated: PFB-Direct, PatchTST, DLinear
 Datasets: ETTm1, Weather
 Horizon: H=192
 Seed: 2021 (for reproducibility)
