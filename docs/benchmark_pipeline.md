@@ -57,5 +57,5 @@ Before using a row in an aggregate table, verify:
 2. the command arguments in the manifest/status file;
 3. the existence of the corresponding `metrics.npy`;
 4. the metric order used by the loader;
-5. the `source_gpu` field in `results_summary/` when mixing outputs from
-   multiple machines.
+5. the `experiment_run_on` field in `results_summary/` when mixing outputs
+   from multiple machines.

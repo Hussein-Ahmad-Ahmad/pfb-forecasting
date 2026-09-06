@@ -41,7 +41,7 @@ representation to the forecasting horizon.
 |-- experiments/              # date-free experiment runners
 |-- analysis/                 # notes for analysis workflow locations
 |-- figures/                  # figure assets used by the current study
-`-- results_summary/          # compact CSV summaries with source-GPU provenance
+`-- results_summary/          # compact CSV summaries with run-hardware labels
 ```
 
 Large generated artifacts are intentionally not tracked in git:
@@ -148,12 +148,8 @@ Compact summaries are stored in:
 results_summary/
 ```
 
-CSV summaries include:
-
-- `source_gpu`: GPU used for the recorded local result.
-- `source_note`: short provenance label.
-
-The current compact summaries marked as local results were produced on:
+CSV summaries include `experiment_run_on`, which records the GPU used for each
+reported experiment. The current compact summaries were run on:
 
 ```text
 NVIDIA GeForce RTX 2080 Ti

@@ -22,7 +22,7 @@ comparison remains PFB versus PatchTST-family controls.
 - `experiments/`: date-free experiment runners.
 - `analysis/`: notes for analysis workflow locations.
 - `figures/`: current figure assets.
-- `results_summary/`: compact result summaries with source-GPU provenance.
+- `results_summary/`: compact result summaries with run-hardware labels.
 
 Large raw outputs are kept outside git: `data/`, `checkpoints/`, `results/`,
 and `test_results/`.

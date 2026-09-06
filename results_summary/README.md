@@ -4,16 +4,11 @@ This folder contains compact CSV summaries for the current PFB forecasting
 package. It does not contain raw predictions, full checkpoints, or per-run result
 arrays.
 
-Each CSV includes:
-
-- `source_gpu`: GPU used for the recorded local result.
-- `source_note`: short provenance label.
-
-Current local summaries are marked:
+Each CSV includes `experiment_run_on`, which records the GPU used for the
+reported experiment. Current summaries use:
 
 ```text
-source_gpu = NVIDIA GeForce RTX 2080 Ti
-source_note = local workstation result
+experiment_run_on = NVIDIA GeForce RTX 2080 Ti
 ```
 
 When results from another GPU are added, keep them separate until the run

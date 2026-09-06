@@ -1,3 +1,3 @@
-dataset,horizon,model,seeds,mean_mse,source_gpu,source_note
-Exchange,192,PFB-CrossVariate,2021-2025,0.195942,NVIDIA GeForce RTX 2080 Ti,local workstation result
-Weather,192,PFB-CrossVariate,2021-2025,0.195402,NVIDIA GeForce RTX 2080 Ti,local workstation result
+﻿"dataset","horizon","model","seeds","mean_mse","experiment_run_on"
+"Exchange","192","PFB-CrossVariate","2021-2025","0.195942","NVIDIA GeForce RTX 2080 Ti"
+"Weather","192","PFB-CrossVariate","2021-2025","0.195402","NVIDIA GeForce RTX 2080 Ti"
