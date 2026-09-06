@@ -140,7 +140,7 @@ python .\experiments\diagnostics\run_missingness_mechanisms.py
 
 Use `--max-runs N` on runners that support batching.
 
-## Results and provenance
+## Results
 
 Compact summaries are stored in:
 
@@ -148,15 +148,11 @@ Compact summaries are stored in:
 results_summary/
 ```
 
-CSV summaries include `experiment_run_on`, which records the GPU used for each
-reported experiment. The current compact summaries were run on:
+Hardware label used in the CSV summaries:
 
 ```text
-NVIDIA GeForce RTX 2080 Ti
+experiment_run_on = NVIDIA GeForce RTX 2080 Ti
 ```
-
-When continuing experiments on another GPU, keep the new outputs separate until
-their metrics are verified and aggregated.
 
 ## Citation
 
