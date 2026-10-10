@@ -1,0 +1,596 @@
+{
+  "ETTh1::DLinear": {
+    "params": {
+      "individual": "0",
+      "learning_rate": "0.001"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh1_DLinear_H192_S2020_T00_DLinear_ETTh1_ftM_sl336_ll96_pl192_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.8595625758171082
+  },
+  "ETTh1::PFB-Direct": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh1_PFB-Direct_H192_S2020_T00_PFB-Direct_ETTh1_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.9290747046470642
+  },
+  "ETTh1::PFB-Projected": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "128",
+      "dropout": "0.10",
+      "e_layers": "2",
+      "learning_rate": "0.0003",
+      "n_heads": "8",
+      "patch_len": "32",
+      "stride": "16"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh1_PFB-Projected_H192_S2020_T02_PFB-Projected_ETTh1_ftM_sl336_ll96_pl192_dm128_nh8_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.9417645931243896
+  },
+  "ETTh1::PatchTST": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh1_PatchTST_H192_S2020_T00_PatchTST_ETTh1_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.9398006200790405
+  },
+  "ETTh1::TiDE": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "128",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "8",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh1_TiDE_H192_S2020_T04_TiDE_ETTh1_ftM_sl336_ll96_pl192_dm128_nh8_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.9187684059143066
+  },
+  "ETTh1::TimeXer": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh1_TimeXer_H192_S2020_T00_TimeXer_ETTh1_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.9595340490341187
+  },
+  "ETTh1::iTransformer": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "64",
+      "dropout": "0.20",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "4",
+      "patch_len": "32",
+      "stride": "16"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh1_iTransformer_H192_S2020_T05_iTransformer_ETTh1_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.9389613270759583
+  },
+  "ETTh2::DLinear": {
+    "params": {
+      "individual": "0",
+      "learning_rate": "0.001"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh2_DLinear_H192_S2020_T00_DLinear_ETTh2_ftM_sl336_ll96_pl192_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.28057125210762024
+  },
+  "ETTh2::PFB-Direct": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "64",
+      "dropout": "0.20",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "4",
+      "patch_len": "32",
+      "stride": "16"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh2_PFB-Direct_H192_S2020_T05_PFB-Direct_ETTh2_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.26825380325317383
+  },
+  "ETTh2::PFB-Projected": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "128",
+      "dropout": "0.10",
+      "e_layers": "2",
+      "learning_rate": "0.0003",
+      "n_heads": "8",
+      "patch_len": "32",
+      "stride": "16"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh2_PFB-Projected_H192_S2020_T02_PFB-Projected_ETTh2_ftM_sl336_ll96_pl192_dm128_nh8_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.2709885537624359
+  },
+  "ETTh2::PatchTST": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh2_PatchTST_H192_S2020_T00_PatchTST_ETTh2_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.2746598720550537
+  },
+  "ETTh2::TiDE": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "128",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "8",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh2_TiDE_H192_S2020_T04_TiDE_ETTh2_ftM_sl336_ll96_pl192_dm128_nh8_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.2728576958179474
+  },
+  "ETTh2::TimeXer": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh2_TimeXer_H192_S2020_T00_TimeXer_ETTh2_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.2910587191581726
+  },
+  "ETTh2::iTransformer": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "128",
+      "dropout": "0.10",
+      "e_layers": "2",
+      "learning_rate": "0.0003",
+      "n_heads": "8",
+      "patch_len": "32",
+      "stride": "16"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTh2_iTransformer_H192_S2020_T02_iTransformer_ETTh2_ftM_sl336_ll96_pl192_dm128_nh8_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.29601556062698364
+  },
+  "ETTm1::DLinear": {
+    "params": {
+      "individual": "0",
+      "learning_rate": "0.01"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm1_DLinear_H192_S2020_T02_DLinear_ETTm1_ftM_sl336_ll96_pl192_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.4878555238246918
+  },
+  "ETTm1::PFB-Direct": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm1_PFB-Direct_H192_S2020_T00_PFB-Direct_ETTm1_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.48636728525161743
+  },
+  "ETTm1::PFB-Projected": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm1_PFB-Projected_H192_S2020_T00_PFB-Projected_ETTm1_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.4851221442222595
+  },
+  "ETTm1::PatchTST": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm1_PatchTST_H192_S2020_T00_PatchTST_ETTm1_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.48978888988494873
+  },
+  "ETTm1::TiDE": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "128",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "8",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm1_TiDE_H192_S2020_T04_TiDE_ETTm1_ftM_sl336_ll96_pl192_dm128_nh8_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.5051524043083191
+  },
+  "ETTm1::TimeXer": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm1_TimeXer_H192_S2020_T00_TimeXer_ETTm1_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.4924057722091675
+  },
+  "ETTm1::iTransformer": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "64",
+      "dropout": "0.20",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "4",
+      "patch_len": "32",
+      "stride": "16"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm1_iTransformer_H192_S2020_T05_iTransformer_ETTm1_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.4864062964916229
+  },
+  "ETTm2::DLinear": {
+    "params": {
+      "individual": "0",
+      "learning_rate": "0.01"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm2_DLinear_H192_S2020_T02_DLinear_ETTm2_ftM_sl336_ll96_pl192_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.15778754651546478
+  },
+  "ETTm2::PFB-Direct": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm2_PFB-Direct_H192_S2020_T00_PFB-Direct_ETTm2_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.16022509336471558
+  },
+  "ETTm2::PFB-Projected": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm2_PFB-Projected_H192_S2020_T00_PFB-Projected_ETTm2_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.16089704632759094
+  },
+  "ETTm2::PatchTST": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm2_PatchTST_H192_S2020_T00_PatchTST_ETTm2_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.16249001026153564
+  },
+  "ETTm2::TiDE": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "128",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "8",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm2_TiDE_H192_S2020_T04_TiDE_ETTm2_ftM_sl336_ll96_pl192_dm128_nh8_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.15680289268493652
+  },
+  "ETTm2::TimeXer": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "128",
+      "dropout": "0.10",
+      "e_layers": "3",
+      "learning_rate": "0.0001",
+      "n_heads": "8",
+      "patch_len": "16",
+      "stride": "8"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm2_TimeXer_H192_S2020_T01_TimeXer_ETTm2_ftM_sl336_ll96_pl192_dm128_nh8_el3_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.1596277356147766
+  },
+  "ETTm2::iTransformer": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "64",
+      "dropout": "0.20",
+      "e_layers": "3",
+      "learning_rate": "0.0003",
+      "n_heads": "4",
+      "patch_len": "16",
+      "stride": "8"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_ETTm2_iTransformer_H192_S2020_T03_iTransformer_ETTm2_ftM_sl336_ll96_pl192_dm64_nh4_el3_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.1719370037317276
+  },
+  "Exchange::DLinear": {
+    "params": {
+      "individual": "0",
+      "learning_rate": "0.01"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Exchange_DLinear_H192_S2020_T02_DLinear_custom_ftM_sl336_ll96_pl192_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.2382185459136963
+  },
+  "Exchange::PFB-Direct": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "128",
+      "dropout": "0.10",
+      "e_layers": "3",
+      "learning_rate": "0.0001",
+      "n_heads": "8",
+      "patch_len": "16",
+      "stride": "8"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Exchange_PFB-Direct_H192_S2020_T01_PFB-Direct_custom_ftM_sl336_ll96_pl192_dm128_nh8_el3_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.20414334535598755
+  },
+  "Exchange::PFB-Projected": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "64",
+      "dropout": "0.20",
+      "e_layers": "3",
+      "learning_rate": "0.0003",
+      "n_heads": "4",
+      "patch_len": "16",
+      "stride": "8"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Exchange_PFB-Projected_H192_S2020_T03_PFB-Projected_custom_ftM_sl336_ll96_pl192_dm64_nh4_el3_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.2086557149887085
+  },
+  "Exchange::PatchTST": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "64",
+      "dropout": "0.20",
+      "e_layers": "3",
+      "learning_rate": "0.0003",
+      "n_heads": "4",
+      "patch_len": "16",
+      "stride": "8"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Exchange_PatchTST_H192_S2020_T03_PatchTST_custom_ftM_sl336_ll96_pl192_dm64_nh4_el3_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.21383647620677948
+  },
+  "Exchange::TiDE": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "128",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "8",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Exchange_TiDE_H192_S2020_T04_TiDE_custom_ftM_sl336_ll96_pl192_dm128_nh8_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.2281142771244049
+  },
+  "Exchange::TimeXer": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Exchange_TimeXer_H192_S2020_T00_TimeXer_custom_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.2246881127357483
+  },
+  "Exchange::iTransformer": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "64",
+      "dropout": "0.20",
+      "e_layers": "3",
+      "learning_rate": "0.0003",
+      "n_heads": "4",
+      "patch_len": "16",
+      "stride": "8"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Exchange_iTransformer_H192_S2020_T03_iTransformer_custom_ftM_sl336_ll96_pl192_dm64_nh4_el3_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.2405613213777542
+  },
+  "Weather::DLinear": {
+    "params": {
+      "individual": "0",
+      "learning_rate": "0.01"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Weather_DLinear_H192_S2020_T02_DLinear_custom_ftM_sl336_ll96_pl192_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.4813908636569977
+  },
+  "Weather::PFB-Direct": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "128",
+      "dropout": "0.10",
+      "e_layers": "3",
+      "learning_rate": "0.0001",
+      "n_heads": "8",
+      "patch_len": "16",
+      "stride": "8"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Weather_PFB-Direct_H192_S2020_T01_PFB-Direct_custom_ftM_sl336_ll96_pl192_dm128_nh8_el3_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.4556945562362671
+  },
+  "Weather::PFB-Projected": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "64",
+      "dropout": "0.20",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "4",
+      "patch_len": "32",
+      "stride": "16"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Weather_PFB-Projected_H192_S2020_T05_PFB-Projected_custom_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.4560917615890503
+  },
+  "Weather::PatchTST": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "128",
+      "dropout": "0.05",
+      "e_layers": "3",
+      "learning_rate": "0.001",
+      "n_heads": "8",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Weather_PatchTST_H192_S2020_T04_PatchTST_custom_ftM_sl336_ll96_pl192_dm128_nh8_el3_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.4574904143810272
+  },
+  "Weather::TiDE": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "128",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.001",
+      "n_heads": "8",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Weather_TiDE_H192_S2020_T04_TiDE_custom_ftM_sl336_ll96_pl192_dm128_nh8_el2_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.5044502019882202
+  },
+  "Weather::TimeXer": {
+    "params": {
+      "d_ff": "256",
+      "d_model": "64",
+      "dropout": "0.05",
+      "e_layers": "2",
+      "learning_rate": "0.0001",
+      "n_heads": "4",
+      "patch_len": "8",
+      "stride": "4"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Weather_TimeXer_H192_S2020_T00_TimeXer_custom_ftM_sl336_ll96_pl192_dm64_nh4_el2_dl1_df256_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.44325608015060425
+  },
+  "Weather::iTransformer": {
+    "params": {
+      "d_ff": "512",
+      "d_model": "64",
+      "dropout": "0.20",
+      "e_layers": "3",
+      "learning_rate": "0.0003",
+      "n_heads": "4",
+      "patch_len": "16",
+      "stride": "8"
+    },
+    "selection_seed": 2020,
+    "source_metrics": "val_results/long_term_forecast_equal_budget_hpo_selection_Weather_iTransformer_H192_S2020_T03_iTransformer_custom_ftM_sl336_ll96_pl192_dm64_nh4_el3_dl1_df512_expand2_dc4_fc1_ebtimeF_dtTrue_equal_budget_hpo_0/metrics.npy",
+    "validation_mse": 0.4535248875617981
+  }
+}

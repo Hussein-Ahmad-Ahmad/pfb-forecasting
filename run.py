@@ -5,10 +5,22 @@ from pathlib import Path
 import torch
 import torch.backends
 from exp.exp_long_term_forecasting import Exp_Long_Term_Forecast
-from exp.exp_imputation import Exp_Imputation
-from exp.exp_short_term_forecasting import Exp_Short_Term_Forecast
-from exp.exp_anomaly_detection import Exp_Anomaly_Detection
-from exp.exp_classification import Exp_Classification
+try:
+    from exp.exp_imputation import Exp_Imputation
+except ModuleNotFoundError:
+    Exp_Imputation = None
+try:
+    from exp.exp_short_term_forecasting import Exp_Short_Term_Forecast
+except ModuleNotFoundError:
+    Exp_Short_Term_Forecast = None
+try:
+    from exp.exp_anomaly_detection import Exp_Anomaly_Detection
+except ModuleNotFoundError:
+    Exp_Anomaly_Detection = None
+try:
+    from exp.exp_classification import Exp_Classification
+except ModuleNotFoundError:
+    Exp_Classification = None
 from utils.print_args import print_args
 import random
 import numpy as np
@@ -182,6 +194,12 @@ if __name__ == '__main__':
     # PFB-specific ablations
     parser.add_argument('--pfb_k', type=int, default=0,
                         help='PFB-Direct/PFB-Projected: number of optional refinement blocks. 0 uses the default parallel-fusion configuration.')
+    parser.add_argument('--report_split', choices=['test', 'val'], default='test',
+                        help='Split on which to save final metrics. Use val for validation-only HPO trials.')
+    parser.add_argument('--selection_only', action='store_true', default=False,
+                        help='Do not evaluate the test split during training. Required for validation-only HPO trials.')
+    parser.add_argument('--outer_window_norm', action='store_true', default=False,
+                        help='Apply a common reversible per-window, per-channel normalization wrapper to every model.')
 
     # Validation-only training is used by targeted hyperparameter selection.
     # It suppresses test-set evaluation and can persist the best validation MSE
@@ -200,11 +218,13 @@ if __name__ == '__main__':
                         help='disable architecture-native input window standardization when a common outer transform is used')
 
     args = parser.parse_args()
-    
+    if args.selection_only and args.report_split != 'val':
+        parser.error('--selection_only requires --report_split val to keep the test split withheld')
+
     # Set random seed using the --seed argument
     set_seed(args.seed)
     print(f'Random seed set to: {args.seed}')
-    
+
     if torch.cuda.is_available() and args.use_gpu:
         args.device = torch.device('cuda:{}'.format(args.gpu))
         print('Using GPU')
@@ -227,12 +247,20 @@ if __name__ == '__main__':
     if args.task_name == 'long_term_forecast':
         Exp = Exp_Long_Term_Forecast
     elif args.task_name == 'short_term_forecast':
+        if Exp_Short_Term_Forecast is None:
+            raise SystemExit('short_term_forecast is not included in this compact forecasting release.')
         Exp = Exp_Short_Term_Forecast
     elif args.task_name == 'imputation':
+        if Exp_Imputation is None:
+            raise SystemExit('imputation is not included in this compact forecasting release.')
         Exp = Exp_Imputation
     elif args.task_name == 'anomaly_detection':
+        if Exp_Anomaly_Detection is None:
+            raise SystemExit('anomaly_detection is not included in this compact forecasting release.')
         Exp = Exp_Anomaly_Detection
     elif args.task_name == 'classification':
+        if Exp_Classification is None:
+            raise SystemExit('classification is not included in this compact forecasting release.')
         Exp = Exp_Classification
     else:
         Exp = Exp_Long_Term_Forecast
@@ -300,7 +328,7 @@ if __name__ == '__main__':
 
             if not args.validation_only:
                 print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-                exp.test(setting)
+                exp.test(setting, split=args.report_split)
             if args.gpu_type == 'mps':
                 torch.backends.mps.empty_cache()
             elif args.gpu_type == 'cuda':
@@ -330,7 +358,7 @@ if __name__ == '__main__':
             args.des, ii)
 
         print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-        exp.test(setting, test=1)
+        exp.test(setting, test=1, split=args.report_split)
         if args.gpu_type == 'mps':
             torch.backends.mps.empty_cache()
         elif args.gpu_type == 'cuda':

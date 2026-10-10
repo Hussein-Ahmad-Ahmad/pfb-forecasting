@@ -7,13 +7,33 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 from sklearn.preprocessing import StandardScaler
 from utils.timefeatures import time_features
-from data_provider.m4 import M4Dataset, M4Meta
-from data_provider.uea import subsample, interpolate_missing, Normalizer
-from sktime.datasets import load_from_tsfile_to_dataframe
+try:
+    from data_provider.m4 import M4Dataset, M4Meta
+except ModuleNotFoundError:
+    # The compact forecasting release does not ship the optional M4 loader.
+    # Keep standard long-term forecasting datasets importable; Dataset_M4 will
+    # still fail clearly if a user explicitly requests the unavailable task.
+    M4Dataset = M4Meta = None
+
+try:
+    from data_provider.uea import subsample, interpolate_missing, Normalizer
+except ModuleNotFoundError:
+    # UEA classification support is optional and is not needed by LTSF.
+    subsample = interpolate_missing = Normalizer = None
+try:
+    from sktime.datasets import load_from_tsfile_to_dataframe
+except ModuleNotFoundError:
+    # Required only by the optional UEA classification loader.
+    load_from_tsfile_to_dataframe = None
 import warnings
 from utils.augmentation import run_augmentation_single
-from datasets import load_dataset
-from huggingface_hub import hf_hub_download
+try:
+    from datasets import load_dataset
+    from huggingface_hub import hf_hub_download
+except ModuleNotFoundError:
+    # Local benchmark CSVs are sufficient for this repository's forecasting
+    # campaigns. Hugging Face is only a fallback for absent optional data.
+    load_dataset = hf_hub_download = None
 warnings.filterwarnings('ignore')
 
 HUGGINGFACE_REPO = "thuml/Time-Series-Library"
@@ -59,7 +79,7 @@ class Dataset_ETT_hour(Dataset):
         else:
             ds = load_dataset(HUGGINGFACE_REPO, name=cfg_name)
             df_raw = ds["train"].to_pandas()
-            
+
         border1s = [0, 12 * 30 * 24 - self.seq_len, 12 * 30 * 24 + 4 * 30 * 24 - self.seq_len]
         border2s = [12 * 30 * 24, 12 * 30 * 24 + 4 * 30 * 24, 12 * 30 * 24 + 8 * 30 * 24]
         border1 = border1s[self.set_type]
@@ -88,7 +108,7 @@ class Dataset_ETT_hour(Dataset):
             data_stamp = df_stamp.drop(['date'], 1).values
         elif self.timeenc == 1:
             data_stamp = time_features(pd.to_datetime(df_stamp['date'].values), freq=self.freq)
-            data_stamp = data_stamp.transpose(1, 0) 
+            data_stamp = data_stamp.transpose(1, 0)
 
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
@@ -150,7 +170,7 @@ class Dataset_ETT_minute(Dataset):
 
     def __read_data__(self):
         self.scaler = StandardScaler()
-        
+
         local_fp = os.path.join(self.root_path, self.data_path)
         cfg_name = os.path.splitext(os.path.basename(self.data_path))[0]
 
@@ -434,11 +454,11 @@ class PSMSegLoader(Dataset):
         data = np.nan_to_num(data)
         self.scaler.fit(data)
         data = self.scaler.transform(data)
-        
+
         test_data = test_df.values[:, 1:]
         test_data = np.nan_to_num(test_data)
         self.test = self.scaler.transform(test_data)
-        
+
         self.train = data
         data_len = len(self.train)
         self.val = self.train[(int)(data_len * 0.8):]
@@ -477,7 +497,7 @@ class MSLSegLoader(Dataset):
         self.step = step
         self.win_size = win_size
         self.scaler = StandardScaler()
-        
+
         train_path = os.path.join(root_path, "MSL_train.npy")
         test_path  = os.path.join(root_path, "MSL_test.npy")
         label_path = os.path.join(root_path, "MSL_test_label.npy")
@@ -540,7 +560,7 @@ class SMAPSegLoader(Dataset):
         self.step = step
         self.win_size = win_size
         self.scaler = StandardScaler()
-        
+
         train_path = os.path.join(root_path, "SMAP_train.npy")
         test_path  = os.path.join(root_path, "SMAP_test.npy")
         label_path = os.path.join(root_path, "SMAP_test_label.npy")
@@ -605,7 +625,7 @@ class SMDSegLoader(Dataset):
         self.step = step
         self.win_size = win_size
         self.scaler = StandardScaler()
-        
+
         train_path = os.path.join(root_path, "SMD_train.npy")
         test_path  = os.path.join(root_path, "SMD_test.npy")
         label_path = os.path.join(root_path, "SMD_test_label.npy")
@@ -622,7 +642,7 @@ class SMDSegLoader(Dataset):
             train_data  = np.load(train_path)
             test_data   = np.load(test_path)
             test_label = np.load(label_path)
-            
+
         self.scaler.fit(train_data)
         train_data = self.scaler.transform(train_data)
         test_data = self.scaler.transform(test_data)

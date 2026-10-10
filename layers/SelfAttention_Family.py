@@ -3,8 +3,15 @@ import torch.nn as nn
 import numpy as np
 from math import sqrt
 from utils.masking import TriangularCausalMask, ProbMask
-from reformer_pytorch import LSHSelfAttention
-from einops import rearrange, repeat
+try:
+    from reformer_pytorch import LSHSelfAttention
+except ModuleNotFoundError:
+    LSHSelfAttention = None
+
+try:
+    from einops import rearrange, repeat
+except ModuleNotFoundError:
+    rearrange = repeat = None
 
 
 class DSAttention(nn.Module):
@@ -217,6 +224,10 @@ class ReformerLayer(nn.Module):
     def __init__(self, attention, d_model, n_heads, d_keys=None,
                  d_values=None, causal=False, bucket_size=4, n_hashes=4):
         super().__init__()
+        if LSHSelfAttention is None:
+            raise ModuleNotFoundError(
+                "ReformerLayer requires the optional dependency reformer-pytorch."
+            )
         self.bucket_size = bucket_size
         self.attn = LSHSelfAttention(
             dim=d_model,
@@ -276,6 +287,10 @@ class TwoStageAttentionLayer(nn.Module):
                                   nn.Linear(d_ff, d_model))
 
     def forward(self, x, attn_mask=None, tau=None, delta=None):
+        if rearrange is None or repeat is None:
+            raise ModuleNotFoundError(
+                "TwoStageAttentionLayer requires the optional dependency einops."
+            )
         # Cross Time Stage: Directly apply MSA to each dimension
         batch = x.shape[0]
         time_in = rearrange(x, 'b ts_d seg_num d_model -> (b ts_d) seg_num d_model')

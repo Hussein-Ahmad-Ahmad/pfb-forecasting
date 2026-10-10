@@ -2,6 +2,7 @@ from data_provider.data_factory import data_provider
 from exp.exp_basic import Exp_Basic
 from utils.tools import EarlyStopping, adjust_learning_rate, visual
 from utils.metrics import metric
+from utils.result_provenance import write_result_provenance
 import torch
 import torch.nn as nn
 from torch import optim
@@ -22,7 +23,10 @@ class Exp_Long_Term_Forecast(Exp_Basic):
     def _build_model(self):
         model = self.model_dict[self.args.model].Model(self.args).float()
 
-        if getattr(self.args, 'uniform_outer_normalization', False):
+        if getattr(self.args, 'outer_window_norm', False):
+            from layers.OuterWindowNorm import ReversibleOuterWindowNorm
+            model = ReversibleOuterWindowNorm(model)
+        elif getattr(self.args, 'uniform_outer_normalization', False):
             from models.UniformPreprocessing import Wrapper
             model = Wrapper(model)
 
@@ -54,7 +58,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
     def _select_criterion(self):
         criterion = nn.MSELoss()
         return criterion
- 
+
 
     def vali(self, vali_data, vali_loader, criterion):
         total_loss = []
@@ -97,6 +101,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         evaluate_test_during_training = not (
             getattr(self.args, 'validation_only', False)
             or getattr(self.args, 'defer_test_until_after_training', False)
+            or getattr(self.args, 'selection_only', False)
         )
         if evaluate_test_during_training:
             test_data, test_loader = self._get_data(flag='test')
@@ -179,7 +184,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                 self.best_validation_epoch = epoch + 1
 
             if not evaluate_test_during_training:
-                print("Epoch: {0}, Steps: {1} | Train Loss: {2:.7f} Vali Loss: {3:.7f}".format(
+                print("Epoch: {0}, Steps: {1} | Train Loss: {2:.7f} Vali Loss: {3:.7f} | Test Loss: withheld".format(
                     epoch + 1, train_steps, train_loss, vali_loss))
             else:
                 test_loss = self.vali(test_data, test_loader, criterion)
@@ -197,15 +202,18 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
         return self.model
 
-    def test(self, setting, test=0):
-        test_data, test_loader = self._get_data(flag='test')
+    def test(self, setting, test=0, split='test'):
+        if split not in {'test', 'val'}:
+            raise ValueError("split must be 'test' or 'val'")
+        test_data, test_loader = self._get_data(flag=split)
         if test:
             print('loading model')
             self.model.load_state_dict(torch.load(os.path.join(self.args.checkpoints, setting, 'checkpoint.pth')))
 
         preds = []
         trues = []
-        folder_path = os.path.join(self.args.artifacts_root, 'test_results', setting) + os.sep
+        visual_root = 'test_results' if split == 'test' else 'val_visuals'
+        folder_path = os.path.join(getattr(self.args, 'artifacts_root', '.'), visual_root, setting) + os.sep
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -265,7 +273,8 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         print('test shape:', preds.shape, trues.shape)
 
         # result save
-        folder_path = os.path.join(self.args.artifacts_root, 'results', setting) + os.sep
+        result_root = 'results' if split == 'test' else 'val_results'
+        folder_path = os.path.join(getattr(self.args, 'artifacts_root', '.'), result_root, setting) + os.sep
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -297,5 +306,6 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         if not getattr(self.args, 'skip_prediction_arrays', False):
             np.save(folder_path + 'pred.npy', preds)
             np.save(folder_path + 'true.npy', trues)
+        write_result_provenance(folder_path, self.args, split)
 
         return
