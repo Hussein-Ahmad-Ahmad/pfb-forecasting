@@ -1,179 +1,72 @@
-# PFB Forecasting
+# Parallel Patch-Encoder Fusion (PFB)
 
-Parallel patch-encoder fusion for long-horizon time-series forecasting.
+**Long-horizon time-series forecasting with shared temporal patches and parallel encoders.**
 
-[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-ee4c2c.svg)](https://pytorch.org/)
-[![Built on Time-Series-Library](https://img.shields.io/badge/built%20on-Time--Series--Library-orange.svg)](https://github.com/thuml/Time-Series-Library)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3-blue?logo=python&logoColor=white)](#quick-start)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?logo=pytorch&logoColor=white)](#quick-start)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Results](https://img.shields.io/badge/Results-Code%20%26%20records-167D8D)](results_summary/README.md)
 
-This repository provides code, model definitions, experiment runners, compact
-result summaries, and figure assets for evaluating parallel patch-encoder fusion
-within a PatchTST-style forecasting workflow.
+[Models](#models) · [Quick start](#quick-start) · [Experiments](#experiments) · [Results](#results-and-reproducibility) · [Citation](#citation)
 
-The central comparison is controlled and within-family:
+PFB learns and fuses parallel transformations of the same temporal patches. This
+repository provides PyTorch implementations of PFB-Direct and PFB-Projected,
+comparison models, experiment runners, numerical results and scientific figures.
+The experiments examine forecasting accuracy, architectural choices,
+preprocessing, model selection and computational cost.
 
-- `PatchTST`: single patch-encoder reference model.
-- `PFB-Direct`: two parallel patch encoders with direct concatenation.
-- `PFB-Projected`: two parallel patch encoders with a projection block after concatenation.
+<p align="center">
+  <img src="figures/architecture.png" alt="PFB-Direct and PFB-Projected: shared patch tokens, parallel encoders, feature fusion and forecasting heads." width="100%">
+</p>
 
-External models such as DLinear, iTransformer, TiDE, TimeXer, and recent
-patch/fusion baselines are included as forecasting context.
+## Models
 
-## Architecture
+| Model | Encoder structure | Fusion |
+|---|---|---|
+| **PatchTST** | Single patch encoder | Reference model |
+| **PFB-Direct** | Two independently parameterized, jointly trained encoders | Concatenation |
+| **PFB-Projected** | Two independently parameterized, jointly trained encoders | Concatenation, linear projection, GELU, dropout and layer normalization |
 
-![PFB architecture](figures/architecture.png)
+Comparisons include wider and deeper encoders, matched serial processing,
+output ensembles, DLinear, iTransformer, TiDE, TimeXer and additional baselines.
+PFB-Direct and PFB-Projected are trained as separate configurations.
 
-The design keeps the same patch-token sequence for both encoder streams, applies
-independent Transformer encoders, fuses the stream outputs, and maps the fused
-representation to the forecasting horizon.
+## Quick start
 
-## Repository layout
-
-```text
-.
-|-- run.py                    # main training and evaluation entry point
-|-- models/                   # forecasting models and architectural controls
-|-- exp/                      # experiment dispatch
-|-- data_provider/            # dataset loaders
-|-- layers/                   # shared neural-network layers
-|-- utils/                    # metrics and training utilities
-|-- experiments/              # date-free experiment runners
-|-- analysis/                 # notes for analysis workflow locations
-|-- figures/                  # figure assets used by the current study
-`-- results_summary/          # compact CSV summaries with run-hardware labels
-```
-
-Large generated artifacts are intentionally not tracked in git:
-
-- `data/`
-- `results/`
-- `checkpoints/`
-- `test_results/`
-
-Copy those folders directly when continuing interrupted experiments on another
-machine.
-
-## Installation
-
-On Windows, enable long paths in the clone so the retained experiment identifiers
-can be checked out:
+Clone with long-path support for the retained experiment identifiers:
 
 ```powershell
 git clone -c core.longpaths=true https://github.com/Hussein-Ahmad-Ahmad/pfb-forecasting.git
+cd pfb-forecasting
+python -m pip install -r requirements.txt
 ```
 
-Use Python 3.10:
+Use Python 3.10 with the base requirements file. The recorded RTX 4090
+environment uses Python 3.12.10 and PyTorch 2.11.0+cu126. Full recorded versions
+are listed in [PROVENANCE.json](results_summary/PROVENANCE.json).
+
+Inspect the available controlled experiments:
 
 ```powershell
-pip install -r requirements.txt
+python scripts/paper/run_controlled_addons.py --help
 ```
 
-Recorded software versions for the RTX 4090 campaigns are provided in
-`results_summary/PROVENANCE.json`.
+Place dataset CSV files in `data/`, including `electricity.csv` and `traffic.csv`
+for those benchmarks. Dataset filenames and settings are defined in the runners.
+The code builds on [Time-Series-Library](https://github.com/thuml/Time-Series-Library).
 
-If multiple Python environments are available, pass the intended interpreter to
-the experiment runner with `--python`.
+## Experiments
 
-## Data
+| Study | Default scope | Runs |
+|---|---|---:|
+| Projected architectural controls | Three datasets, H=192, eleven configurations, five seeds | 165 |
+| Validation-only HPO | Six datasets, seven model families, twelve distinct candidates | 504 |
+| Locked HPO evaluation | Selected configurations, five independent test seeds | 210 |
+| Paired normalization | Four datasets, four models, ON/OFF, five seeds | 160 |
 
-Place benchmark CSV files under:
+### Controlled studies
 
-```text
-data/
-```
-
-The high-dimensional benchmark extension expects:
-
-```text
-data/electricity.csv
-data/traffic.csv
-```
-
-Candidate benchmark extensions use the same `data/` folder.
-
-## Main experiment runners
-
-High-dimensional core datasets:
-
-```powershell
-python .\experiments\core_benchmarks\run_expensive_core_5seed.py --skip-completed
-```
-
-Candidate datasets:
-
-```powershell
-python .\experiments\core_benchmarks\run_candidate_core_5seed.py --skip-completed
-```
-
-Targeted patch/stride/learning-rate sensitivity:
-
-```powershell
-python .\experiments\targeted_hpo\run_targeted_hpo.py --stage final --skip-completed
-```
-
-Secondary sensitivity around the selected configuration:
-
-```powershell
-python .\experiments\secondary_sensitivity\run_secondary_sensitivity.py --stage final --skip-completed
-```
-
-Long-horizon and topology-control campaigns:
-
-```powershell
-python .\experiments\long_horizon\run_h720_and_topology_campaign.py --campaign h720_external --skip-completed
-```
-
-Recent baseline context:
-
-```powershell
-python .\experiments\recent_baselines\run_recent_baselines_5seed.py --execute --skip-completed
-```
-
-Gateformer and EntroPE adapters expect their official source checkouts under
-`experiments/recent_baselines/official_sources/`. That folder is treated as a
-local dependency and is not tracked in git.
-
-Cross-variate diagnostic:
-
-```powershell
-python .\experiments\cross_variate\run_cross_variate_5seed.py --skip-completed
-```
-
-Checkpoint-based diagnostics:
-
-```powershell
-python .\experiments\diagnostics\run_branch_corruption.py
-python .\experiments\diagnostics\run_representation_diagnostics.py
-python .\experiments\diagnostics\run_missingness_mechanisms.py
-```
-
-Use `--max-runs N` on runners that support batching.
-
-## Results
-
-Compact summaries are stored in:
-
-```text
-results_summary/
-```
-
-Historical summaries retain their RTX 2080 Ti labels. New controlled studies
-retain `EXP_RUN_BY_RTX4090_GPU`; hardware cohorts and protocols are kept separate.
-
-- `results_summary/controlled_addons/`: 1,039 prospective runs, candidate vectors,
-  locked selections, paired effects, plans, scalar metrics and completion receipts.
-- `results_summary/review_campaigns/`: 3,942 completed records and scalar arrays,
-  including 3,807 explicitly marked RTX 4090 records. The other 135 retain their
-  unspecified hardware status.
-- `results_summary/factorial_interval_audit.csv`: the retained RTX 2080 Ti
-  factorial contrasts with explicit descriptive band references.
-
-See [result records](results_summary/README.md) for cohort details and checksums.
-
-## Controlled campaigns
-
-Run these sequentially after placing datasets under `data/`:
+Run the following sequentially after preparing the datasets:
 
 ```powershell
 python scripts/paper/run_controlled_addons.py projected --execute --skip-completed
@@ -183,23 +76,78 @@ python scripts/paper/run_controlled_addons.py hpo-lock
 python scripts/paper/run_controlled_addons.py hpo-test --execute --skip-completed
 ```
 
-Without `--execute`, training actions only prepare or inspect plans. These
-campaigns require RTX 4090 CUDA execution and verify completed-run identities.
-The HPO study uses twelve distinct candidates per family, not equal GPU-hours.
+Training requires RTX 4090 CUDA execution. Omitting `--execute` prepares or
+inspects the training plan. HPO uses equal candidate counts, while occupied
+GPU-hours are recorded separately. See the [study protocol](experiments/controlled_addons/README.md)
+for configurations, analysis and resumption rules.
 
-The full ensemble/lookback/temporal-prefix queue is:
+### Benchmark and robustness studies
+
+| Study | Runner |
+|---|---|
+| Electricity and Traffic | [Core benchmarks](experiments/core_benchmarks/run_expensive_core_5seed.py) |
+| Additional datasets | [Candidate benchmarks](experiments/core_benchmarks/run_candidate_core_5seed.py) |
+| Patch, stride and learning rate | [Targeted HPO](experiments/targeted_hpo/run_targeted_hpo.py) |
+| Configuration sensitivity | [Secondary sensitivity](experiments/secondary_sensitivity/run_secondary_sensitivity.py) |
+| Long-horizon and topology comparisons | [H=720 campaign](experiments/long_horizon/run_h720_and_topology_campaign.py) |
+| Additional baselines | [Baseline campaign](experiments/recent_baselines/run_recent_baselines_5seed.py) |
+| Cross-variable diagnostic | [Cross-variate campaign](experiments/cross_variate/run_cross_variate_5seed.py) |
+| Representation and corruption analysis | [Checkpoint diagnostics](experiments/diagnostics/) |
+
+The full ensemble, lookback and temporal-prefix queue contains 180 ensemble-member
+runs, 1,080 lookback runs and 810 prefix runs:
 
 ```powershell
 python scripts/paper/run_full_p1_queue.py
 ```
 
-Temporal prefixes change partitions and scaling; they are not fixed-test
-rolling-origin backtests. Use a separate output directory for new experiments;
-published scalar receipts do not include model weights for resuming training.
+Temporal prefixes vary the data partitions and scaling. They are distinct from
+fixed-test rolling-origin backtests. Checkpoint diagnostics use saved model
+weights. Gateformer and EntroPE adapters use their official source checkouts
+under `experiments/recent_baselines/official_sources/`.
+
+## Results and reproducibility
+
+| Records | Contents |
+|---|---|
+| [Controlled studies](results_summary/controlled_addons/) | 1,039 RTX 4090 runs, candidate vectors, selected configurations, paired effects, scalar metrics and execution receipts |
+| [Benchmark and robustness records](results_summary/review_campaigns/) | 3,942 completed records and metric arrays, including 3,807 explicitly marked RTX 4090 records and 135 with unspecified hardware |
+| [Historical summaries](results_summary/) | RTX 2080 Ti results, including capacity and factorial comparisons |
+| [Plot inputs](results_summary/plot_inputs/) | Numerical inputs for the benchmark, serial/parallel and Weather figures |
+| [Reference source](experiments/controlled_addons/reference_source/) | Source snapshot preserving all fifty recorded implementation fingerprints |
+| [Figures](figures/) | Architecture, forecasting comparisons and diagnostic plots |
+
+Hardware labels, seeds and protocol identifiers remain attached to their
+respective records. [PROVENANCE.json](results_summary/PROVENANCE.json) describes
+the experiments, and [ARTIFACT_SHA256.json](results_summary/ARTIFACT_SHA256.json)
+identifies the reference code, result and figure files.
+
+Verify the published records without training:
+
+```powershell
+python analysis/verify_published_results.py
+```
+
+The verification checks 4,981 metric arrays, 360 paired effects, 42 factorial
+contrasts and the recorded source fingerprints. See the [result documentation](results_summary/README.md)
+for the record layout. Datasets, model weights, prediction arrays and upstream
+source dependencies are obtained separately.
+
+## Repository layout
+
+```text
+models/             Forecasting models and architectural controls
+experiments/        Benchmark and controlled-study runners
+scripts/paper/      Campaign queues and plot generators
+analysis/           Statistical analysis and record verification
+data_provider/      Dataset loaders
+layers/             Neural-network components
+utils/              Metrics, preprocessing and provenance
+results_summary/    Numerical results, receipts and checksums
+figures/            Scientific figures
+```
 
 ## Citation
-
-If you use this repository, cite it as:
 
 ```bibtex
 @software{pfb_forecasting_2026,
