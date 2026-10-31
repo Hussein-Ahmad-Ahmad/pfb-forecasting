@@ -56,6 +56,13 @@ machine.
 
 ## Installation
 
+On Windows, enable long paths in the clone so the retained experiment identifiers
+can be checked out:
+
+```powershell
+git clone -c core.longpaths=true https://github.com/Hussein-Ahmad-Ahmad/pfb-forecasting.git
+```
+
 Use Python 3.10:
 
 ```powershell
