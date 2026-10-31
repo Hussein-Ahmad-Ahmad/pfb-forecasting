@@ -1,0 +1,49 @@
+{
+  "sha256": {
+    "checkpoint.pth": "91b512015f7bddaf4045cf19bd010c34e271f6c4e2b22c86f460b2a8d481c01a",
+    "epoch_history.csv": "a03b2a85630bc635891ccd98c598444c3e772ca6695910f0af8546c3c9ef24ff",
+    "metrics.npy": "c00334f507f57528e585ced7da7b0cb1b63523a2582b58b9062b8595cfa9aaa2",
+    "run_provenance.json": "1843441518476d95e4b443d0af5bd1a86719555b6e70513de10249a1ea78366c",
+    "training_summary.json": "0a21bd4e0867281f3716f6bc56f92e690a9ea6dea485ad9949b9a5a8bff65cc2"
+  },
+  "spec": {
+    "data_sha256": "34ee981d07313e51da2a50bb600072c8ae4a69cb4b0651f4cb93a069d7a2ba63",
+    "dataset": "Weather",
+    "family": "PatchTST",
+    "params": {
+      "d_ff": 512,
+      "d_model": 128,
+      "dropout": 0.1,
+      "e_layers": 3,
+      "learning_rate": 0.0001,
+      "n_heads": 8,
+      "patch_len": 64,
+      "stride": 32
+    },
+    "protocol_sha256": "aeddc573e5afaba857953bec1f70c4880cf51e1a751845c80dc8d72c09bca741",
+    "run_id": "hpo_test_Weather_PatchTST_S2021_b672c5c1b33d5f758f8c",
+    "seed": 2021,
+    "software_sha256": "fa2b2059686362057cc4b64044dee6eeb28d3ca64be43faf667595a2ad1939a1",
+    "source_sha256": "1141cc2e2fc9ca95fec7e4d87adcc4face4ac57722b8eea15f7ddf78e80d2780",
+    "split": "test",
+    "study": "hpo_test",
+    "variant": "PatchTST"
+  },
+  "spec_sha256": "5a7d743424abf8e04e42fb10c208b54e8aa5e3575d346eef2e50e45aaa349b65",
+  "summary": {
+    "allocated_device_wall_hours": 0.06408551222221123,
+    "best_epoch": 4,
+    "best_validation_mse": 0.46138873153277377,
+    "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+    "cuda_version": "12.6",
+    "cudnn_version": 91002,
+    "epochs_completed": 14,
+    "parameters": 849216,
+    "process_wall_seconds": 230.70784349995665,
+    "test_ever_loaded": true,
+    "torch_version": "2.11.0+cu126",
+    "train_samples": 36360,
+    "training_validation_wall_seconds": 226.91151000000536,
+    "validation_samples": 5079
+  }
+}

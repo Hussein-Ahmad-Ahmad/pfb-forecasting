@@ -1,0 +1,361 @@
+dataset,seed,lhs,rhs,effect_pct,delta_mse,delta_mae,study,description
+ETTh2,2021,projected34,linear_d_reg,1.1322218893169562,0.004210973615375813,0.0008245057874399775,projected,GELU in the final module; same head/parameters
+ETTh2,2022,projected34,linear_d_reg,-0.9201619553575101,-0.0034042486672391514,-0.002201490177461629,projected,GELU in the final module; same head/parameters
+ETTh2,2023,projected34,linear_d_reg,1.8751201500909622,0.0067839637581889045,0.0038033365439412714,projected,GELU in the final module; same head/parameters
+ETTh2,2024,projected34,linear_d_reg,1.8723998754788094,0.0069592286454609464,0.00047653301652134106,projected,GELU in the final module; same head/parameters
+ETTh2,2025,projected34,linear_d_reg,3.194861080214475,0.011833887649010999,0.004421274419956878,projected,GELU in the final module; same head/parameters
+ETTm2,2021,projected34,linear_d_reg,0.5566177564150998,0.001290876228245863,0.0014969209423491558,projected,GELU in the final module; same head/parameters
+ETTm2,2022,projected34,linear_d_reg,2.4779469281198563,0.0056052794567178765,0.0016001256519193041,projected,GELU in the final module; same head/parameters
+ETTm2,2023,projected34,linear_d_reg,-0.86608991095844,-0.0020015973351080463,-0.001973507391753393,projected,GELU in the final module; same head/parameters
+ETTm2,2024,projected34,linear_d_reg,0.2960765898480899,0.0006716922670446657,0.001668428351797091,projected,GELU in the final module; same head/parameters
+ETTm2,2025,projected34,linear_d_reg,2.747958615382986,0.006120853220301592,0.0010531974828627,projected,GELU in the final module; same head/parameters
+Weather,2021,projected34,linear_d_reg,-2.54423442596942,-0.005048171738996882,-0.004513858154761741,projected,GELU in the final module; same head/parameters
+Weather,2022,projected34,linear_d_reg,0.2491137598266408,0.00048701356551422714,0.0008256718871701985,projected,GELU in the final module; same head/parameters
+Weather,2023,projected34,linear_d_reg,-0.6252109066119245,-0.0012104505640823937,0.000197404125786671,projected,GELU in the final module; same head/parameters
+Weather,2024,projected34,linear_d_reg,0.3868641936319986,0.0007522323776483208,0.0009734231507658453,projected,GELU in the final module; same head/parameters
+Weather,2025,projected34,linear_d_reg,0.8125624512500996,0.0015729489499601013,0.002081025817130072,projected,GELU in the final module; same head/parameters
+ETTh2,2021,projected34,PatchTST_budget,2.128397222613093,0.007838747757539899,0.0008308436547806997,projected,Budget-controlled complete configurations
+ETTh2,2022,projected34,PatchTST_budget,-8.751901014500774,-0.03515773292453156,-0.01971843969878373,projected,Budget-controlled complete configurations
+ETTh2,2023,projected34,PatchTST_budget,-3.1718138655999217,-0.012073368304932275,-0.008781974469073861,projected,Budget-controlled complete configurations
+ETTh2,2024,projected34,PatchTST_budget,-3.4151786874328773,-0.013388243114767828,-0.017486428248853936,projected,Budget-controlled complete configurations
+ETTh2,2025,projected34,PatchTST_budget,-3.3171019622853617,-0.013114226951037367,-0.0064119190384591684,projected,Budget-controlled complete configurations
+ETTm2,2021,projected34,PatchTST_budget,-2.879994857879262,-0.006915462326521654,-0.009819748167119946,projected,Budget-controlled complete configurations
+ETTm2,2022,projected34,PatchTST_budget,-1.0588407735925163,-0.0024807862573729966,-0.006348893646361042,projected,Budget-controlled complete configurations
+ETTm2,2023,projected34,PatchTST_budget,-5.091076259643225,-0.012289621983231108,-0.009671934666652726,projected,Budget-controlled complete configurations
+ETTm2,2024,projected34,PatchTST_budget,-3.1007517941741236,-0.007281097036843126,-0.00735681757126494,projected,Budget-controlled complete configurations
+ETTm2,2025,projected34,PatchTST_budget,-1.3686084360291386,-0.0031756968003357477,-0.008958050962029951,projected,Budget-controlled complete configurations
+Weather,2021,projected34,PatchTST_budget,-1.1964245511255729,-0.0023415163216937984,-0.002891634104637414,projected,Budget-controlled complete configurations
+Weather,2022,projected34,PatchTST_budget,-1.2489075403578278,-0.0024786332013593537,-0.0044369655624121596,projected,Budget-controlled complete configurations
+Weather,2023,projected34,PatchTST_budget,-2.13170556192615,-0.004190655206888244,-0.005877882561993286,projected,Budget-controlled complete configurations
+Weather,2024,projected34,PatchTST_budget,-0.22228119267351612,-0.0004348500489088636,0.00045991705391584814,projected,Budget-controlled complete configurations
+Weather,2025,projected34,PatchTST_budget,-3.092672989187789,-0.006228018855272188,-0.0036952915649123563,projected,Budget-controlled complete configurations
+ETTh2,2021,gelu_d,linear_d,0.599329833855276,0.0022158105421516416,0.005038264647377444,projected,GELU without fusion Dropout/LayerNorm
+ETTh2,2022,gelu_d,linear_d,-0.16219808204352254,-0.0006021014102203237,-0.000654286436705287,projected,GELU without fusion Dropout/LayerNorm
+ETTh2,2023,gelu_d,linear_d,2.539069031160744,0.009257635946105958,0.00532128463206788,projected,GELU without fusion Dropout/LayerNorm
+ETTh2,2024,gelu_d,linear_d,4.489198692580672,0.01625749855108677,0.002265067661206821,projected,GELU without fusion Dropout/LayerNorm
+ETTh2,2025,gelu_d,linear_d,12.307976700053416,0.04288105721392049,0.021991950438314645,projected,GELU without fusion Dropout/LayerNorm
+ETTm2,2021,gelu_d,linear_d,2.634383517317057,0.006078776414609105,-0.0026669913703674664,projected,GELU without fusion Dropout/LayerNorm
+ETTm2,2022,gelu_d,linear_d,3.9324902532613213,0.008942542540043175,0.005528304542247675,projected,GELU without fusion Dropout/LayerNorm
+ETTm2,2023,gelu_d,linear_d,3.97741728101057,0.009166512271401167,0.007037452147187817,projected,GELU without fusion Dropout/LayerNorm
+ETTm2,2024,gelu_d,linear_d,0.5614021291828059,0.001263095553969945,0.0013036596014608381,projected,GELU without fusion Dropout/LayerNorm
+ETTm2,2025,gelu_d,linear_d,7.008048801013454,0.015487158467924755,0.00767919610733292,projected,GELU without fusion Dropout/LayerNorm
+Weather,2021,gelu_d,linear_d,-0.519929101632547,-0.0010197363825488748,-0.0005662434858158538,projected,GELU without fusion Dropout/LayerNorm
+Weather,2022,gelu_d,linear_d,0.5572089266610587,0.0010841853137449342,0.0011663222617844249,projected,GELU without fusion Dropout/LayerNorm
+Weather,2023,gelu_d,linear_d,0.30050497554296257,0.0005799486030169387,0.00010685262294432563,projected,GELU without fusion Dropout/LayerNorm
+Weather,2024,gelu_d,linear_d,0.7441124686646818,0.0014335936687118467,0.0006272866665076038,projected,GELU without fusion Dropout/LayerNorm
+Weather,2025,gelu_d,linear_d,-0.6747402736636123,-0.0013177307678745587,-0.0005928030584158028,projected,GELU without fusion Dropout/LayerNorm
+ETTh2,2021,gelu_d_lift,linear_d_lift,6.2611010203512265,0.022432921953652818,0.009068186917123466,projected,GELU with common 2d head
+ETTh2,2022,gelu_d_lift,linear_d_lift,-3.9036007227014258,-0.014371117528834909,-0.01163922979652171,projected,GELU with common 2d head
+ETTh2,2023,gelu_d_lift,linear_d_lift,3.066512869046866,0.011228336532382033,0.002897467519804686,projected,GELU with common 2d head
+ETTh2,2024,gelu_d_lift,linear_d_lift,1.2778979665338313,0.0047929052259022,-0.002618588107111297,projected,GELU with common 2d head
+ETTh2,2025,gelu_d_lift,linear_d_lift,-0.6259546528375854,-0.002481829625775589,0.0028931286447864135,projected,GELU with common 2d head
+ETTm2,2021,gelu_d_lift,linear_d_lift,-0.7777085113523059,-0.0018055190294420376,-0.000922650043456319,projected,GELU with common 2d head
+ETTm2,2022,gelu_d_lift,linear_d_lift,0.523886958713548,0.0012073606629910971,0.0027333803250156885,projected,GELU with common 2d head
+ETTm2,2023,gelu_d_lift,linear_d_lift,5.2005396763312755,0.012095422753954005,0.01102081518683562,projected,GELU with common 2d head
+ETTm2,2024,gelu_d_lift,linear_d_lift,1.1609465264188106,0.002613912753360842,0.002578555723768139,projected,GELU with common 2d head
+ETTm2,2025,gelu_d_lift,linear_d_lift,5.684358446939287,0.012564216739507778,0.0051384744109264635,projected,GELU with common 2d head
+Weather,2021,gelu_d_lift,linear_d_lift,1.047563076919094,0.002026459023407118,0.0022122298681747643,projected,GELU with common 2d head
+Weather,2022,gelu_d_lift,linear_d_lift,0.29042232893070197,0.0005641890191145915,-0.0006833251811967922,projected,GELU with common 2d head
+Weather,2023,gelu_d_lift,linear_d_lift,0.7345884110135994,0.0014144168542067626,0.0005388116249983588,projected,GELU with common 2d head
+Weather,2024,gelu_d_lift,linear_d_lift,0.2895240474724359,0.0005597022446671152,-0.000560342356677429,projected,GELU with common 2d head
+Weather,2025,gelu_d_lift,linear_d_lift,-0.6737447382135145,-0.0013200947217562042,-0.0010107004736475966,projected,GELU with common 2d head
+ETTh2,2021,gelu_2d,linear_2d,7.185807310571469,0.02551449107073145,0.013257329769457482,projected,GELU at uncompressed width
+ETTh2,2022,gelu_2d,linear_2d,-0.5977217103369485,-0.0022070333638056217,-0.0038519808937954036,projected,GELU at uncompressed width
+ETTh2,2023,gelu_2d,linear_2d,3.191941409663914,0.01160913962870569,0.004264964759194356,projected,GELU at uncompressed width
+ETTh2,2024,gelu_2d,linear_2d,2.4919894076811504,0.009235507993534287,0.0026541630967618635,projected,GELU at uncompressed width
+ETTh2,2025,gelu_2d,linear_2d,3.771599948916139,0.013990481817869826,0.0045570166768761355,projected,GELU at uncompressed width
+ETTm2,2021,gelu_2d,linear_2d,4.392214384700921,0.009889090880223661,0.004048360768186765,projected,GELU at uncompressed width
+ETTm2,2022,gelu_2d,linear_2d,2.449927019279191,0.005492824103763366,0.002377061160974303,projected,GELU at uncompressed width
+ETTm2,2023,gelu_2d,linear_2d,7.093290445841642,0.016169291655525775,0.011623509198320003,projected,GELU at uncompressed width
+ETTm2,2024,gelu_2d,linear_2d,2.8958888697463268,0.006477292397802065,0.004129507317063796,projected,GELU at uncompressed width
+ETTm2,2025,gelu_2d,linear_2d,4.737733070888001,0.010501269159038235,0.00496689191188826,projected,GELU at uncompressed width
+Weather,2021,gelu_2d,linear_2d,0.7066159095791972,0.0013838258225489508,0.002921063515992972,projected,GELU at uncompressed width
+Weather,2022,gelu_2d,linear_2d,0.5788549880302006,0.001130434745972686,0.0004240393199721193,projected,GELU at uncompressed width
+Weather,2023,gelu_2d,linear_2d,-0.13925697137578874,-0.00027056674097869493,0.00140374143234126,projected,GELU at uncompressed width
+Weather,2024,gelu_2d,linear_2d,0.30358085448178185,0.0005867802233315289,-0.0008086760220296363,projected,GELU at uncompressed width
+Weather,2025,gelu_2d,linear_2d,0.8061950610276915,0.0015723295295324846,0.0028863547168954395,projected,GELU at uncompressed width
+ETTh2,2021,linear_d_lift,linear_2d,0.907580175993656,0.00322252536083123,0.006554924012356689,projected,"Linear bottleneck, common head; capacity differs"
+ETTh2,2022,linear_d_lift,linear_2d,-0.2953798201624493,-0.0010906632749309586,0.0018793720266653824,projected,"Linear bottleneck, common head; capacity differs"
+ETTh2,2023,linear_d_lift,linear_2d,0.6758964457647682,0.0024582456901222627,0.0008507787331488159,projected,"Linear bottleneck, common head; capacity differs"
+ETTh2,2024,linear_d_lift,linear_2d,1.2017600987642834,0.00445381708455006,0.008729491103417808,projected,"Linear bottleneck, common head; capacity differs"
+ETTh2,2025,linear_d_lift,linear_2d,6.886299648061588,0.02554423887037527,0.008641472357056201,projected,"Linear bottleneck, common head; capacity differs"
+ETTm2,2021,linear_d_lift,linear_2d,3.112752476673129,0.00700837651201261,0.007152604343253599,projected,"Linear bottleneck, common head; capacity differs"
+ETTm2,2022,linear_d_lift,linear_2d,2.7914257653705774,0.006258476520825007,0.0028125228118706658,projected,"Linear bottleneck, common head; capacity differs"
+ETTm2,2023,linear_d_lift,linear_2d,2.0303523617360892,0.0046282271607307746,0.000907554718010406,projected,"Linear bottleneck, common head; capacity differs"
+ETTm2,2024,linear_d_lift,linear_2d,0.6623953380462942,0.001481592865075182,0.0009910978329776832,projected,"Linear bottleneck, common head; capacity differs"
+ETTm2,2025,linear_d_lift,linear_2d,-0.2798870095871702,-0.0006203745077690281,-0.0003992198159262772,projected,"Linear bottleneck, common head; capacity differs"
+Weather,2021,linear_d_lift,linear_2d,-1.2221373189149016,-0.0023934150897088335,-0.0021464203774601287,projected,"Linear bottleneck, common head; capacity differs"
+Weather,2022,linear_d_lift,linear_2d,-0.5238639755823723,-0.0010230438579736378,0.00039048325331822453,projected,"Linear bottleneck, common head; capacity differs"
+Weather,2023,linear_d_lift,linear_2d,-0.8994909405974351,-0.0017476491836129482,-0.0004321269441630582,projected,"Linear bottleneck, common head; capacity differs"
+Weather,2024,linear_d_lift,linear_2d,0.016422950617040927,3.1743314799215216e-05,-0.00029477013507753225,projected,"Linear bottleneck, common head; capacity differs"
+Weather,2025,linear_d_lift,linear_2d,0.4630295283795865,0.0009030506830303153,0.0016892206676185906,projected,"Linear bottleneck, common head; capacity differs"
+ETTh2,2021,gelu_d_lift,gelu_2d,0.037036990651227,0.00014095624375259908,0.002365781160022673,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTh2,2022,gelu_d_lift,gelu_2d,-3.61131399148791,-0.013254747439960246,-0.005907876876060925,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTh2,2023,gelu_d_lift,gelu_2d,0.5535261269782015,0.0020774425937986063,-0.0005167185062408541,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTh2,2024,gelu_d_lift,gelu_2d,0.002952353153817613,1.1214316917973477e-05,0.0034567398995446474,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTh2,2025,gelu_d_lift,gelu_2d,2.356752651454158,0.009071927426729853,0.006977584324966479,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTm2,2021,gelu_d_lift,gelu_2d,-1.9938063126607544,-0.004686233397653089,0.002181593531610515,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTm2,2022,gelu_d_lift,gelu_2d,0.858965590269556,0.001973013080052738,0.003168841975912051,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTm2,2023,gelu_d_lift,gelu_2d,0.22708320134221754,0.0005543582591590046,0.00030486070652602226,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTm2,2024,gelu_d_lift,gelu_2d,-1.0348877504338319,-0.0023817867793660408,-0.0005598537603179743,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTm2,2025,gelu_d_lift,gelu_2d,0.6213888409750782,0.0014425730727005148,-0.0002276373168880741,projected,"Nonlinear bottleneck, common head; capacity differs"
+Weather,2021,gelu_d_lift,gelu_2d,-0.8877200398431518,-0.0017507818888506665,-0.0028552540252783365,projected,"Nonlinear bottleneck, common head; capacity differs"
+Weather,2022,gelu_d_lift,gelu_2d,-0.8091343381638595,-0.0015892895848317323,-0.000716881247850687,projected,"Nonlinear bottleneck, common head; capacity differs"
+Weather,2023,gelu_d_lift,gelu_2d,-0.032298091760190245,-6.26655884274907e-05,-0.0012970567515059594,projected,"Nonlinear bottleneck, common head; capacity differs"
+Weather,2024,gelu_d_lift,gelu_2d,0.0024063866698214404,4.665336134801468e-06,-4.6436469725325e-05,projected,"Nonlinear bottleneck, common head; capacity differs"
+Weather,2025,gelu_d_lift,gelu_2d,-1.0118722438912902,-0.0019893735682583735,-0.0022078345229244456,projected,"Nonlinear bottleneck, common head; capacity differs"
+ETTh2,2021,linear_d_lift,linear_d,-3.0900416431516167,-0.011424338422365787,-0.001533239483209048,projected,Head interface under fixed linear bottleneck
+ETTh2,2022,linear_d_lift,linear_d,-0.8252255481294695,-0.003063349825217221,-0.00046606058242670834,projected,Head interface under fixed linear bottleneck
+ETTh2,2023,linear_d_lift,linear_d,0.42573970076371115,0.0015522788506749374,0.0021631965353077764,projected,Head interface under fixed linear bottleneck
+ETTh2,2024,linear_d_lift,linear_d,3.566134305228548,0.01291464853093982,0.008570029365309095,projected,Head interface under fixed linear bottleneck
+ETTh2,2025,linear_d_lift,linear_d,13.802099357302142,0.04808658861128001,0.02051460560366264,projected,Head interface under fixed linear bottleneck
+ETTm2,2021,linear_d_lift,linear_d,0.6115984411183731,0.001411248648742064,0.0003877794154980019,projected,Head interface under fixed linear bottleneck
+ETTm2,2022,linear_d_lift,linear_d,1.3458745128345537,0.003060539075615376,0.0011359505253612512,projected,Head interface under fixed linear bottleneck
+ETTm2,2023,linear_d_lift,linear_d,0.9182405642321253,0.002116213312673476,-0.0009688138378224354,projected,Head interface under fixed linear bottleneck
+ETTm2,2024,linear_d_lift,linear_d,0.07295412187369245,0.00016413907641671388,5.64807087976571e-05,projected,Head interface under fixed linear bottleneck
+ETTm2,2025,linear_d_lift,linear_d,0.0182700983965828,4.0375276646409386e-05,0.00033241811581025127,projected,Head interface under fixed linear bottleneck
+Weather,2021,linear_d_lift,linear_d,-1.368904730508469,-0.002684831361736889,-0.0027575499903153,projected,Head interface under fixed linear bottleneck
+Weather,2022,linear_d_lift,linear_d,-0.15894288263082,-0.00030926198563477336,0.0016907448083970933,projected,Head interface under fixed linear bottleneck
+Weather,2023,linear_d_lift,linear_d,-0.23102493788062062,-0.0004458581417624008,0.00029001396297856363,projected,Head interface under fixed linear bottleneck
+Weather,2024,linear_d_lift,linear_d,0.34249943220627954,0.0006598532321726025,0.0014951284383958319,projected,Head interface under fixed linear bottleneck
+Weather,2025,linear_d_lift,linear_d,0.3274224129675121,0.0006394380245251519,0.001772992394842382,projected,Head interface under fixed linear bottleneck
+ETTh2,2021,gelu_d_lift,gelu_d,2.36409021652878,0.008792772989135389,0.0024966827865369745,projected,Head interface under fixed nonlinear bottleneck
+ETTh2,2022,gelu_d_lift,gelu_d,-4.541781360584151,-0.016832365943831806,-0.011451003942243132,projected,Head interface under fixed nonlinear bottleneck
+ETTh2,2023,gelu_d_lift,gelu_d,0.9423129256895852,0.0035229794369510126,-0.00026062057695541707,projected,Head interface under fixed nonlinear bottleneck
+ETTh2,2024,gelu_d_lift,gelu_d,0.38320241896976026,0.0014500552057552518,0.0036863735969909772,projected,Head interface under fixed nonlinear bottleneck
+ETTh2,2025,gelu_d_lift,gelu_d,0.6960975918769874,0.0027237017715839307,0.0014157838101344078,projected,Head interface under fixed nonlinear bottleneck
+ETTm2,2021,gelu_d_lift,gelu_d,-2.7332458622012843,-0.006473046795309079,0.0021321207424091493,projected,Head interface under fixed nonlinear bottleneck
+ETTm2,2022,gelu_d_lift,gelu_d,-1.9778973020376795,-0.004674642801436701,-0.0016589736918707354,projected,Head interface under fixed nonlinear bottleneck
+ETTm2,2023,gelu_d_lift,gelu_d,2.105376803602997,0.005045123795226314,0.0030145492018253672,projected,Head interface under fixed nonlinear bottleneck
+ETTm2,2024,gelu_d_lift,gelu_d,0.6695864051184157,0.0015149562758076107,0.0013313768311049579,projected,Head interface under fixed nonlinear bottleneck
+ETTm2,2025,gelu_d_lift,gelu_d,-1.218956641496823,-0.0028825664517705685,-0.002208303580596205,projected,Head interface under fixed nonlinear bottleneck
+Weather,2021,gelu_d_lift,gelu_d,0.18521026961912834,0.0003613640442191035,2.0923363675318107e-05,projected,Head interface under fixed nonlinear bottleneck
+Weather,2022,gelu_d_lift,gelu_d,-0.4238294703400278,-0.0008292582802651161,-0.0001589026345841238,projected,Head interface under fixed nonlinear bottleneck
+Weather,2023,gelu_d_lift,gelu_d,0.20075812700932397,0.000388610109427423,0.0007219729650325968,projected,Head interface under fixed nonlinear bottleneck
+Weather,2024,gelu_d_lift,gelu_d,-0.11027678744187489,-0.00021403819187212902,0.00030749941521079904,projected,Head interface under fixed nonlinear bottleneck
+Weather,2025,gelu_d_lift,gelu_d,0.32842799307779064,0.0006370740706435063,0.0013550949796105882,projected,Head interface under fixed nonlinear bottleneck
+ETTh2,2021,projected34,gelu_d,1.1296972848171627,0.004201688963640704,-0.004313144655065548,projected,Fusion Dropout+LayerNorm bundle
+ETTh2,2022,projected34,gelu_d,-1.0938378521411,-0.004053889332992,-0.00431314455168208,projected,Fusion Dropout+LayerNorm bundle
+ETTh2,2023,projected34,gelu_d,-1.4157373830373552,-0.005292948396004971,-0.00324776767823004,projected,Fusion Dropout+LayerNorm bundle
+ETTh2,2024,projected34,gelu_d,0.060517406308454695,0.00022900059005970252,-0.0033438739691998842,projected,Fusion Dropout+LayerNorm bundle
+ETTh2,2025,projected34,gelu_d,-2.3113491452506474,-0.0090438838391797,-0.008695717563310501,projected,Fusion Dropout+LayerNorm bundle
+ETTm2,2021,projected34,gelu_d,-1.5290434280191771,-0.0036211779549376877,-0.0022372593911992866,projected,Fusion Dropout+LayerNorm bundle
+ETTm2,2022,projected34,gelu_d,-1.9176208096702256,-0.004532182891687553,-0.002428366513115121,projected,Fusion Dropout+LayerNorm bundle
+ETTm2,2023,projected34,gelu_d,-4.392056396075565,-0.010524704269514268,-0.009518340712035611,projected,Fusion Dropout+LayerNorm bundle
+ETTm2,2024,projected34,gelu_d,0.5672910480884702,0.0012835104281412602,0.00011571556690098683,projected,Fusion Dropout+LayerNorm bundle
+ETTm2,2025,projected34,gelu_d,-3.220380692094327,-0.007615497573040614,-0.004168168485313484,projected,Fusion Dropout+LayerNorm bundle
+Weather,2021,projected34,gelu_d,-0.8929247420305867,-0.0017421868486397762,-0.0021582694515053236,projected,Fusion Dropout+LayerNorm bundle
+Weather,2022,projected34,gelu_d,0.16712726474414066,0.0003269986582951634,0.0006374557530260394,projected,Fusion Dropout+LayerNorm bundle
+Weather,2023,projected34,gelu_d,-0.6070061094028294,-0.0011749895962477885,-0.0009937193295410929,projected,Fusion Dropout+LayerNorm bundle
+Weather,2024,projected34,gelu_d,0.5687860253753313,0.0011039669839642274,0.003668772441481283,projected,Fusion Dropout+LayerNorm bundle
+Weather,2025,projected34,gelu_d,0.6057421557168521,0.0011749991749683275,0.001460867247871006,projected,Fusion Dropout+LayerNorm bundle
+ETTh2,2021,projected34,concat34,5.242476070360137,0.018736390173493545,0.0050878226458611064,projected,Projected vs unequal-depth direct concat; bundled
+ETTh2,2022,projected34,concat34,1.4324135358195123,0.005176472937224397,0.002354733720259794,projected,Projected vs unequal-depth direct concat; bundled
+ETTh2,2023,projected34,concat34,3.04134181524162,0.010878681950557079,0.005924773677226547,projected,Projected vs unequal-depth direct concat; bundled
+ETTh2,2024,projected34,concat34,5.978567994252876,0.02135984835346011,0.011188781034659978,projected,Projected vs unequal-depth direct concat; bundled
+ETTh2,2025,projected34,concat34,6.462753234942675,0.023203495492834403,0.009882959874197572,projected,Projected vs unequal-depth direct concat; bundled
+ETTm2,2021,projected34,concat34,2.197853889502952,0.005015280710395725,-0.00016341431380301197,projected,Projected vs unequal-depth direct concat; bundled
+ETTm2,2022,projected34,concat34,2.4223060168154906,0.00548239273634854,0.0027496581989170377,projected,Projected vs unequal-depth direct concat; bundled
+ETTm2,2023,projected34,concat34,-0.11599781220660528,-0.0002660662774976452,-0.001093310247849144,projected,Projected vs unequal-depth direct concat; bundled
+ETTm2,2024,projected34,concat34,0.7907324308215407,0.0017850861192518774,0.000725036840431792,projected,Projected vs unequal-depth direct concat; bundled
+ETTm2,2025,projected34,concat34,2.0134800764753917,0.00451715249959822,-0.00040731373881414124,projected,Projected vs unequal-depth direct concat; bundled
+Weather,2021,projected34,concat34,-2.08073020727844,-0.004108962142023914,-0.0049917937255419265,projected,Projected vs unequal-depth direct concat; bundled
+Weather,2022,projected34,concat34,-0.028293683958410743,-5.546720437010766e-05,-0.00016351566200101253,projected,Projected vs unequal-depth direct concat; bundled
+Weather,2023,projected34,concat34,-1.1592775235149428,-0.0022565670170852925,-0.00342171464705035,projected,Projected vs unequal-depth direct concat; bundled
+Weather,2024,projected34,concat34,-0.05529028448757851,-0.00010798399458938901,3.4583865008042114e-05,projected,Projected vs unequal-depth direct concat; bundled
+Weather,2025,projected34,concat34,1.22106721275879,0.0023541882627611532,0.0020406717903543037,projected,Projected vs unequal-depth direct concat; bundled
+ETTh2,2021,projected34,PatchTST_base,2.288829833169862,0.008416389335934138,-0.0012513517169342459,projected,Complete configuration vs base PatchTST
+ETTh2,2022,projected34,PatchTST_base,-4.322204627203277,-0.016559089569185448,-0.015745930136828012,projected,Complete configuration vs base PatchTST
+ETTh2,2023,projected34,PatchTST_base,-1.3525995346755149,-0.005053661402907528,-0.01081379787061143,projected,Complete configuration vs base PatchTST
+ETTh2,2024,projected34,PatchTST_base,1.1902561302623396,0.0044536980634476975,-0.006452200062534608,projected,Complete configuration vs base PatchTST
+ETTh2,2025,projected34,PatchTST_base,0.8085660821248172,0.0030658550347602564,-0.002950404030318987,projected,Complete configuration vs base PatchTST
+ETTm2,2021,projected34,PatchTST_base,-4.422470222411478,-0.01079064287919737,-0.010233902751991208,projected,Complete configuration vs base PatchTST
+ETTm2,2022,projected34,PatchTST_base,-3.360663527296223,-0.008061331457813126,-0.008218285832653438,projected,Complete configuration vs base PatchTST
+ETTm2,2023,projected34,PatchTST_base,-5.483081520454971,-0.013290799904489892,-0.012651371088459262,projected,Complete configuration vs base PatchTST
+ETTm2,2024,projected34,PatchTST_base,-3.7600432479608332,-0.008889711030272696,-0.009256848066697076,projected,Complete configuration vs base PatchTST
+ETTm2,2025,projected34,PatchTST_base,1.0032620690637388,0.002273285448511686,-0.005466934425216841,projected,Complete configuration vs base PatchTST
+Weather,2021,projected34,PatchTST_base,-0.9438249186120466,-0.00184244451896301,-0.0030545346326014966,projected,Complete configuration vs base PatchTST
+Weather,2022,projected34,PatchTST_base,-0.1313216045125616,-0.0002577096977485205,-2.1184562241871596e-05,projected,Complete configuration vs base PatchTST
+Weather,2023,projected34,PatchTST_base,-1.929455933154956,-0.003785236428995281,-0.00593700279509346,projected,Complete configuration vs base PatchTST
+Weather,2024,projected34,PatchTST_base,0.06591143922596829,0.0001285715900510298,0.0012486194978473808,projected,Complete configuration vs base PatchTST
+Weather,2025,projected34,PatchTST_base,-0.32164655298154504,-0.0006297244824247372,-0.0006734420215102899,projected,Complete configuration vs base PatchTST
+ETTh1,2021,PFB-Direct,PatchTST,-4.9435825239365165,-0.021302181997820246,-0.009212298618544223,hpo,PFB-Direct vs PatchTST
+ETTh1,2022,PFB-Direct,PatchTST,-6.376847671654865,-0.027723346966550266,-0.016203958076727587,hpo,PFB-Direct vs PatchTST
+ETTh1,2023,PFB-Direct,PatchTST,-5.824287184517052,-0.025328028860584606,-0.013311840328072755,hpo,PFB-Direct vs PatchTST
+ETTh1,2024,PFB-Direct,PatchTST,-2.8225143009273457,-0.01196877279710451,-0.010701410227981434,hpo,PFB-Direct vs PatchTST
+ETTh1,2025,PFB-Direct,PatchTST,-1.823927206010463,-0.0076236860574671605,-0.007445113474266185,hpo,PFB-Direct vs PatchTST
+ETTh2,2021,PFB-Direct,PatchTST,1.6001541158789727,0.005751663055618639,0.003308275530026772,hpo,PFB-Direct vs PatchTST
+ETTh2,2022,PFB-Direct,PatchTST,1.0204004525074115,0.0036449850774619152,0.004677290828450031,hpo,PFB-Direct vs PatchTST
+ETTh2,2023,PFB-Direct,PatchTST,-0.8968521646270979,-0.003246609366631903,0.000708029779716568,hpo,PFB-Direct vs PatchTST
+ETTh2,2024,PFB-Direct,PatchTST,5.550133973080849,0.019835234235893284,0.003116212543843311,hpo,PFB-Direct vs PatchTST
+ETTh2,2025,PFB-Direct,PatchTST,2.659853303815349,0.009502655086202016,0.010368465905878255,hpo,PFB-Direct vs PatchTST
+ETTm1,2021,PFB-Direct,PatchTST,0.5535655598934807,0.0018261114201044704,-0.00019277504979592353,hpo,PFB-Direct vs PatchTST
+ETTm1,2022,PFB-Direct,PatchTST,0.4920808802135136,0.0016218558840127573,-0.00019418395215570206,hpo,PFB-Direct vs PatchTST
+ETTm1,2023,PFB-Direct,PatchTST,2.234044083350876,0.007285186908525754,0.0008707332330304407,hpo,PFB-Direct vs PatchTST
+ETTm1,2024,PFB-Direct,PatchTST,2.2193796094604052,0.007212307893354808,0.0016166066623430897,hpo,PFB-Direct vs PatchTST
+ETTm1,2025,PFB-Direct,PatchTST,0.6423886480915961,0.0021322975708010228,0.00040146117346379073,hpo,PFB-Direct vs PatchTST
+ETTm2,2021,PFB-Direct,PatchTST,-6.966322032347374,-0.017175996897687756,-0.013269131565049164,hpo,PFB-Direct vs PatchTST
+ETTm2,2022,PFB-Direct,PatchTST,-3.044603435229251,-0.007088080444849931,-0.004486896881988167,hpo,PFB-Direct vs PatchTST
+ETTm2,2023,PFB-Direct,PatchTST,-1.6351267438189432,-0.003766738789265228,-0.004137601787591705,hpo,PFB-Direct vs PatchTST
+ETTm2,2024,PFB-Direct,PatchTST,3.1757310694615835,0.007355872498749971,0.002988395030251001,hpo,PFB-Direct vs PatchTST
+ETTm2,2025,PFB-Direct,PatchTST,-0.8157560869059963,-0.0018507848616020894,-0.0037102466837564685,hpo,PFB-Direct vs PatchTST
+Exchange,2021,PFB-Direct,PatchTST,-7.136406363621094,-0.01670799497439987,-0.01306021564178339,hpo,PFB-Direct vs PatchTST
+Exchange,2022,PFB-Direct,PatchTST,-0.5041716517452799,-0.0010330115320833222,0.0036024225916749253,hpo,PFB-Direct vs PatchTST
+Exchange,2023,PFB-Direct,PatchTST,13.81752614506681,0.025267601880784973,0.017916359979868457,hpo,PFB-Direct vs PatchTST
+Exchange,2024,PFB-Direct,PatchTST,-5.233025774574965,-0.010441621768742915,-0.011113255249686649,hpo,PFB-Direct vs PatchTST
+Exchange,2025,PFB-Direct,PatchTST,8.975897998224232,0.01535362774304136,0.013297317246462548,hpo,PFB-Direct vs PatchTST
+Weather,2021,PFB-Direct,PatchTST,-0.49431268024947467,-0.000965773181570595,-0.0017524097696501872,hpo,PFB-Direct vs PatchTST
+Weather,2022,PFB-Direct,PatchTST,-0.4949205735061986,-0.0009735518352805006,-0.0027383684235537387,hpo,PFB-Direct vs PatchTST
+Weather,2023,PFB-Direct,PatchTST,-0.17164008987030538,-0.00033618484117198255,-0.001105814009346423,hpo,PFB-Direct vs PatchTST
+Weather,2024,PFB-Direct,PatchTST,0.8676239354917861,0.0016925283949524583,-0.00014120150763780037,hpo,PFB-Direct vs PatchTST
+Weather,2025,PFB-Direct,PatchTST,-0.8179806829992391,-0.0016046914664733514,-0.00098998841237391,hpo,PFB-Direct vs PatchTST
+ETTh1,2021,PFB-Projected,PatchTST,-2.5701599057774382,-0.011074967154138804,-0.002366058480217148,hpo,PFB-Projected vs PatchTST
+ETTh1,2022,PFB-Projected,PatchTST,-3.712796833027162,-0.016141385229547,-0.008222742344552392,hpo,PFB-Projected vs PatchTST
+ETTh1,2023,PFB-Projected,PatchTST,-3.252319468773738,-0.01414333441316612,-0.006203770473564796,hpo,PFB-Projected vs PatchTST
+ETTh1,2024,PFB-Projected,PatchTST,-1.1027456441960377,-0.00467615418779016,-0.007530718406309755,hpo,PFB-Projected vs PatchTST
+ETTh1,2025,PFB-Projected,PatchTST,1.453862770482199,0.006076883603836181,-0.0005074884993870321,hpo,PFB-Projected vs PatchTST
+ETTh2,2021,PFB-Projected,PatchTST,4.066813885238292,0.014617931451529731,0.005889014651984603,hpo,PFB-Projected vs PatchTST
+ETTh2,2022,PFB-Projected,PatchTST,1.377840995528489,0.00492180286227395,0.00041245849311211114,hpo,PFB-Projected vs PatchTST
+ETTh2,2023,PFB-Projected,PatchTST,-0.20976458576800194,-0.0007593488601604914,-0.0019516152419728483,hpo,PFB-Projected vs PatchTST
+ETTh2,2024,PFB-Projected,PatchTST,2.3401080867349813,0.00836314803621413,0.004602141307974539,hpo,PFB-Projected vs PatchTST
+ETTh2,2025,PFB-Projected,PatchTST,1.1958889139631,0.004272461137049599,0.0019610761697921864,hpo,PFB-Projected vs PatchTST
+ETTm1,2021,PFB-Projected,PatchTST,0.08096755807875484,0.00026709714833783593,-0.0014946652900117985,hpo,PFB-Projected vs PatchTST
+ETTm1,2022,PFB-Projected,PatchTST,1.0995328096177945,0.003623964735573415,0.002044668019122009,hpo,PFB-Projected vs PatchTST
+ETTm1,2023,PFB-Projected,PatchTST,0.548163952099503,0.0017875550788465921,-0.00041890351189738384,hpo,PFB-Projected vs PatchTST
+ETTm1,2024,PFB-Projected,PatchTST,3.278286863491979,0.01065343401437896,0.0057951443037052575,hpo,PFB-Projected vs PatchTST
+ETTm1,2025,PFB-Projected,PatchTST,0.15496777302739392,0.0005143886134358344,-0.0007389817799152154,hpo,PFB-Projected vs PatchTST
+ETTm2,2021,PFB-Projected,PatchTST,-3.4554070189667243,-0.008519568857488252,-0.009462231625264994,hpo,PFB-Projected vs PatchTST
+ETTm2,2022,PFB-Projected,PatchTST,-0.21038888150426566,-0.0004898021527365015,-0.0016390424976548967,hpo,PFB-Projected vs PatchTST
+ETTm2,2023,PFB-Projected,PatchTST,0.32787025354755517,0.0007552941119410572,3.3777594477979456e-05,hpo,PFB-Projected vs PatchTST
+ETTm2,2024,PFB-Projected,PatchTST,-1.9917220573562116,-0.004613379781350374,-0.006359148433353612,hpo,PFB-Projected vs PatchTST
+ETTm2,2025,PFB-Projected,PatchTST,-0.9230873204556986,-0.0020942976289836934,-0.005670887287805015,hpo,PFB-Projected vs PatchTST
+Exchange,2021,PFB-Projected,PatchTST,-4.203541294994314,-0.009841472479688002,-0.005718310985973307,hpo,PFB-Projected vs PatchTST
+Exchange,2022,PFB-Projected,PatchTST,-9.741976109528746,-0.01996060990653989,-0.014956427396972671,hpo,PFB-Projected vs PatchTST
+Exchange,2023,PFB-Projected,PatchTST,0.20814955987125108,0.0003806354448162297,-0.002655498005812551,hpo,PFB-Projected vs PatchTST
+Exchange,2024,PFB-Projected,PatchTST,2.034828997482769,0.004060158629260929,-0.0026069313893590795,hpo,PFB-Projected vs PatchTST
+Exchange,2025,PFB-Projected,PatchTST,6.477468976739817,0.01107996630594929,0.0065918804882751925,hpo,PFB-Projected vs PatchTST
+Weather,2021,PFB-Projected,PatchTST,-1.2323479932201362,-0.002407724280133139,-0.0039250908593349565,hpo,PFB-Projected vs PatchTST
+Weather,2022,PFB-Projected,PatchTST,-1.075361549911333,-0.0021153297449113817,-0.002776125929091461,hpo,PFB-Projected vs PatchTST
+Weather,2023,PFB-Projected,PatchTST,-0.8626903377572556,-0.0016897183775577973,-0.0022786088507472657,hpo,PFB-Projected vs PatchTST
+Weather,2024,PFB-Projected,PatchTST,-0.46624124411043205,-0.000909526019596929,-0.0022655006736391203,hpo,PFB-Projected vs PatchTST
+Weather,2025,PFB-Projected,PatchTST,-1.200145422246613,-0.002354411488722147,-0.0033233753166265756,hpo,PFB-Projected vs PatchTST
+ETTh2,2021,norm_on,norm_off,-12.640687459916053,-0.04846403966134705,-0.04162811842449515,normalization,DLinear
+ETTh2,2022,norm_on,norm_off,-12.545998249193898,-0.04804556142901856,-0.039170216415593984,normalization,DLinear
+ETTh2,2023,norm_on,norm_off,-5.71228863104863,-0.020791069584442934,-0.02004876006698103,normalization,DLinear
+ETTh2,2024,norm_on,norm_off,-10.586981937690284,-0.03990677811814963,-0.037860874353677576,normalization,DLinear
+ETTh2,2025,norm_on,norm_off,-5.440181074433324,-0.01929182635475646,-0.019238432804106476,normalization,DLinear
+ETTm2,2021,norm_on,norm_off,-4.767557586056387,-0.011027838590843081,-0.02305849773812685,normalization,DLinear
+ETTm2,2022,norm_on,norm_off,-3.080409098075159,-0.006976351361305533,-0.015263048462298034,normalization,DLinear
+ETTm2,2023,norm_on,norm_off,-6.41030261710969,-0.015054020095950776,-0.023348730627083814,normalization,DLinear
+ETTm2,2024,norm_on,norm_off,-7.322996222845707,-0.017340477189549924,-0.019409390195448184,normalization,DLinear
+ETTm2,2025,norm_on,norm_off,-5.84214972150451,-0.01363013007024827,-0.021020896650571497,normalization,DLinear
+Exchange,2021,norm_on,norm_off,11.261671768881076,0.018288787983045035,-0.0005211056444334172,normalization,DLinear
+Exchange,2022,norm_on,norm_off,3.9200663846243216,0.006880910696625886,-0.012676835724845292,normalization,DLinear
+Exchange,2023,norm_on,norm_off,8.016089460295177,0.013568494428410044,-0.0029578714027098663,normalization,DLinear
+Exchange,2024,norm_on,norm_off,14.63080818130191,0.02336746532780365,0.009094622144052489,normalization,DLinear
+Exchange,2025,norm_on,norm_off,8.609690053431711,0.014457828804907646,-0.003324314028985864,normalization,DLinear
+Weather,2021,norm_on,norm_off,1.1619466532650526,0.002498868614704247,-0.011910220299938712,normalization,DLinear
+Weather,2022,norm_on,norm_off,0.05528703070792019,0.00012016149797952624,-0.01517041977671002,normalization,DLinear
+Weather,2023,norm_on,norm_off,0.10954321357740952,0.00023809631798737962,-0.017037124990643415,normalization,DLinear
+Weather,2024,norm_on,norm_off,0.897647816517006,0.0019359690659762896,-0.013450377402679903,normalization,DLinear
+Weather,2025,norm_on,norm_off,-1.8977528935645172,-0.004204135497161837,-0.026322325331755325,normalization,DLinear
+ETTh2,2021,norm_on,norm_off,-6.766248460757234,-0.026158506716376928,-0.034909164943817295,normalization,PFB-Direct
+ETTh2,2022,norm_on,norm_off,-26.620419564949593,-0.1294650348839826,-0.09242135807339524,normalization,PFB-Direct
+ETTh2,2023,norm_on,norm_off,-16.26662280585817,-0.06954674302773539,-0.06696639936590043,normalization,PFB-Direct
+ETTh2,2024,norm_on,norm_off,-21.008283783529542,-0.09505680477039813,-0.08520412480345829,normalization,PFB-Direct
+ETTh2,2025,norm_on,norm_off,-10.023320682337816,-0.040357561281239296,-0.0476035364955274,normalization,PFB-Direct
+ETTm2,2021,norm_on,norm_off,-34.75672361669407,-0.12151551783501144,-0.04873208654722616,normalization,PFB-Direct
+ETTm2,2022,norm_on,norm_off,-34.197937781589886,-0.11791959257184687,-0.06379061700015959,normalization,PFB-Direct
+ETTm2,2023,norm_on,norm_off,-22.430109871614288,-0.06649426766724925,-0.03728785475549001,normalization,PFB-Direct
+ETTm2,2024,norm_on,norm_off,-36.69833493653573,-0.13129509611664839,-0.05655335709412307,normalization,PFB-Direct
+ETTm2,2025,norm_on,norm_off,-12.907516788494254,-0.03315271959673735,-0.039885260846769854,normalization,PFB-Direct
+Exchange,2021,norm_on,norm_off,-66.50724601293837,-0.45292034021697686,-0.2645094863056639,normalization,PFB-Direct
+Exchange,2022,norm_on,norm_off,-72.34997998428098,-0.5045935600361443,-0.3111621252442458,normalization,PFB-Direct
+Exchange,2023,norm_on,norm_off,-71.66023901513852,-0.47478925292387986,-0.2852520845629202,normalization,PFB-Direct
+Exchange,2024,norm_on,norm_off,-66.16728268630814,-0.37343845547973775,-0.24088001986421054,normalization,PFB-Direct
+Exchange,2025,norm_on,norm_off,-69.58391460238273,-0.44340058218287626,-0.2733587796059732,normalization,PFB-Direct
+Weather,2021,norm_on,norm_off,-3.6832435453755914,-0.007409328948135535,-0.030025756348247834,normalization,PFB-Direct
+Weather,2022,norm_on,norm_off,-3.792981897445772,-0.0076562587751930755,-0.026400936424838123,normalization,PFB-Direct
+Weather,2023,norm_on,norm_off,-1.6539607880557625,-0.0032876484617349044,-0.017390128189897547,normalization,PFB-Direct
+Weather,2024,norm_on,norm_off,-4.454267988436021,-0.00905113268644192,-0.028239698245745543,normalization,PFB-Direct
+Weather,2025,norm_on,norm_off,-2.1428593948670516,-0.004254310633999447,-0.021268751637600974,normalization,PFB-Direct
+ETTh2,2021,norm_on,norm_off,-3.3684228026418888,-0.013111369384693872,-0.03530884626654085,normalization,PFB-Projected
+ETTh2,2022,norm_on,norm_off,-14.153820171632923,-0.06043589955422718,-0.0532777000220907,normalization,PFB-Projected
+ETTh2,2023,norm_on,norm_off,-8.883579673905414,-0.035934690167820416,-0.047435707982992625,normalization,PFB-Projected
+ETTh2,2024,norm_on,norm_off,-20.5004941799214,-0.09763801471863193,-0.07907500449861482,normalization,PFB-Projected
+ETTh2,2025,norm_on,norm_off,3.3863582609782905,0.012519967412835509,-0.018956773091332868,normalization,PFB-Projected
+ETTm2,2021,norm_on,norm_off,-20.610275756285375,-0.06054213235380829,-0.021294287871462036,normalization,PFB-Projected
+ETTm2,2022,norm_on,norm_off,-18.606427132042885,-0.052991786231403465,-0.04578755385319244,normalization,PFB-Projected
+ETTm2,2023,norm_on,norm_off,-14.847698482727349,-0.03994833836139339,-0.03890758963752611,normalization,PFB-Projected
+ETTm2,2024,norm_on,norm_off,-34.44543232582995,-0.11955807264543933,-0.058328467585973987,normalization,PFB-Projected
+ETTm2,2025,norm_on,norm_off,-22.879227586281925,-0.06789612161396869,-0.03625300938869108,normalization,PFB-Projected
+Exchange,2021,norm_on,norm_off,-61.8019700752472,-0.3348411196853308,-0.20902817170319338,normalization,PFB-Projected
+Exchange,2022,norm_on,norm_off,-71.7160867134079,-0.47131072572923716,-0.28411587096266655,normalization,PFB-Projected
+Exchange,2023,norm_on,norm_off,-75.22877288829794,-0.5675611351400321,-0.3093335779507792,normalization,PFB-Projected
+Exchange,2024,norm_on,norm_off,-69.3753918716805,-0.4549616279408585,-0.27655796062197396,normalization,PFB-Projected
+Exchange,2025,norm_on,norm_off,-76.57577471972321,-0.6125663418667084,-0.34826439608529364,normalization,PFB-Projected
+Weather,2021,norm_on,norm_off,-2.433150306944535,-0.004822266299037148,-0.01843441004522156,normalization,PFB-Projected
+Weather,2022,norm_on,norm_off,-5.651126144074509,-0.011738758412776523,-0.037518048000156956,normalization,PFB-Projected
+Weather,2023,norm_on,norm_off,-4.03228894546348,-0.008083942955866619,-0.03394721784892504,normalization,PFB-Projected
+Weather,2024,norm_on,norm_off,-1.9711454726749373,-0.003924958999203698,-0.021287274327736083,normalization,PFB-Projected
+Weather,2025,norm_on,norm_off,-2.2656878379326333,-0.0045240307127467905,-0.02272726714238338,normalization,PFB-Projected
+ETTh2,2021,norm_on,norm_off,-27.868053672088656,-0.14206637508570175,-0.08595409792664432,normalization,PatchTST
+ETTh2,2022,norm_on,norm_off,-36.756814810810084,-0.2226666969814512,-0.13474774959886576,normalization,PatchTST
+ETTh2,2023,norm_on,norm_off,-19.079743149332593,-0.08809518630321833,-0.08765213427790658,normalization,PatchTST
+ETTh2,2024,norm_on,norm_off,-21.37115403954042,-0.10170127955833391,-0.06881144770728342,normalization,PatchTST
+ETTh2,2025,norm_on,norm_off,-17.63126979007462,-0.08116285517360688,-0.06621801051912629,normalization,PatchTST
+ETTm2,2021,norm_on,norm_off,-21.52642665854833,-0.0669315553404117,-0.026981942678675208,normalization,PatchTST
+ETTm2,2022,norm_on,norm_off,-28.05610704089958,-0.09354384591225925,-0.054551986391447094,normalization,PatchTST
+ETTm2,2023,norm_on,norm_off,-16.39726742352407,-0.047541997378214906,-0.029194626873456975,normalization,PatchTST
+ETTm2,2024,norm_on,norm_off,-16.24613839979452,-0.04586064013532848,-0.04161591551722965,normalization,PatchTST
+ETTm2,2025,norm_on,norm_off,-25.311465720526737,-0.07678969401800334,-0.04428220831816071,normalization,PatchTST
+Exchange,2021,norm_on,norm_off,-77.76565801183875,-0.6560870270578962,-0.35134479524851797,normalization,PatchTST
+Exchange,2022,norm_on,norm_off,-81.85476450565518,-0.8424631540632262,-0.4289190354441676,normalization,PatchTST
+Exchange,2023,norm_on,norm_off,-81.92922696920914,-0.8508532234768116,-0.4206659872001948,normalization,PatchTST
+Exchange,2024,norm_on,norm_off,-78.0614213594393,-0.6797686067478537,-0.367942039647361,normalization,PatchTST
+Exchange,2025,norm_on,norm_off,-80.87371945647092,-0.7815087195338779,-0.39877033327978767,normalization,PatchTST
+Weather,2021,norm_on,norm_off,-2.7423468829189677,-0.005504293489249301,-0.024817948310845578,normalization,PatchTST
+Weather,2022,norm_on,norm_off,-3.0592227524292515,-0.006192972967819038,-0.026789080654448127,normalization,PatchTST
+Weather,2023,norm_on,norm_off,-2.654531741763924,-0.005349711120984563,-0.021783302766500007,normalization,PatchTST
+Weather,2024,norm_on,norm_off,-3.2515118074203975,-0.006555795050159491,-0.025960910169595453,normalization,PatchTST
+Weather,2025,norm_on,norm_off,-2.302992112696503,-0.004615118579908178,-0.020542100940110358,normalization,PatchTST
+ETTh2,2021,PFB-Direct,PatchTST,-1.9774819315388883,-0.00727151385367808,-0.003411014531881862,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTh2,2022,PFB-Direct,PatchTST,-6.850250894425181,-0.026244458075456223,-0.02526720691937351,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTh2,2023,PFB-Direct,PatchTST,-4.183323958204415,-0.01562997937043331,-0.012580916887721727,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTh2,2024,PFB-Direct,PatchTST,-4.480103710619653,-0.016763643314009924,-0.014649523979647194,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTh2,2025,PFB-Direct,PatchTST,-4.4551783017294815,-0.01689278233291447,-0.014356818791201431,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTm2,2021,PFB-Direct,PatchTST,-6.514065947544476,-0.01589404920699833,-0.009715548162742615,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTm2,2022,PFB-Direct,PatchTST,-5.410308092980114,-0.012977879657440988,-0.010165114293044175,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTm2,2023,PFB-Direct,PatchTST,-5.132039114454383,-0.012439885257545635,-0.0113293388238499,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTm2,2024,PFB-Direct,PatchTST,-4.209492246512879,-0.009952324265410345,-0.010269683376314176,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTm2,2025,PFB-Direct,PatchTST,-1.2771791305170404,-0.0028939524597562938,-0.004729716789464489,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Exchange,2021,PFB-Direct,PatchTST,21.59223437726895,0.040503771686450585,0.026359614454072866,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Exchange,2022,PFB-Direct,PatchTST,3.2593000697489987,0.006086868328870787,0.004058159173829179,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Exchange,2023,PFB-Direct,PatchTST,0.052118342509711764,9.780996831063038e-05,-0.002814196575543826,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Exchange,2024,PFB-Direct,PatchTST,-0.0507632059985702,-9.697999979377259e-05,-1.8637028410539713e-05,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Exchange,2025,PFB-Direct,PatchTST,4.865779169747125,0.008993098026581187,0.008005591316188554,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Weather,2021,PFB-Direct,PatchTST,-0.7461620220724284,-0.0014565859628365985,-0.001753015608588454,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Weather,2022,PFB-Direct,PatchTST,-1.0426613931774453,-0.0020461519145092977,-0.002472221552583004,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Weather,2023,PFB-Direct,PatchTST,-0.354224517487184,-0.0006949231255275745,0.0002979314964458857,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Weather,2024,PFB-Direct,PatchTST,-0.4700786071910415,-0.0009169691131810931,0.0003938589816408766,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+Weather,2025,PFB-Direct,PatchTST,-0.766943877118411,-0.0015015343133334413,-0.00099328205696525,normalized_comparison,PFB-Direct vs PatchTST; normalization ON
+ETTh2,2021,PFB-Projected,PatchTST,2.288829833169862,0.008416389335934138,-0.0012513517169342459,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+ETTh2,2022,PFB-Projected,PatchTST,-4.322204627203277,-0.016559089569185448,-0.015745930136828012,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+ETTh2,2023,PFB-Projected,PatchTST,-1.3525995346755149,-0.005053661402907528,-0.01081379787061143,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+ETTh2,2024,PFB-Projected,PatchTST,1.1902561302623396,0.0044536980634476975,-0.006452200062534608,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+ETTh2,2025,PFB-Projected,PatchTST,0.8085660821248172,0.0030658550347602564,-0.002950404030318987,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+ETTm2,2021,PFB-Projected,PatchTST,-4.422470222411478,-0.01079064287919737,-0.010233902751991208,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+ETTm2,2022,PFB-Projected,PatchTST,-3.360663527296223,-0.008061331457813126,-0.008218285832653438,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+ETTm2,2023,PFB-Projected,PatchTST,-5.483081520454971,-0.013290799904489892,-0.012651371088459262,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+ETTm2,2024,PFB-Projected,PatchTST,-3.7600432479608332,-0.008889711030272696,-0.009256848066697076,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+ETTm2,2025,PFB-Projected,PatchTST,1.0032620690637388,0.002273285448511686,-0.005466934425216841,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Exchange,2021,PFB-Projected,PatchTST,10.326426141673014,0.01937081635329216,0.009707139910360096,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Exchange,2022,PFB-Projected,PatchTST,-0.4684710794100686,-0.0008748877719849391,-0.0020319580475917642,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Exchange,2023,PFB-Projected,PatchTST,-0.4173522310230393,-0.0007832407272569675,-0.0034442355971508465,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Exchange,2024,PFB-Projected,PatchTST,5.12517308514128,0.009791329664128184,0.005874472595807312,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Exchange,2025,PFB-Projected,PatchTST,1.3841430827516,0.0025582201722990083,0.002508089015759496,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Weather,2021,PFB-Projected,PatchTST,-0.9438249186120466,-0.00184244451896301,-0.0030545346326014966,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Weather,2022,PFB-Projected,PatchTST,-0.1313216045125616,-0.0002577096977485205,-2.1184562241871596e-05,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Weather,2023,PFB-Projected,PatchTST,-1.929455933154956,-0.003785236428995281,-0.00593700279509346,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Weather,2024,PFB-Projected,PatchTST,0.06591143922596829,0.0001285715900510298,0.0012486194978473808,normalized_comparison,PFB-Projected vs PatchTST; normalization ON
+Weather,2025,PFB-Projected,PatchTST,-0.32164655298154504,-0.0006297244824247372,-0.0006734420215102899,normalized_comparison,PFB-Projected vs PatchTST; normalization ON

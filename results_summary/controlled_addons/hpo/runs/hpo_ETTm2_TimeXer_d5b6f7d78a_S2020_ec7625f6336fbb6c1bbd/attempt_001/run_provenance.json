@@ -1,0 +1,18 @@
+{
+  "run_by_gpu_watermark": "EXP_RUN_BY_RTX4090_GPU",
+  "hardware_note": "Hardware label reflects the selected execution device; historical results are not relabelled.",
+  "actual_cuda_available": true,
+  "actual_cuda_used": true,
+  "actual_cuda_device": "NVIDIA GeForce RTX 4090",
+  "split": "val",
+  "timestamp_local": "2026-10-21 10:26:55",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "model_id": "hpo_ETTm2_TimeXer_d5b6f7d78a_S2020_ec7625f6336fbb6c1bbd",
+  "model": "TimeXer",
+  "dataset": "ETTm2",
+  "horizon": 192,
+  "seed": 2020,
+  "seq_len": 336,
+  "label_len": 96
+}

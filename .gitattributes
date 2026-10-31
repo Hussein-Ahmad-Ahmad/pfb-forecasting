@@ -1,0 +1,4 @@
+# Preserve content-addressed experiment inputs and recorded source bytes.
+results_summary/** -text
+experiments/controlled_addons/reference_source/** -text
+figures/** -text

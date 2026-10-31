@@ -1,0 +1,49 @@
+{
+  "sha256": {
+    "checkpoint.pth": "ea75a725b1558bfb03b1ee83502bb5c59ff0c69023f6f38b27b7bfaad871ff76",
+    "epoch_history.csv": "d826a2e9259c3ab7530013b497bffe12246d54d959ff5b04b0dfdcf65bd59c37",
+    "metrics.npy": "ac3d4d6755fe71c4a47a6734bd2996b31d69d13ca36109d39def671504b02ccb",
+    "run_provenance.json": "0a39d552fa5611e2ae05e5972c1a06122b92646a6432caccaf4ba1354f728725",
+    "training_summary.json": "4c9239237a290babeae747177c802b6624ddbf180e31dfadcbf3db21f0caefb1"
+  },
+  "spec": {
+    "data_sha256": "db973ca252c6410a30d0469b13d696cf919648d0f3fd588c60f03fdbdbadd1fd",
+    "dataset": "ETTm2",
+    "family": "PatchTST",
+    "params": {
+      "d_ff": 512,
+      "d_model": 128,
+      "dropout": 0.1,
+      "e_layers": 3,
+      "learning_rate": 0.0001,
+      "n_heads": 8,
+      "patch_len": 16,
+      "stride": 8
+    },
+    "protocol_sha256": "aeddc573e5afaba857953bec1f70c4880cf51e1a751845c80dc8d72c09bca741",
+    "run_id": "preprocessing_ETTm2_norm_on_S2021_823208c662bd67030885",
+    "seed": 2021,
+    "software_sha256": "fa2b2059686362057cc4b64044dee6eeb28d3ca64be43faf667595a2ad1939a1",
+    "source_sha256": "1141cc2e2fc9ca95fec7e4d87adcc4face4ac57722b8eea15f7ddf78e80d2780",
+    "split": "test",
+    "study": "preprocessing",
+    "variant": "norm_on"
+  },
+  "spec_sha256": "b379dc6265d253b67d3d96138aad5de9c4733fd9709dfb20f16900ea4801ebaa",
+  "summary": {
+    "allocated_device_wall_hours": 0.03400751844446252,
+    "best_epoch": 4,
+    "best_validation_mse": 0.1685155856213245,
+    "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+    "cuda_version": "12.6",
+    "cudnn_version": 91002,
+    "epochs_completed": 14,
+    "parameters": 1629504,
+    "process_wall_seconds": 122.427065600059,
+    "test_ever_loaded": true,
+    "torch_version": "2.11.0+cu126",
+    "train_samples": 34033,
+    "training_validation_wall_seconds": 119.44874799996614,
+    "validation_samples": 11329
+  }
+}

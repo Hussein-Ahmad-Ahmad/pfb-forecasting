@@ -86,3 +86,18 @@ notebooks/
 img-result-23_01/
 m4_results/
 seq_len_long_term_forecast/
+
+# Private manuscript and working files
+/paper/
+/submission_packages/
+.codex/
+.agents/
+*.tex
+*.bib
+*.cls
+*.sty
+*.docx
+manuscript*.pdf
+val_results/
+val_visuals/
+tmp*/

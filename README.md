@@ -62,6 +62,9 @@ Use Python 3.10:
 pip install -r requirements.txt
 ```
 
+Recorded software versions for the RTX 4090 campaigns are provided in
+`results_summary/PROVENANCE.json`.
+
 If multiple Python environments are available, pass the intended interpreter to
 the experiment runner with `--python`.
 
@@ -148,11 +151,44 @@ Compact summaries are stored in:
 results_summary/
 ```
 
-Hardware label used in the CSV summaries:
+Historical summaries retain their RTX 2080 Ti labels. New controlled studies
+retain `EXP_RUN_BY_RTX4090_GPU`; hardware cohorts and protocols are kept separate.
 
-```text
-experiment_run_on = NVIDIA GeForce RTX 2080 Ti
+- `results_summary/controlled_addons/`: 1,039 prospective runs, candidate vectors,
+  locked selections, paired effects, plans, scalar metrics and completion receipts.
+- `results_summary/review_campaigns/`: 3,942 completed records and scalar arrays,
+  including 3,807 explicitly marked RTX 4090 records. The other 135 retain their
+  unspecified hardware status.
+- `results_summary/factorial_interval_audit.csv`: the retained RTX 2080 Ti
+  factorial contrasts with explicit descriptive band references.
+
+See [result records](results_summary/README.md) for cohort details and checksums.
+
+## Controlled campaigns
+
+Run these sequentially after placing datasets under `data/`:
+
+```powershell
+python scripts/paper/run_controlled_addons.py projected --execute --skip-completed
+python scripts/paper/run_controlled_addons.py preprocessing --execute --skip-completed
+python scripts/paper/run_controlled_addons.py hpo-select --execute --skip-completed
+python scripts/paper/run_controlled_addons.py hpo-lock
+python scripts/paper/run_controlled_addons.py hpo-test --execute --skip-completed
 ```
+
+Without `--execute`, training actions only prepare or inspect plans. These
+campaigns require RTX 4090 CUDA execution and verify completed-run identities.
+The HPO study uses twelve distinct candidates per family, not equal GPU-hours.
+
+The full ensemble/lookback/temporal-prefix queue is:
+
+```powershell
+python scripts/paper/run_full_p1_queue.py
+```
+
+Temporal prefixes change partitions and scaling; they are not fixed-test
+rolling-origin backtests. Use a separate output directory for new experiments;
+published scalar receipts do not include model weights for resuming training.
 
 ## Citation
 

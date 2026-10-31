@@ -1,0 +1,49 @@
+{
+  "sha256": {
+    "checkpoint.pth": "9524c6f9da993ddda5917a2fdf588d2a18cbf3be753153a10b79b9644e3c4945",
+    "epoch_history.csv": "3c378afca762a43e9ae371b5ccd4239d556dc481be9e4506db2d4d42aa605811",
+    "metrics.npy": "ca2fe750a7868595f13ef4a48a5f9f0773152d7143b46c38d9261d03577a801d",
+    "run_provenance.json": "81fbdf122b4960096ee3508e679752197530f5fe43a76f3fb7ce96fb290f6a43",
+    "training_summary.json": "fb6f3ad0d32fb32381b59ce37aea8d4c59a0e72555cf875faa0fec68282a3017"
+  },
+  "spec": {
+    "data_sha256": "6ce1759b1a18e3328421d5d75fadcb316c449fcd7cec32820c8dafda71986c9e",
+    "dataset": "ETTm1",
+    "family": "PFB-Direct",
+    "params": {
+      "d_ff": 256,
+      "d_model": 64,
+      "dropout": 0.05,
+      "e_layers": 2,
+      "learning_rate": 0.0001,
+      "n_heads": 4,
+      "patch_len": 8,
+      "stride": 4
+    },
+    "protocol_sha256": "aeddc573e5afaba857953bec1f70c4880cf51e1a751845c80dc8d72c09bca741",
+    "run_id": "hpo_test_ETTm1_PFB-Direct_S2021_1673b4d7401988005b11",
+    "seed": 2021,
+    "software_sha256": "fa2b2059686362057cc4b64044dee6eeb28d3ca64be43faf667595a2ad1939a1",
+    "source_sha256": "1141cc2e2fc9ca95fec7e4d87adcc4face4ac57722b8eea15f7ddf78e80d2780",
+    "split": "test",
+    "study": "hpo_test",
+    "variant": "PFB-Direct"
+  },
+  "spec_sha256": "52c989c187e61620acee80d7e7031d186d2b92bfaf601ed2f4bf67fbc09976ac",
+  "summary": {
+    "allocated_device_wall_hours": 0.04479681947223273,
+    "best_epoch": 5,
+    "best_validation_mse": 0.4833290496338854,
+    "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+    "cuda_version": "12.6",
+    "cudnn_version": 91002,
+    "epochs_completed": 15,
+    "parameters": 2265280,
+    "process_wall_seconds": 161.26854960003402,
+    "test_ever_loaded": true,
+    "torch_version": "2.11.0+cu126",
+    "train_samples": 34033,
+    "training_validation_wall_seconds": 158.0390409999527,
+    "validation_samples": 11329
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "run_by_gpu_watermark": "EXP_RUN_BY_RTX4090_GPU",
+  "hardware_note": "Hardware label reflects the selected execution device; historical results are not relabelled.",
+  "actual_cuda_available": true,
+  "actual_cuda_used": true,
+  "actual_cuda_device": "NVIDIA GeForce RTX 4090",
+  "split": "test",
+  "timestamp_local": "2026-10-22 09:50:40",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "model_id": "hpo_test_ETTm1_TiDE_S2023_fc34bf5f1ca56c9404b6",
+  "model": "TiDE",
+  "dataset": "ETTm1",
+  "horizon": 192,
+  "seed": 2023,
+  "seq_len": 336,
+  "label_len": 96
+}

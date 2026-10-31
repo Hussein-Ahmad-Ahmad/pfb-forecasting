@@ -1,0 +1,48 @@
+{
+  "sha256": {
+    "checkpoint.pth": "4f058fbb55f5c82fca9121699794bf61035263df56ca9ba740b4202b5342535c",
+    "epoch_history.csv": "10c1762b87abf850d7e3900a9851002481e657d6cc379bf7d1a34a2f9930cc1d",
+    "metrics.npy": "51c779070a0b693e17e7d47ff5bda4c37ba50a20e964a8d51dc750600bb60efe",
+    "run_provenance.json": "da696b471a728482b3cbcfb0e4f364f776419c0dd8f5e315f225237bbc9e0ccc",
+    "training_summary.json": "8ba88aa3fa3ef2948f0e513349af66d7d7433d307daacc5d02e7e1354335fb21"
+  },
+  "spec": {
+    "data_sha256": "a3dc2c597b9218c7ce1cd55eb77b283fd459a1d09d753063f944967dd6b9218b",
+    "dataset": "ETTh2",
+    "family": "TimeXer",
+    "params": {
+      "d_ff": 256,
+      "d_model": 64,
+      "dropout": 0.05,
+      "e_layers": 2,
+      "learning_rate": 0.0001,
+      "n_heads": 4,
+      "patch_len": 8
+    },
+    "protocol_sha256": "aeddc573e5afaba857953bec1f70c4880cf51e1a751845c80dc8d72c09bca741",
+    "run_id": "hpo_test_ETTh2_TimeXer_S2023_5a66d3cb83ae2b9c840e",
+    "seed": 2023,
+    "software_sha256": "fa2b2059686362057cc4b64044dee6eeb28d3ca64be43faf667595a2ad1939a1",
+    "source_sha256": "1141cc2e2fc9ca95fec7e4d87adcc4face4ac57722b8eea15f7ddf78e80d2780",
+    "split": "test",
+    "study": "hpo_test",
+    "variant": "TimeXer"
+  },
+  "spec_sha256": "6ec86ab9adfb802f3c7af5f6414a66e7753900235fb6ff66c4a4e66d723c9f29",
+  "summary": {
+    "allocated_device_wall_hours": 0.010057421444443106,
+    "best_epoch": 3,
+    "best_validation_mse": 0.29852455929900373,
+    "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+    "cuda_version": "12.6",
+    "cudnn_version": 91002,
+    "epochs_completed": 13,
+    "parameters": 684736,
+    "process_wall_seconds": 36.206716699991375,
+    "test_ever_loaded": true,
+    "torch_version": "2.11.0+cu126",
+    "train_samples": 8113,
+    "training_validation_wall_seconds": 34.1239690000657,
+    "validation_samples": 2689
+  }
+}

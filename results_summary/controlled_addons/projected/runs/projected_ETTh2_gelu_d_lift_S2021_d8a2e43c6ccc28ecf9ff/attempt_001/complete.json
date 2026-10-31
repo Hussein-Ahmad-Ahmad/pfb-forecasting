@@ -1,0 +1,49 @@
+{
+  "sha256": {
+    "checkpoint.pth": "d630b7b9e151c85ca0cc07091e747cf2e3d26495dfe30d4cd1748c1b6c084fa0",
+    "epoch_history.csv": "291eb60013f102902da9f8b0ca1ce00ba54a22fef809feaef2f0bbb0ce537263",
+    "metrics.npy": "0495cbe7a62bb28ef2ab4b7c10d031b589ec85e2a00d8486fecc3cdbf2263af3",
+    "run_provenance.json": "67797408a5e61a0fb8c8d20d27083f7f845e00017568f3709d38843e5248af12",
+    "training_summary.json": "ea878c96a24dc4d8cf3cb9b987afaf362b16610f4f10923abd5eedec8aa11c60"
+  },
+  "spec": {
+    "data_sha256": "a3dc2c597b9218c7ce1cd55eb77b283fd459a1d09d753063f944967dd6b9218b",
+    "dataset": "ETTh2",
+    "family": "PFB-Projected",
+    "params": {
+      "d_ff": 512,
+      "d_model": 128,
+      "dropout": 0.1,
+      "e_layers": 3,
+      "learning_rate": 0.0001,
+      "n_heads": 8,
+      "patch_len": 16,
+      "stride": 8
+    },
+    "protocol_sha256": "aeddc573e5afaba857953bec1f70c4880cf51e1a751845c80dc8d72c09bca741",
+    "run_id": "projected_ETTh2_gelu_d_lift_S2021_d8a2e43c6ccc28ecf9ff",
+    "seed": 2021,
+    "software_sha256": "fa2b2059686362057cc4b64044dee6eeb28d3ca64be43faf667595a2ad1939a1",
+    "source_sha256": "1141cc2e2fc9ca95fec7e4d87adcc4face4ac57722b8eea15f7ddf78e80d2780",
+    "split": "test",
+    "study": "projected",
+    "variant": "gelu_d_lift"
+  },
+  "spec_sha256": "bb75e7e536d5204955846728775d25d102d8ac1d55b6888c0ea8b2f082a4b725",
+  "summary": {
+    "allocated_device_wall_hours": 0.014625047472234453,
+    "best_epoch": 2,
+    "best_validation_mse": 0.27559216073367054,
+    "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+    "cuda_version": "12.6",
+    "cudnn_version": 91002,
+    "epochs_completed": 12,
+    "parameters": 3487936,
+    "process_wall_seconds": 52.65017010003794,
+    "test_ever_loaded": true,
+    "torch_version": "2.11.0+cu126",
+    "train_samples": 8113,
+    "training_validation_wall_seconds": 50.38856220000889,
+    "validation_samples": 2689
+  }
+}

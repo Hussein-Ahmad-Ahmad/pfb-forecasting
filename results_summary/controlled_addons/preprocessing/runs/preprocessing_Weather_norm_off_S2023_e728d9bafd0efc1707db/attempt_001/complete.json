@@ -1,0 +1,49 @@
+{
+  "sha256": {
+    "checkpoint.pth": "a55ec465706069d27de44237d106da801b0b2d6b47b141700155663bd458c94a",
+    "epoch_history.csv": "831a478e49036b076fd40011d4b51d579006de41f963fc2dd91c9533648ec841",
+    "metrics.npy": "5f98746072ed1247e58cfb1bce7851f74e0e9fa1867e686613fee146e1d5a042",
+    "run_provenance.json": "d5dfa92191fe9f24e9c8036e242460f1efb9acba1537fee173e70875cb5aaace",
+    "training_summary.json": "046435d4cbfd915ff54bca40c96b985fb489145259ea3f55a16211cf3d0db7d5"
+  },
+  "spec": {
+    "data_sha256": "34ee981d07313e51da2a50bb600072c8ae4a69cb4b0651f4cb93a069d7a2ba63",
+    "dataset": "Weather",
+    "family": "PatchTST",
+    "params": {
+      "d_ff": 512,
+      "d_model": 128,
+      "dropout": 0.1,
+      "e_layers": 3,
+      "learning_rate": 0.0001,
+      "n_heads": 8,
+      "patch_len": 16,
+      "stride": 8
+    },
+    "protocol_sha256": "aeddc573e5afaba857953bec1f70c4880cf51e1a751845c80dc8d72c09bca741",
+    "run_id": "preprocessing_Weather_norm_off_S2023_e728d9bafd0efc1707db",
+    "seed": 2023,
+    "software_sha256": "fa2b2059686362057cc4b64044dee6eeb28d3ca64be43faf667595a2ad1939a1",
+    "source_sha256": "1141cc2e2fc9ca95fec7e4d87adcc4face4ac57722b8eea15f7ddf78e80d2780",
+    "split": "test",
+    "study": "preprocessing",
+    "variant": "norm_off"
+  },
+  "spec_sha256": "f44a11a309bb00aefc0f097cffbc1c166bc144acfbbcbb3e831248f077c2cb2f",
+  "summary": {
+    "allocated_device_wall_hours": 0.08953109450001244,
+    "best_epoch": 4,
+    "best_validation_mse": 0.4358579808851579,
+    "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+    "cuda_version": "12.6",
+    "cudnn_version": 91002,
+    "epochs_completed": 14,
+    "parameters": 1629504,
+    "process_wall_seconds": 322.3119396000402,
+    "test_ever_loaded": true,
+    "torch_version": "2.11.0+cu126",
+    "train_samples": 36360,
+    "training_validation_wall_seconds": 318.29016450000927,
+    "validation_samples": 5079
+  }
+}

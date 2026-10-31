@@ -1,0 +1,44 @@
+{
+  "sha256": {
+    "checkpoint.pth": "fbada3ac2196771c5c70fbcfb9cf24faf97bf6a1b1b8522891c4ae4bd410ed47",
+    "epoch_history.csv": "5b157e05d796b4e510138d8d8106d73bb3b2866c4d0dace172f4172749fd96e8",
+    "metrics.npy": "373c097bf44ab4fb7f6b4b5f04017b41f5195dc6592aa3ab14eb4a22fe5b3d70",
+    "run_provenance.json": "2e2b15d64f95e2ac681d897955d6271102c40f391eb271b13542296163a7decc",
+    "training_summary.json": "5c60ea0d3fd7413259ad6fa23e746007fccd851f12c97ff0a5ffe7104a39caa5"
+  },
+  "spec": {
+    "data_sha256": "a3dc2c597b9218c7ce1cd55eb77b283fd459a1d09d753063f944967dd6b9218b",
+    "dataset": "ETTh2",
+    "family": "DLinear",
+    "params": {
+      "individual": false,
+      "learning_rate": 0.001,
+      "moving_avg": 49
+    },
+    "protocol_sha256": "aeddc573e5afaba857953bec1f70c4880cf51e1a751845c80dc8d72c09bca741",
+    "run_id": "hpo_test_ETTh2_DLinear_S2025_1bbf1a85c859d54f1ed9",
+    "seed": 2025,
+    "software_sha256": "fa2b2059686362057cc4b64044dee6eeb28d3ca64be43faf667595a2ad1939a1",
+    "source_sha256": "1141cc2e2fc9ca95fec7e4d87adcc4face4ac57722b8eea15f7ddf78e80d2780",
+    "split": "test",
+    "study": "hpo_test",
+    "variant": "DLinear"
+  },
+  "spec_sha256": "66ad6568c1b9419417e98ad7a945d3391bea6c0807de5a15e9f30b8cbd2857e0",
+  "summary": {
+    "allocated_device_wall_hours": 0.002207817750006345,
+    "best_epoch": 1,
+    "best_validation_mse": 0.2868024276627737,
+    "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+    "cuda_version": "12.6",
+    "cudnn_version": 91002,
+    "epochs_completed": 11,
+    "parameters": 129408,
+    "process_wall_seconds": 7.948143300018273,
+    "test_ever_loaded": true,
+    "torch_version": "2.11.0+cu126",
+    "train_samples": 8113,
+    "training_validation_wall_seconds": 5.926110600004904,
+    "validation_samples": 2689
+  }
+}

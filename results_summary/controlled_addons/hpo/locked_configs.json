@@ -1,0 +1,701 @@
+{
+  "selection_plan_sha256": "c59e50806bbb3185b35c69eb99adcaaab52e0fcff64fc8e99005543a9cade3fc",
+  "winners": [
+    {
+      "allocated_device_wall_hours": 0.03446598149997751,
+      "dataset": "ETTh1",
+      "family": "DLinear",
+      "params": {
+        "individual": false,
+        "learning_rate": 0.01,
+        "moving_avg": 7
+      },
+      "selection_metric_sha256": "406ad60c4af1eac9618f22ec346ce18dbc8ea213b56e9ebc46a176f35cd9ab00",
+      "selection_run_id": "hpo_ETTh1_DLinear_3a64de34f0_S2020_1de2600864db3d01e6d7",
+      "validation_mse": 0.849791054098349
+    },
+    {
+      "allocated_device_wall_hours": 0.16071682749995186,
+      "dataset": "ETTh1",
+      "family": "PFB-Direct",
+      "params": {
+        "d_ff": 512,
+        "d_model": 128,
+        "dropout": 0.1,
+        "e_layers": 3,
+        "learning_rate": 0.0001,
+        "n_heads": 8,
+        "patch_len": 64,
+        "stride": 32
+      },
+      "selection_metric_sha256": "a8456e42971c562b86edbf270580af8ecf17f2903c42d72b5032327957d5bd45",
+      "selection_run_id": "hpo_ETTh1_PFB-Direct_25d467c205_S2020_22b28bd0425520e6a238",
+      "validation_mse": 0.9234652900574605
+    },
+    {
+      "allocated_device_wall_hours": 0.16913371733338053,
+      "dataset": "ETTh1",
+      "family": "PFB-Projected",
+      "params": {
+        "d_ff": 512,
+        "d_model": 128,
+        "dropout": 0.1,
+        "e_layers": 3,
+        "learning_rate": 0.0001,
+        "n_heads": 8,
+        "patch_len": 64,
+        "stride": 32
+      },
+      "selection_metric_sha256": "180c5930915f127edf119e69bb6fbcd67e89631da1dc8e24b5f82d0936a56c65",
+      "selection_run_id": "hpo_ETTh1_PFB-Projected_25d467c205_S2020_1c48395ad4533d7b0942",
+      "validation_mse": 0.9334083165358856
+    },
+    {
+      "allocated_device_wall_hours": 0.0915614403888402,
+      "dataset": "ETTh1",
+      "family": "PatchTST",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "e1f6817345cada428b943fab02c3502d431707449b76eb415ab15e0849499fa8",
+      "selection_run_id": "hpo_ETTh1_PatchTST_c1516915a0_S2020_7fb8d736510e3a4f3519",
+      "validation_mse": 0.936014505131101
+    },
+    {
+      "allocated_device_wall_hours": 0.596717024999994,
+      "dataset": "ETTh1",
+      "family": "TiDE",
+      "params": {
+        "d_ff": 512,
+        "d_layers": 1,
+        "d_model": 128,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.001
+      },
+      "selection_metric_sha256": "1978c22ce2932212f2540f3bc639cf981c71a0c3343b42eafc44d7736575b2a3",
+      "selection_run_id": "hpo_ETTh1_TiDE_a964c53a97_S2020_35612c2302b08b4c43b4",
+      "validation_mse": 0.9179233928679403
+    },
+    {
+      "allocated_device_wall_hours": 0.12313384566669508,
+      "dataset": "ETTh1",
+      "family": "TimeXer",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8
+      },
+      "selection_metric_sha256": "ba7d31937c33aa2c0fd17c16ed10afaeefab6c7a3c811dfef99a963a081fb767",
+      "selection_run_id": "hpo_ETTh1_TimeXer_46770c99ce_S2020_1aecfd594d7cdd1b1492",
+      "validation_mse": 0.9649259234765045
+    },
+    {
+      "allocated_device_wall_hours": 0.09174644430559258,
+      "dataset": "ETTh1",
+      "family": "iTransformer",
+      "params": {
+        "d_ff": 512,
+        "d_model": 64,
+        "dropout": 0.2,
+        "e_layers": 2,
+        "learning_rate": 0.001,
+        "n_heads": 4
+      },
+      "selection_metric_sha256": "69f671ebf92593aa67ba45992cbb46fef898bdce77592ee466879db1486f0a27",
+      "selection_run_id": "hpo_ETTh1_iTransformer_dfded2eeb7_S2020_22e1eca52eddacfba453",
+      "validation_mse": 0.9078665964600662
+    },
+    {
+      "allocated_device_wall_hours": 0.03311185136107573,
+      "dataset": "ETTh2",
+      "family": "DLinear",
+      "params": {
+        "individual": false,
+        "learning_rate": 0.001,
+        "moving_avg": 49
+      },
+      "selection_metric_sha256": "99da0ded0bb30bb1e999d145d0e2c843b048d449e68c97bd16c6e78c44a078d1",
+      "selection_run_id": "hpo_ETTh2_DLinear_2bfcb42fd1_S2020_302f2cf067bb610fc426",
+      "validation_mse": 0.29104596858104986
+    },
+    {
+      "allocated_device_wall_hours": 0.17245832113888657,
+      "dataset": "ETTh2",
+      "family": "PFB-Direct",
+      "params": {
+        "d_ff": 512,
+        "d_model": 64,
+        "dropout": 0.2,
+        "e_layers": 2,
+        "learning_rate": 0.001,
+        "n_heads": 4,
+        "patch_len": 32,
+        "stride": 16
+      },
+      "selection_metric_sha256": "de767514c0559921694b8398c972ac868b4afe9bd225c565e93d00b3a485e42b",
+      "selection_run_id": "hpo_ETTh2_PFB-Direct_e26b23525e_S2020_32532fda8cb12f4f1085",
+      "validation_mse": 0.2620401879795127
+    },
+    {
+      "allocated_device_wall_hours": 0.18721693380557958,
+      "dataset": "ETTh2",
+      "family": "PFB-Projected",
+      "params": {
+        "d_ff": 512,
+        "d_model": 128,
+        "dropout": 0.1,
+        "e_layers": 3,
+        "learning_rate": 0.0001,
+        "n_heads": 8,
+        "patch_len": 64,
+        "stride": 32
+      },
+      "selection_metric_sha256": "c72b5ac0d051499f982b960e47234f9170e34e1dc48a16ab4a66d01a5bbfe512",
+      "selection_run_id": "hpo_ETTh2_PFB-Projected_25d467c205_S2020_1a706d252336b7e73819",
+      "validation_mse": 0.26959944603867697
+    },
+    {
+      "allocated_device_wall_hours": 0.09690633822226018,
+      "dataset": "ETTh2",
+      "family": "PatchTST",
+      "params": {
+        "d_ff": 512,
+        "d_model": 128,
+        "dropout": 0.1,
+        "e_layers": 3,
+        "learning_rate": 0.0001,
+        "n_heads": 8,
+        "patch_len": 64,
+        "stride": 32
+      },
+      "selection_metric_sha256": "3b4d49cf7eed8830e69202fb0f8f729da302aa13a0a6b1b97c51a3bdd9872d49",
+      "selection_run_id": "hpo_ETTh2_PatchTST_25d467c205_S2020_1fd6f39d70e493cf5fca",
+      "validation_mse": 0.26711635702988346
+    },
+    {
+      "allocated_device_wall_hours": 0.44047124758333667,
+      "dataset": "ETTh2",
+      "family": "TiDE",
+      "params": {
+        "d_ff": 512,
+        "d_layers": 1,
+        "d_model": 128,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.001
+      },
+      "selection_metric_sha256": "843f067a7ba2e8717605bece224c41eb68eac5c80e40ed917fd69e5315623add",
+      "selection_run_id": "hpo_ETTh2_TiDE_a964c53a97_S2020_56dbbd7991b8acb852d2",
+      "validation_mse": 0.27054837120478253
+    },
+    {
+      "allocated_device_wall_hours": 0.12698154547219423,
+      "dataset": "ETTh2",
+      "family": "TimeXer",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8
+      },
+      "selection_metric_sha256": "d3933a0710ef55b88c5ed947ef24a3b4c96c34de762b9d0897545cd07b352a72",
+      "selection_run_id": "hpo_ETTh2_TimeXer_46770c99ce_S2020_43b1324f977e5da8f6e8",
+      "validation_mse": 0.2904511549626854
+    },
+    {
+      "allocated_device_wall_hours": 0.0793082982222485,
+      "dataset": "ETTh2",
+      "family": "iTransformer",
+      "params": {
+        "d_ff": 512,
+        "d_model": 64,
+        "dropout": 0.2,
+        "e_layers": 2,
+        "learning_rate": 0.001,
+        "n_heads": 4
+      },
+      "selection_metric_sha256": "379f98fbfa49ab56e0c5785eb9c2916f90ce9fa045b475fe90f9c07d13b75fe8",
+      "selection_run_id": "hpo_ETTh2_iTransformer_dfded2eeb7_S2020_e1fce1e884dd7e35144c",
+      "validation_mse": 0.29014350815076345
+    },
+    {
+      "allocated_device_wall_hours": 0.15948730433330638,
+      "dataset": "ETTm1",
+      "family": "DLinear",
+      "params": {
+        "individual": false,
+        "learning_rate": 0.0003,
+        "moving_avg": 25
+      },
+      "selection_metric_sha256": "05a27ad8b4c18f7e02adfaf2654fa615683bd5e6a84b16e10b1f087082cc7535",
+      "selection_run_id": "hpo_ETTm1_DLinear_67abb4e12e_S2020_7b9cc61f801710632dc2",
+      "validation_mse": 0.4878500551083172
+    },
+    {
+      "allocated_device_wall_hours": 0.6905264291388449,
+      "dataset": "ETTm1",
+      "family": "PFB-Direct",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "cb37691ebe16f2d9ac13b92b079d546bda8172f8e60180bb7e906ee9006bd7cd",
+      "selection_run_id": "hpo_ETTm1_PFB-Direct_c1516915a0_S2020_f7bde1c54cd352b25eea",
+      "validation_mse": 0.48640217846596523
+    },
+    {
+      "allocated_device_wall_hours": 0.7380877679166021,
+      "dataset": "ETTm1",
+      "family": "PFB-Projected",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "31351d8c1c75ed50ce6b444627280edc064f28920ff38d6715b28a95866ab912",
+      "selection_run_id": "hpo_ETTm1_PFB-Projected_c1516915a0_S2020_8ab49faecefc37aa5ddb",
+      "validation_mse": 0.48507500193525527
+    },
+    {
+      "allocated_device_wall_hours": 0.40293757486118315,
+      "dataset": "ETTm1",
+      "family": "PatchTST",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "1e6ada69636ece02b56fe75db838f71226627784aa4685a471ca02f41524f77f",
+      "selection_run_id": "hpo_ETTm1_PatchTST_c1516915a0_S2020_50ab786a4841c4ab23a0",
+      "validation_mse": 0.48607702004598236
+    },
+    {
+      "allocated_device_wall_hours": 2.525772250055646,
+      "dataset": "ETTm1",
+      "family": "TiDE",
+      "params": {
+        "d_ff": 512,
+        "d_layers": 1,
+        "d_model": 128,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.001
+      },
+      "selection_metric_sha256": "4f297ba0e20b116a7cb448095bc2fd2e542be4f8ecdfe1ab14b4e83ebbd78b38",
+      "selection_run_id": "hpo_ETTm1_TiDE_a964c53a97_S2020_3727c21a84939c23bb60",
+      "validation_mse": 0.5048339302235941
+    },
+    {
+      "allocated_device_wall_hours": 0.5710108985556225,
+      "dataset": "ETTm1",
+      "family": "TimeXer",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8
+      },
+      "selection_metric_sha256": "1919e1194797a0c0a1596383a9e0f9eb468147ce9b0ca7ae79642dcd3bf01656",
+      "selection_run_id": "hpo_ETTm1_TimeXer_46770c99ce_S2020_1659b27f82df11a40481",
+      "validation_mse": 0.4968449279416521
+    },
+    {
+      "allocated_device_wall_hours": 0.33142532974995753,
+      "dataset": "ETTm1",
+      "family": "iTransformer",
+      "params": {
+        "d_ff": 512,
+        "d_model": 64,
+        "dropout": 0.2,
+        "e_layers": 3,
+        "learning_rate": 0.0003,
+        "n_heads": 4
+      },
+      "selection_metric_sha256": "20fc1febff2a7a2d0782cde0ab62d3a735eeaa11546ceb6f28505e068ee3528f",
+      "selection_run_id": "hpo_ETTm1_iTransformer_3ca178cbe7_S2020_a08fbc218abb041cb3f0",
+      "validation_mse": 0.4895552464532024
+    },
+    {
+      "allocated_device_wall_hours": 0.14277439549998638,
+      "dataset": "ETTm2",
+      "family": "DLinear",
+      "params": {
+        "individual": false,
+        "learning_rate": 0.01,
+        "moving_avg": 7
+      },
+      "selection_metric_sha256": "82427c0e453e403821c22b82500f80d7e5d5b969b746818cf785cbe2ae75842a",
+      "selection_run_id": "hpo_ETTm2_DLinear_3a64de34f0_S2020_8703104dba0322d58434",
+      "validation_mse": 0.1606069973549833
+    },
+    {
+      "allocated_device_wall_hours": 0.6244088991110847,
+      "dataset": "ETTm2",
+      "family": "PFB-Direct",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "dd24cbb0283c6e75d86cc49816b2467fe5149540732353113d9a6ed85bbcabca",
+      "selection_run_id": "hpo_ETTm2_PFB-Direct_c1516915a0_S2020_281dd20399015b27d5d1",
+      "validation_mse": 0.15949705723972762
+    },
+    {
+      "allocated_device_wall_hours": 0.714060945194538,
+      "dataset": "ETTm2",
+      "family": "PFB-Projected",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "e784fff0f577918358a28103001d92240a4420c08eeda15d6fa6c5c5dbe055c2",
+      "selection_run_id": "hpo_ETTm2_PFB-Projected_c1516915a0_S2020_7ffc1ac1843132839fd1",
+      "validation_mse": 0.1595473765063745
+    },
+    {
+      "allocated_device_wall_hours": 0.38770139352777433,
+      "dataset": "ETTm2",
+      "family": "PatchTST",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "3822b48fa848a00eccb44715133994ddfe03a2ad0fee2a57dfbee80e2acbffab",
+      "selection_run_id": "hpo_ETTm2_PatchTST_c1516915a0_S2020_1763afafd0a7eb1cf805",
+      "validation_mse": 0.16414842271098531
+    },
+    {
+      "allocated_device_wall_hours": 1.7008482775278067,
+      "dataset": "ETTm2",
+      "family": "TiDE",
+      "params": {
+        "d_ff": 256,
+        "d_layers": 1,
+        "d_model": 64,
+        "dropout": 0.1,
+        "e_layers": 2,
+        "learning_rate": 0.001
+      },
+      "selection_metric_sha256": "de38f369d3ad5b9a75f179313413aa39693a4cb83507a5470faa585257510f20",
+      "selection_run_id": "hpo_ETTm2_TiDE_dc096a7345_S2020_9d58e5a7c2ff24003692",
+      "validation_mse": 0.1568075608623824
+    },
+    {
+      "allocated_device_wall_hours": 0.5415194651944654,
+      "dataset": "ETTm2",
+      "family": "TimeXer",
+      "params": {
+        "d_ff": 512,
+        "d_model": 128,
+        "dropout": 0.1,
+        "e_layers": 3,
+        "learning_rate": 0.0001,
+        "n_heads": 8,
+        "patch_len": 16
+      },
+      "selection_metric_sha256": "12b3b59399359c6d9f1c5f31284413d8f8751a536bc3a6723ded663279a3a78c",
+      "selection_run_id": "hpo_ETTm2_TimeXer_ef202bb747_S2020_f4d59afaa585c15c4860",
+      "validation_mse": 0.15988592311688926
+    },
+    {
+      "allocated_device_wall_hours": 0.34389546400000753,
+      "dataset": "ETTm2",
+      "family": "iTransformer",
+      "params": {
+        "d_ff": 512,
+        "d_model": 64,
+        "dropout": 0.2,
+        "e_layers": 3,
+        "learning_rate": 0.0003,
+        "n_heads": 4
+      },
+      "selection_metric_sha256": "f8de1bb9281709f7d35af828167a59766f6386e031af307776a96911802089a6",
+      "selection_run_id": "hpo_ETTm2_iTransformer_3ca178cbe7_S2020_01ae9814d683570eaa20",
+      "validation_mse": 0.17229795073903675
+    },
+    {
+      "allocated_device_wall_hours": 0.018164350666661954,
+      "dataset": "Exchange",
+      "family": "DLinear",
+      "params": {
+        "individual": false,
+        "learning_rate": 0.01,
+        "moving_avg": 49
+      },
+      "selection_metric_sha256": "9636633a2e0d062acbcdcfa42fca21717a8770466e137847c16f3188610a47c9",
+      "selection_run_id": "hpo_Exchange_DLinear_f29d7a32c6_S2020_3a0439de225ec2f19c0a",
+      "validation_mse": 0.30668765593732156
+    },
+    {
+      "allocated_device_wall_hours": 0.08665309375003238,
+      "dataset": "Exchange",
+      "family": "PFB-Direct",
+      "params": {
+        "d_ff": 256,
+        "d_model": 128,
+        "dropout": 0.05,
+        "e_layers": 3,
+        "learning_rate": 0.001,
+        "n_heads": 8,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "e82cb3b095b924bdb1d4dee8ee4dd80b5c095a806a0428313c7a724d6e48927e",
+      "selection_run_id": "hpo_Exchange_PFB-Direct_2a2726e3f4_S2020_ad5c3e7e0098f527b6f0",
+      "validation_mse": 0.20214385498218923
+    },
+    {
+      "allocated_device_wall_hours": 0.09874050755561459,
+      "dataset": "Exchange",
+      "family": "PFB-Projected",
+      "params": {
+        "d_ff": 1024,
+        "d_model": 256,
+        "dropout": 0.1,
+        "e_layers": 3,
+        "learning_rate": 0.0001,
+        "n_heads": 8,
+        "patch_len": 16,
+        "stride": 8
+      },
+      "selection_metric_sha256": "6eb493d5be478dcc10529986d8108f4e74e88de9d9d1c790a4eeb1ae6d7df701",
+      "selection_run_id": "hpo_Exchange_PFB-Projected_bcbd649724_S2020_88083966ea6990e0c8cf",
+      "validation_mse": 0.20690950911177536
+    },
+    {
+      "allocated_device_wall_hours": 0.05421896427772784,
+      "dataset": "Exchange",
+      "family": "PatchTST",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.1,
+        "e_layers": 4,
+        "learning_rate": 0.0003,
+        "n_heads": 8,
+        "patch_len": 16,
+        "stride": 8
+      },
+      "selection_metric_sha256": "a362582710f15362e30e53c2dc56e04269980d4c4ac9ec4212e001f89cb18f1f",
+      "selection_run_id": "hpo_Exchange_PatchTST_40873a6a49_S2020_37be8859422758f9d885",
+      "validation_mse": 0.21485014949390643
+    },
+    {
+      "allocated_device_wall_hours": 0.4076617270833554,
+      "dataset": "Exchange",
+      "family": "TiDE",
+      "params": {
+        "d_ff": 1024,
+        "d_layers": 1,
+        "d_model": 256,
+        "dropout": 0.1,
+        "e_layers": 1,
+        "learning_rate": 0.001
+      },
+      "selection_metric_sha256": "933b704b1edbbced709695252cde54629f3151cba7dc356dd073cd23db85dafa",
+      "selection_run_id": "hpo_Exchange_TiDE_71e688c3db_S2020_04bc3bf996b4a1e1a029",
+      "validation_mse": 0.22795496645250368
+    },
+    {
+      "allocated_device_wall_hours": 0.07090519294443462,
+      "dataset": "Exchange",
+      "family": "TimeXer",
+      "params": {
+        "d_ff": 1024,
+        "d_model": 256,
+        "dropout": 0.1,
+        "e_layers": 3,
+        "learning_rate": 0.0001,
+        "n_heads": 8,
+        "patch_len": 16
+      },
+      "selection_metric_sha256": "aa735fd73e33f44212062c9daa9b81af1fe932415f8dc42e17855f22f9accb42",
+      "selection_run_id": "hpo_Exchange_TimeXer_073b28be8b_S2020_cbea1ce6426c2ac9a96f",
+      "validation_mse": 0.21560614208672504
+    },
+    {
+      "allocated_device_wall_hours": 0.044923158749976815,
+      "dataset": "Exchange",
+      "family": "iTransformer",
+      "params": {
+        "d_ff": 1024,
+        "d_model": 256,
+        "dropout": 0.1,
+        "e_layers": 3,
+        "learning_rate": 0.0001,
+        "n_heads": 8
+      },
+      "selection_metric_sha256": "7fa4e332a30797ca1906e00dd17b27a060c7275e07cf9920f35ff598a78203d8",
+      "selection_run_id": "hpo_Exchange_iTransformer_db3860824f_S2020_548370b3bfb053a2aea1",
+      "validation_mse": 0.23490812371503314
+    },
+    {
+      "allocated_device_wall_hours": 0.23779732788883848,
+      "dataset": "Weather",
+      "family": "DLinear",
+      "params": {
+        "individual": false,
+        "learning_rate": 0.0003,
+        "moving_avg": 25
+      },
+      "selection_metric_sha256": "c20b4d466948f35d44c940db01da04335dff8f897354f784a0f71d94281fc2c3",
+      "selection_run_id": "hpo_Weather_DLinear_67abb4e12e_S2020_ae9dae40d59197e55fac",
+      "validation_mse": 0.4809954656430297
+    },
+    {
+      "allocated_device_wall_hours": 1.6978244326944696,
+      "dataset": "Weather",
+      "family": "PFB-Direct",
+      "params": {
+        "d_ff": 256,
+        "d_model": 128,
+        "dropout": 0.05,
+        "e_layers": 3,
+        "learning_rate": 0.001,
+        "n_heads": 8,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "296c9f924bd4e7ef865b702679bc2730815a997f49c96a26a0572a8da02528e3",
+      "selection_run_id": "hpo_Weather_PFB-Direct_2a2726e3f4_S2020_5a0295a7c296a8f754dd",
+      "validation_mse": 0.45446152849597815
+    },
+    {
+      "allocated_device_wall_hours": 1.8151346299999729,
+      "dataset": "Weather",
+      "family": "PFB-Projected",
+      "params": {
+        "d_ff": 256,
+        "d_model": 64,
+        "dropout": 0.05,
+        "e_layers": 2,
+        "learning_rate": 0.0001,
+        "n_heads": 4,
+        "patch_len": 8,
+        "stride": 4
+      },
+      "selection_metric_sha256": "362bc677da70babbf72f875f58badab30ff29f37e5246929426215bb06760577",
+      "selection_run_id": "hpo_Weather_PFB-Projected_c1516915a0_S2020_5bccddc502ccaad999bc",
+      "validation_mse": 0.45513855284888693
+    },
+    {
+      "allocated_device_wall_hours": 0.975145598361204,
+      "dataset": "Weather",
+      "family": "PatchTST",
+      "params": {
+        "d_ff": 512,
+        "d_model": 128,
+        "dropout": 0.1,
+        "e_layers": 3,
+        "learning_rate": 0.0001,
+        "n_heads": 8,
+        "patch_len": 64,
+        "stride": 32
+      },
+      "selection_metric_sha256": "32879668301b3b99cfe0ded82b5d6449e3b1077463a935b70738edae18c7cea5",
+      "selection_run_id": "hpo_Weather_PatchTST_25d467c205_S2020_4469077810c7d0422e35",
+      "validation_mse": 0.46054923596047975
+    },
+    {
+      "allocated_device_wall_hours": 13.192511985083337,
+      "dataset": "Weather",
+      "family": "TiDE",
+      "params": {
+        "d_ff": 512,
+        "d_layers": 1,
+        "d_model": 128,
+        "dropout": 0.1,
+        "e_layers": 2,
+        "learning_rate": 0.0003
+      },
+      "selection_metric_sha256": "bff9d1376873560d65b64bbba0899fb0e0a369f402a60745c3c7ea15f7efed2f",
+      "selection_run_id": "hpo_Weather_TiDE_b4b5894051_S2020_00742f378d5b3b0fdeba",
+      "validation_mse": 0.5043277620043348
+    },
+    {
+      "allocated_device_wall_hours": 1.0938094315277542,
+      "dataset": "Weather",
+      "family": "TimeXer",
+      "params": {
+        "d_ff": 256,
+        "d_model": 128,
+        "dropout": 0.05,
+        "e_layers": 3,
+        "learning_rate": 0.001,
+        "n_heads": 8,
+        "patch_len": 8
+      },
+      "selection_metric_sha256": "5b926c00bb386cd0e812d0f23d710d215b17c8821688353d3ea7491fa43da279",
+      "selection_run_id": "hpo_Weather_TimeXer_6574a2a9ef_S2020_162f59d608b25ea7a57e",
+      "validation_mse": 0.4395535835239686
+    },
+    {
+      "allocated_device_wall_hours": 0.6326206830833689,
+      "dataset": "Weather",
+      "family": "iTransformer",
+      "params": {
+        "d_ff": 512,
+        "d_model": 64,
+        "dropout": 0.2,
+        "e_layers": 3,
+        "learning_rate": 0.0003,
+        "n_heads": 4
+      },
+      "selection_metric_sha256": "4632fdd244bdd249f8b7bf3a2bcdc9db264dde532c086181cda0fe037e274f65",
+      "selection_run_id": "hpo_Weather_iTransformer_3ca178cbe7_S2020_dd8cabee693129138c61",
+      "validation_mse": 0.45427841331854624
+    }
+  ]
+}

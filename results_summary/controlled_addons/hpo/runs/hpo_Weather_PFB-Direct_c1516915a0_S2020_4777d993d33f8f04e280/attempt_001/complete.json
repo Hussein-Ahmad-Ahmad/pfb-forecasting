@@ -1,0 +1,49 @@
+{
+  "sha256": {
+    "checkpoint.pth": "d388d35e3ebe03aed361359b612a4b14c2f1e490912b6634572f04ffdf7b0ca4",
+    "epoch_history.csv": "f5817c5eef6c221eca14cb129152d85515878d24095d5a036a13cdb222cee070",
+    "metrics.npy": "62d89ba8a8278d37c201a5701d36d2e1e075f48bc99486dc92e89ee40534902c",
+    "run_provenance.json": "c3491e62e382f17c19d1f971f70afbde6b42edf8024e1995ea9b697f77675804",
+    "training_summary.json": "a2b982204889581a893f3ba53c9816dcfcb931aad5700153ecad250ec0fdac87"
+  },
+  "spec": {
+    "data_sha256": "34ee981d07313e51da2a50bb600072c8ae4a69cb4b0651f4cb93a069d7a2ba63",
+    "dataset": "Weather",
+    "family": "PFB-Direct",
+    "params": {
+      "d_ff": 256,
+      "d_model": 64,
+      "dropout": 0.05,
+      "e_layers": 2,
+      "learning_rate": 0.0001,
+      "n_heads": 4,
+      "patch_len": 8,
+      "stride": 4
+    },
+    "protocol_sha256": "aeddc573e5afaba857953bec1f70c4880cf51e1a751845c80dc8d72c09bca741",
+    "run_id": "hpo_Weather_PFB-Direct_c1516915a0_S2020_4777d993d33f8f04e280",
+    "seed": 2020,
+    "software_sha256": "fa2b2059686362057cc4b64044dee6eeb28d3ca64be43faf667595a2ad1939a1",
+    "source_sha256": "1141cc2e2fc9ca95fec7e4d87adcc4face4ac57722b8eea15f7ddf78e80d2780",
+    "split": "val",
+    "study": "hpo",
+    "variant": "PFB-Direct_c1516915a0"
+  },
+  "spec_sha256": "6743c52670e39826fb32125897b3e65240168de78f2819438e347871ed6d5823",
+  "summary": {
+    "allocated_device_wall_hours": 0.14515582288890275,
+    "best_epoch": 9,
+    "best_validation_mse": 0.45594352531359983,
+    "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+    "cuda_version": "12.6",
+    "cudnn_version": 91002,
+    "epochs_completed": 19,
+    "parameters": 2265280,
+    "process_wall_seconds": 522.5609620000469,
+    "test_ever_loaded": false,
+    "torch_version": "2.11.0+cu126",
+    "train_samples": 36360,
+    "training_validation_wall_seconds": 519.2783034000313,
+    "validation_samples": 5079
+  }
+}

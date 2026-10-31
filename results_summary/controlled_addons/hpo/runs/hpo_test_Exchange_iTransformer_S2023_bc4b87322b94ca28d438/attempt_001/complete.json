@@ -1,0 +1,47 @@
+{
+  "sha256": {
+    "checkpoint.pth": "b44ff7b186f2ed02a70a43194be68705678b077a7f4dd7641b7a826e73ceda29",
+    "epoch_history.csv": "c3d2356b6d2a9fff0e6a5d273196ca94d2101bfd6106931f578e9f22d6a40db9",
+    "metrics.npy": "fe92d87448dca37a616283a97f03530297171cfc868dfb1a1a926b90efa25297",
+    "run_provenance.json": "bf7d0720cafa9ebcd6011a8b5766c5c6b9700a18dbfb066c3ee4b12d86c33cb3",
+    "training_summary.json": "c57637780e6a7675497a32ae19ba6e2e9040ea15f9bdac73729dc7fbaccc5910"
+  },
+  "spec": {
+    "data_sha256": "48b4d9d3d508f5104162e85b9a6042e3557fde11aa9f2944eba8c0d0efc89842",
+    "dataset": "Exchange",
+    "family": "iTransformer",
+    "params": {
+      "d_ff": 1024,
+      "d_model": 256,
+      "dropout": 0.1,
+      "e_layers": 3,
+      "learning_rate": 0.0001,
+      "n_heads": 8
+    },
+    "protocol_sha256": "aeddc573e5afaba857953bec1f70c4880cf51e1a751845c80dc8d72c09bca741",
+    "run_id": "hpo_test_Exchange_iTransformer_S2023_bc4b87322b94ca28d438",
+    "seed": 2023,
+    "software_sha256": "fa2b2059686362057cc4b64044dee6eeb28d3ca64be43faf667595a2ad1939a1",
+    "source_sha256": "1141cc2e2fc9ca95fec7e4d87adcc4face4ac57722b8eea15f7ddf78e80d2780",
+    "split": "test",
+    "study": "hpo_test",
+    "variant": "iTransformer"
+  },
+  "spec_sha256": "a1fb5efe9010495c16e2c5ac604a1da51e295a3526f07c4e5ffeb5b31b2dcc72",
+  "summary": {
+    "allocated_device_wall_hours": 0.00374845069441815,
+    "best_epoch": 1,
+    "best_validation_mse": 0.251561472177879,
+    "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+    "cuda_version": "12.6",
+    "cudnn_version": 91002,
+    "epochs_completed": 11,
+    "parameters": 2505408,
+    "process_wall_seconds": 13.494421899900772,
+    "test_ever_loaded": true,
+    "torch_version": "2.11.0+cu126",
+    "train_samples": 4784,
+    "training_validation_wall_seconds": 11.583637000061572,
+    "validation_samples": 569
+  }
+}

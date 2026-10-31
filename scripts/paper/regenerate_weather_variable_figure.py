@@ -43,7 +43,9 @@ LABELS = {
 }
 
 
-def generate(source: Path, output: Path) -> dict:
+def generate(source: Path, output: Path, font_scale: float = 1.0) -> dict:
+    if not 1.0 <= font_scale <= 1.2:
+        raise ValueError("Font scale must be between 1.0 and 1.2")
     with source.open(encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
     if len(rows) != 21 or {int(row["variable_idx"]) for row in rows} != set(LABELS):
@@ -60,9 +62,9 @@ def generate(source: Path, output: Path) -> dict:
     if any("\ufffd" in label or "**" in label or "degC" in label for label in labels):
         raise AssertionError("Invalid display typography")
     plt.rcParams.update({
-        "font.family": "DejaVu Sans", "font.size": 10,
-        "axes.titlesize": 12, "axes.labelsize": 10.5,
-        "xtick.labelsize": 10, "ytick.labelsize": 10,
+        "font.family": "DejaVu Sans", "font.size": 10 * font_scale,
+        "axes.titlesize": 12 * font_scale, "axes.labelsize": 10.5 * font_scale,
+        "xtick.labelsize": 10 * font_scale, "ytick.labelsize": 10 * font_scale,
         "axes.spines.top": False, "axes.spines.right": False,
         "mathtext.fontset": "dejavusans",
     })
@@ -94,6 +96,7 @@ def generate(source: Path, output: Path) -> dict:
         "negative_channels": sum(gain < 0 for gain in gains),
         "missing_glyph_warnings": glyph_warnings,
         "training_launched": False, "gpu_provenance_unchanged": True,
+        "font_scale": font_scale,
         "display_order": [int(row["variable_idx"]) for row in rows],
         "display_labels": labels,
         "gain_values": gains,
@@ -105,8 +108,9 @@ def main() -> None:
     parser.add_argument("--source-csv", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--audit-json", type=Path)
+    parser.add_argument("--font-scale", type=float, default=1.0)
     args = parser.parse_args()
-    report = generate(args.source_csv, args.output)
+    report = generate(args.source_csv, args.output, args.font_scale)
     if args.audit_json:
         args.audit_json.parent.mkdir(parents=True, exist_ok=True)
         args.audit_json.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

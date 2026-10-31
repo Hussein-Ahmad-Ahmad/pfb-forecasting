@@ -1,0 +1,16 @@
+{
+  "allocated_device_wall_hours": 0.04638430458331843,
+  "best_epoch": 1,
+  "best_validation_mse": 0.16030344312720896,
+  "compute_note": "Occupied RTX4090 wall time, not active-kernel time; no equal-GPU-hour claim",
+  "cuda_version": "12.6",
+  "cudnn_version": 91002,
+  "epochs_completed": 11,
+  "parameters": 3256768,
+  "process_wall_seconds": 166.9834960999433,
+  "test_ever_loaded": true,
+  "torch_version": "2.11.0+cu126",
+  "train_samples": 34033,
+  "training_validation_wall_seconds": 163.53374690003693,
+  "validation_samples": 11329
+}

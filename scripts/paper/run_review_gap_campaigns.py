@@ -36,6 +36,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 import pandas as pd
+import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -133,12 +134,39 @@ def command_for(run: Run, python_exe: str) -> list[str]:
     return cmd
 
 
-def metrics_path(run: Run) -> Path | None:
+def metrics_path(run: Run, strict: bool = False) -> Path | None:
     result_root = ROOT / "results"
     if not result_root.exists():
         return None
     matches = sorted(result_root.glob(f"long_term_forecast_{run.model_id}_*/metrics.npy"))
-    return matches[0] if matches else None
+    if not matches:
+        return None
+    if strict:
+        if len(matches) != 1:
+            raise ValueError(f"Ambiguous results for {run.model_id}: {matches}")
+        metric = matches[0]
+        values = np.load(metric, allow_pickle=False)
+        if values.shape != (5,) or not np.isfinite(values).all():
+            raise ValueError(f"Invalid metrics, preserved for inspection: {metric}")
+        provenance = json.loads(metric.with_name("run_provenance.json").read_text(encoding="utf-8"))
+        expected = {
+            "model_id": run.model_id, "model": run.model, "horizon": run.horizon,
+            "seed": run.seed, "seq_len": run.seq_len, "label_len": run.label_len,
+            "split": "test", "run_by_gpu_watermark": WATERMARK,
+        }
+        if any(provenance.get(key) != value for key, value in expected.items()):
+            raise ValueError(f"Result provenance mismatch, preserved for inspection: {metric}")
+        if not provenance.get("actual_cuda_available") or "RTX 4090" not in str(provenance.get("actual_cuda_device")):
+            raise ValueError(f"Result is not verified RTX4090 output: {metric}")
+        if provenance.get("actual_cuda_used") is False:
+            raise ValueError(f"Result was not executed on CUDA: {metric}")
+        if run.campaign == "patchtst_output_ensemble":
+            pred = np.load(metric.with_name("pred.npy"), mmap_mode="r", allow_pickle=False)
+            true = np.load(metric.with_name("true.npy"), mmap_mode="r", allow_pickle=False)
+            expected_tail = (run.horizon, DATASETS[run.dataset]["channels"])
+            if pred.ndim != 3 or pred.shape != true.shape or pred.shape[0] == 0 or pred.shape[1:] != expected_tail:
+                raise ValueError(f"Invalid ensemble prediction shapes: {metric.parent}")
+    return matches[0]
 
 
 def projected_match(datasets: list[str], horizons: list[int], seeds: list[int]) -> list[Run]:
@@ -199,8 +227,12 @@ def prepare_rolling_files(datasets: list[str], fractions: list[float]) -> dict[t
     return mapping
 
 
-def rolling_origin(datasets: list[str], horizons: list[int], seeds: list[int], fractions: list[float]) -> list[Run]:
-    files = prepare_rolling_files(datasets, fractions)
+def rolling_origin(datasets: list[str], horizons: list[int], seeds: list[int], fractions: list[float], prepare_files: bool = True) -> list[Run]:
+    files = prepare_rolling_files(datasets, fractions) if prepare_files else {
+        (dataset, f"R{int(round(fraction * 100)):03d}"):
+        f"review_rolling_origin/{dataset}_R{int(round(fraction * 100)):03d}.csv"
+        for dataset in datasets for fraction in fractions
+    }
     runs = []
     for dataset in datasets:
         for fraction in fractions:
@@ -290,7 +322,8 @@ def execute(runs: list[Run], python_exe: str, output: Path, args: argparse.Names
     status_path = output / "status.csv"
     executed = 0
     for index, run in enumerate(runs, start=1):
-        existing = metrics_path(run)
+        strict = getattr(args, "require_rtx4090", False)
+        existing = metrics_path(run, strict=strict)
         if args.skip_completed and existing is not None:
             print(f"[{index}/{len(runs)}] SKIP {run.model_id}")
             append_status(status_path, {
@@ -309,12 +342,19 @@ def execute(runs: list[Run], python_exe: str, output: Path, args: argparse.Names
             print(" ".join(cmd))
             executed += 1
             continue
+        if strict:
+            import torch
+            if not torch.cuda.is_available() or "RTX 4090" not in torch.cuda.get_device_name(0):
+                raise RuntimeError("RTX4090 CUDA execution is required; CPU fallback is not allowed.")
+        minimum_free_gb = getattr(args, "min_free_gb", 0)
+        if shutil.disk_usage(ROOT).free < minimum_free_gb * 1024 ** 3:
+            raise RuntimeError(f"Stopping before training: less than {minimum_free_gb} GiB free on the result drive.")
         stdout = logs / f"{run.model_id}.stdout.log"
         stderr = logs / f"{run.model_id}.stderr.log"
         started = time.time()
         with stdout.open("w", encoding="utf-8") as out, stderr.open("w", encoding="utf-8") as err:
             proc = subprocess.run(cmd, cwd=ROOT, stdout=out, stderr=err, text=True)
-        metric = metrics_path(run)
+        metric = metrics_path(run, strict=strict) if proc.returncode == 0 else None
         status = "completed" if proc.returncode == 0 and metric else "failed"
         append_status(status_path, {
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"), "campaign": run.campaign,

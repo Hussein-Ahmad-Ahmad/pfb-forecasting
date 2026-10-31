@@ -1,0 +1,18 @@
+{
+  "run_by_gpu_watermark": "EXP_RUN_BY_RTX4090_GPU",
+  "hardware_note": "Hardware label reflects the selected execution device; historical results are not relabelled.",
+  "actual_cuda_available": true,
+  "actual_cuda_used": true,
+  "actual_cuda_device": "NVIDIA GeForce RTX 4090",
+  "split": "val",
+  "timestamp_local": "2026-10-21 12:51:13",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "model_id": "hpo_Weather_PFB-Direct_a2517e1cd2_S2020_fefdc982e3bc97440820",
+  "model": "PFB-Direct",
+  "dataset": "custom",
+  "horizon": 192,
+  "seed": 2020,
+  "seq_len": 336,
+  "label_len": 96
+}
